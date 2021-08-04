@@ -1,5 +1,5 @@
 // LAYOUT STYLES GO IN HERE, HEIGHT & WIDTH
-
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 
 
 // NAV CONTAINER
@@ -55,4 +55,13 @@ div {
   article {
     height: 40vh;
   }
+}
+
+// UPCOMING TRIPS
+.glide-container {
+  @include center-items(center);
+}
+
+.glide {
+  align-items: center;
 }

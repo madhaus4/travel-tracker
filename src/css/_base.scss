@@ -1,11 +1,46 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-// $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-
-// body {
-//   background: $primary-background;
-// }
+// IMAGES, FONTS& WHATEVER I DON'T KNOW WHAT TO DO WITH GOES IN HERE
 
 
 * {
-  border: 2px solid pink;
+  font-size: 1em;
+  // border: 2px solid pink;
+  margin: 0;
+}
+
+body {
+  overflow: auto;
+}
+
+.main-section {
+  border-radius: 1em;
+  background-color: #8ecae6;
+  filter: drop-shadow(0px 4px 4px grey);
+
+  .main-content {
+    border-radius: 1em;
+    background-color: #ffffff;
+    filter: drop-shadow(0px 4px 4px grey);
+  }
+}
+
+
+
+.menu-icon {
+  height: 30px;
+  width: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+  display: none;
 }

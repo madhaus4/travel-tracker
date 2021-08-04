@@ -1,4 +1,4 @@
-@use './_abstracts.scss';
-@use './_base.scss';
-@use './_components.scss';
-@use './_layout.scss';
+@import './_components.scss';
+@import './_base.scss';
+@import './_layout.scss';
+@import './_abstracts.scss';

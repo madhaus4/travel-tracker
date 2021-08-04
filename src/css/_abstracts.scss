@@ -1,1 +1,9 @@
 // VARIABLES AND MIXINS GO IN HERE
+
+
+// LAYOUT
+@mixin center-items($placement) {
+  display: flex;
+  flex-direction: column;
+  align-items: $placement;
+}

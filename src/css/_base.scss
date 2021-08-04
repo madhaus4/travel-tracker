@@ -1,4 +1,5 @@
 // IMAGES, FONTS& WHATEVER I DON'T KNOW WHAT TO DO WITH GOES IN HERE
+  // MARGIN, PADDING, BORDERS, COLORS
 
 
 * {
@@ -9,26 +10,37 @@
 
 body {
   overflow: auto;
+  margin: 5px;
 }
 
-.main-section {
-  border-radius: 1em;
-  background-color: #8ecae6;
-  filter: drop-shadow(0px 4px 4px grey);
-
-  .main-content {
-    border-radius: 1em;
-    background-color: #ffffff;
-    filter: drop-shadow(0px 4px 4px grey);
-  }
-}
-
-
-
+// NAV CONTAINER
 .menu-icon {
   height: 30px;
   width: 30px;
 }
+
+
+// MAIN CONTAINER
+.main-section {
+  border-radius: 1em;
+  background-color: #c6e2e9;
+  filter: drop-shadow(0px 2px 2px grey);
+
+  .main-content {
+    border-radius: 1em;
+    background-color: #ffffff;
+    filter: drop-shadow(0px 2px 2px grey);
+
+    h4 {
+      padding-left: 10px;
+      margin-top: -50px;
+    }
+  }
+}
+
+
+// TRIPS CONTAINER
+
 
 
 

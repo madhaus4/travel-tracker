@@ -1,4 +1,6 @@
-// LAYOUT STYLES GO IN HERE
+// LAYOUT STYLES GO IN HERE, HEIGHT & WIDTH
+
+
 
 // NAV CONTAINER
 .nav-container {
@@ -43,6 +45,9 @@
     height: 40vh;
     width: 65vw;
     margin-bottom: -80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 }
 

@@ -22,14 +22,14 @@ body {
 
 // MAIN CONTAINER
 .main-section {
-  border-radius: 1em;
+  border-radius: $radius;
   background-color: #A6F5EE;
-  filter: drop-shadow(0px 2px 2px grey);
+  filter: $drop-shadow;
 
   .main-content {
-    border-radius: 1em;
+    border-radius: $radius;
     background-color: #ffffff;
-    filter: drop-shadow(0px 2px 2px grey);
+    filter: $drop-shadow;
 
     h4 {
       padding-left: 10px;

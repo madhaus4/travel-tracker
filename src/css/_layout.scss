@@ -54,14 +54,13 @@
 
 
 // TRIPS CONTAINER
-
 .trips-container {
-  height: 100vh;
+  height: 200vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
 
   article {
-    height: 30vh;
+    height: 40vh;
   }
 }

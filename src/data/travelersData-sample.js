@@ -1,16 +1,16 @@
 const sampleTravelers = [
   {
-    "id": 4,
+    "id": 1,
     "name": "Leila Thebeaud",
     "travelerType": "photographer",
   }, 
   {
-    "id": 10,
+    "id": 2,
     "name": "Rickie Jodlowski",
     "travelerType": "relaxer",
   }, 
   {
-    "id": 12,
+    "id": 3,
     "name": "Lannie Heynel",
     "travelerType": "history buff"
   }

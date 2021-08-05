@@ -1,7 +1,7 @@
 const sampleTrips = [
   {
     "id": 1,
-    "userID": 4,
+    "userID": 1,
     "destinationID": 49,
     "travelers": 1,
     "date": "2022/09/16",
@@ -11,7 +11,7 @@ const sampleTrips = [
   },
   {
     "id": 3,
-    "userID": 10,
+    "userID": 2,
     "destinationID": 22,
     "travelers": 4,
     "date": "2022/05/22",
@@ -21,7 +21,7 @@ const sampleTrips = [
   },
   {
     "id": 21,
-    "userID": 12,
+    "userID": 3,
     "destinationID": 10,
     "travelers": 1,
     "date": "2022/01/28",
@@ -31,7 +31,7 @@ const sampleTrips = [
   },
   {
     "id": 22,
-    "userID": 12,
+    "userID": 3,
     "destinationID": 9,
     "travelers": 4,
     "date": "2022/05/01",
@@ -41,7 +41,7 @@ const sampleTrips = [
   },
   {
     "id": 23,
-    "userID": 4,
+    "userID": 1,
     "destinationID": 24,
     "travelers": 6,
     "date": "2022/01/02",
@@ -51,7 +51,7 @@ const sampleTrips = [
   },
   {
     "id": 48,
-    "userID": 4,
+    "userID": 1,
     "destinationID": 14,
     "travelers": 6,
     "date": "2021/02/10",
@@ -61,7 +61,7 @@ const sampleTrips = [
   },
   {
     "id": 81,
-    "userID": 10,
+    "userID": 2,
     "destinationID": 26,
     "travelers": 1,
     "date": "2020/08/31",
@@ -71,7 +71,7 @@ const sampleTrips = [
   },
   {
     "id": 99,
-    "userID": 4,
+    "userID": 1,
     "destinationID": 27,
     "travelers": 1,
     "date": "2019/08/12",
@@ -81,7 +81,7 @@ const sampleTrips = [
   },
   {
     "id": 100,
-    "userID": 12,
+    "userID": 3,
     "destinationID": 6,
     "travelers": 6,
     "date": "2020/3/28",
@@ -91,7 +91,7 @@ const sampleTrips = [
   },
   {
     "id": 119,
-    "userID": 10,
+    "userID": 2,
     "destinationID": 47,
     "travelers": 5,
     "date": "2020/05/28",
@@ -101,7 +101,7 @@ const sampleTrips = [
   },
   {
     "id": 142,
-    "userID": 12,
+    "userID": 3,
     "destinationID": 39,
     "travelers": 1,
     "date": "2019/12/14",
@@ -111,7 +111,7 @@ const sampleTrips = [
   },
   {
     "id": 179,
-    "userID": 10,
+    "userID": 2,
     "destinationID": 21,
     "travelers": 1,
     "date": "2020/10/30",
@@ -121,7 +121,7 @@ const sampleTrips = [
   },
   {
     "id": 185,
-    "userID": 10,
+    "userID": 2,
     "destinationID": 35,
     "travelers": 4,
     "date": "2019/09/02",
@@ -131,7 +131,7 @@ const sampleTrips = [
   },
   {
     "id": 186,
-    "userID": 4,
+    "userID": 1,
     "destinationID": 44,
     "travelers": 6,
     "date": "2020/02/08",
@@ -141,7 +141,7 @@ const sampleTrips = [
   },
   {
     "id": 193,
-    "userID": 12,
+    "userID": 3,
     "destinationID": 35,
     "travelers": 1,
     "date": "2020/11/09",

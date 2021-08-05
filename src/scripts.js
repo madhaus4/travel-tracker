@@ -1,14 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
-// import './css/main.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-import './images/menu.png';
-
-// console.log('This is the JavaScript entry file - your code begins here.');
 // FILES
 import './css/main.scss';
 import apiCalls from './apiCalls.js';
@@ -19,15 +8,12 @@ import './images/menu.png';
 
 
 
+// EVENT LISTENERS
+window.addEventListener('load', checkAPICalls)
 
 
-
-window.addEventListener('load', doSomething)
-
-
-
-
-function doSomething() {
+// FUNCTIONS
+function checkAPICalls() {
   apiCalls.getData()
     .then(promise => {
     let travelersData = promise[0]

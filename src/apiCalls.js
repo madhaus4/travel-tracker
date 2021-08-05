@@ -6,7 +6,7 @@ const retrieveTravelersData = () => {
 }
 
 const retrieveCurrentUserData = () => {
-  return fetch(`http://localhost:3001/api/v1/travelers/${USER-ID-HERE}`)
+  return fetch(`http://localhost:3001/api/v1/travelers/${8}`)
     .then(response => response.json())
     .then(data => data)
     .catch(err => console.log('Error upon us'));
@@ -36,4 +36,4 @@ const getData = () => {
 }
 
 
-export default getData;
+export default {getData};

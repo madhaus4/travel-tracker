@@ -1,5 +1,13 @@
 const sampleDestinations = [
   {
+    "id": 6,
+    "destination": "Jakarta, Indonesia",
+    "estimatedLodgingCostPerDay": 70,
+    "estimatedFlightCostPerPerson": 890,
+    "image": "https://images.unsplash.com/photo-1555333145-4acf190da336?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "alt": "lit up city at night"
+  },
+  {
     "id": 9,
     "destination": "Amsterdam, Netherlands",
     "estimatedLodgingCostPerDay": 100,
@@ -21,6 +29,14 @@ const sampleDestinations = [
     "estimatedFlightCostPerPerson": 830,
     "image": "https://images.unsplash.com/photo-1517821362941-f7f753200fef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80",
     "alt": "people buying oranges and other fruit from a street vendor"
+  },
+  {
+    "id": 21,
+    "destination": "Tulum, Mexico",
+    "estimatedLodgingCostPerDay": 100,
+    "estimatedFlightCostPerPerson": 350,
+    "image": "https://images.unsplash.com/photo-1501619593928-bef49688c888?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "alt": "a donkey standing on the beach"
   },
   {
     "id": 22,
@@ -45,6 +61,14 @@ const sampleDestinations = [
     "estimatedFlightCostPerPerson": 1000,
     "image": "https://images.unsplash.com/photo-1549471156-52ee71691122?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "alt": "city with bridge under night sky"
+  },
+  {
+    "id": 27,
+    "destination": "San Francisco, California",
+    "estimatedLodgingCostPerDay": 175,
+    "estimatedFlightCostPerPerson": 200,
+    "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+    "alt": "golden gate bridge during the day time"
   },
   {
     "id": 35,

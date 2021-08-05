@@ -70,6 +70,26 @@ const sampleTrips = [
     "suggestedActivities": []
   },
   {
+    "id": 99,
+    "userID": 4,
+    "destinationID": 27,
+    "travelers": 1,
+    "date": "2019/08/12",
+    "duration": 13,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
+    "id": 100,
+    "userID": 12,
+    "destinationID": 6,
+    "travelers": 6,
+    "date": "2020/3/28",
+    "duration": 10,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
     "id": 119,
     "userID": 10,
     "destinationID": 47,
@@ -86,6 +106,16 @@ const sampleTrips = [
     "travelers": 1,
     "date": "2019/12/14",
     "duration": 20,
+    "status": "approved",
+    "suggestedActivities": []
+  },
+  {
+    "id": 179,
+    "userID": 10,
+    "destinationID": 21,
+    "travelers": 1,
+    "date": "2020/10/30",
+    "duration": 14,
     "status": "approved",
     "suggestedActivities": []
   },

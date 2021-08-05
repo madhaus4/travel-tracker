@@ -4,6 +4,7 @@ import apiCalls from './apiCalls.js';
 import Glide from '@glidejs/glide'
 
 
+
 // IMAGES
 import './images/menu.png';
 import './images/next.png'
@@ -11,12 +12,22 @@ import './images/next.png'
 
 import './images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg';
 import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
-import './images/photo-1553882951-9c3dab4a50cb.jpeg';
-
-
+import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
 
 
 let travelersData, currentUserData, tripsData, destinationsData;
+
+let newTrip = {
+  "id": Date.now(), 
+  "userID": 8,
+  "destinationID": 9, 
+  "travelers": 2, 
+  "date": '2022/06/10', 
+  "duration": 7, 
+  "status": 'pending', 
+  "suggestedActivities": []
+}
+
 // EVENT LISTENERS
 window.addEventListener('load', checkAPICalls)
 
@@ -25,30 +36,30 @@ window.addEventListener('load', checkAPICalls)
 function checkAPICalls() {
   apiCalls.getData()
     .then(promise => {
-    travelersData = promise[0]
+    travelersData = promise[0].travelers
     currentUserData = promise[1]
-    tripsData = promise[2]
-    destinationsData = promise[3]
+    tripsData = promise[2].trips
+    destinationsData = promise[3].destinations
     // console.log('travelersData', travelersData)
     // console.log('currentUserData', currentUserData)
     // console.log('tripsData', tripsData)
     // console.log('destinationsData', destinationsData)
-    attemptToPostData(tripsData, newTrip)
   })
+  attemptToPostData(newTrip)
+  applyGlide()
 }
 
-let newTrip = {
-  id: 201, 
-  userID: 8, 
-  destinationID: 9, 
-  travelers: 2, 
-  date: '2022/06/10', 
-  duration: 7, 
-  status: 'pending', 
-  suggestedActivities: []
+
+function attemptToPostData(data) {
+  apiCalls.requestData.updateTripsData(data)
 }
 
-function attemptToPostData(path, data) {
-  apiCalls.requestData.updateTripsData(path, data)
-  console.log(data)
+
+function applyGlide() {
+  const config = {
+    type: 'carousel',
+    startAt: 0,
+    perView: 1
+  }
+  new Glide('.glide', config).mount()
 }

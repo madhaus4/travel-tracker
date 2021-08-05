@@ -1,52 +1,52 @@
 const retrieveTravelersData = () => {
-  return fetch('http://localhost:3001/api/v1/travelers')
+  return fetch("http://localhost:3001/api/v1/travelers")
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log('Error upon us'));
+    .catch(err => console.log("Error upon us"));
 }
 
 const retrieveCurrentUserData = () => {
   return fetch(`http://localhost:3001/api/v1/travelers/${8}`)
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log('Error upon us'));
+    .catch(err => console.log("Error upon us"));
 }
 
 const retrieveTripsData = () => {
-  return fetch('http://localhost:3001/api/v1/trips')
+  return fetch("http://localhost:3001/api/v1/trips")
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log('Error upon us'));
+    .catch(err => console.log("Error upon us"));
 }
 
 const retrieveDestinationsData = () => {
-  return fetch('http://localhost:3001/api/v1/destinations')
+  return fetch("http://localhost:3001/api/v1/destinations")
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log('Error upon us'));
+    .catch(err => console.log("Error upon us"));
 }
 
 // const retrieveData = (path) => {
 //   fetch(path)
 //     .then(response => response.json())
 //     .then(data => data)
-//     .catch(err => console.log('Error upon us'));
+//     .catch(err => console.log("Error upon us"));
 // }
 
 const updateData = (path, data) => {
   fetch(path, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
   })
       .then(response => checkForErrors(response))
-      .then(response => console.log(response))
-      .catch(err => console.log('ERROR MSG HERE'))
+      .then(response => console.log(reponse))
+      .catch(err => console.log("ERROR MSG FOR DEVS IN CONSOLE"))
 }
 
 const checkForError = (response) => {
   if (!response.ok) {
-    throw new Error('Please make sure that all fields are filled out.')
+    throw new Error("Please make sure that all fields are filled out.")
   } else {
     return response.json()
   }
@@ -54,7 +54,7 @@ const checkForError = (response) => {
 
 const requestData = {
   // getTravelersData: () => {
-  //   retrieveData('http://localhost:3001/api/v1/travelers')
+  //   retrieveData("http://localhost:3001/api/v1/travelers")
   // },
 
   // getCurrentUserData: (userID) => {
@@ -62,19 +62,19 @@ const requestData = {
   // },
 
   // getTripsData: () => {
-  //   retrieveData('http://localhost:3001/api/v1/trips')
+  //   retrieveData("http://localhost:3001/api/v1/trips")
   // },
 
   // getDestinationsData: () => {
-  //   retrieveData('http://localhost:3001/api/v1/destinations')
+  //   retrieveData("http://localhost:3001/api/v1/destinations")
   // },
 
   updateTripsData: (data) => {
-    updateData('http://localhost:3001/api/v1/trips', data);
+    updateData("http://localhost:3001/api/v1/trips", data);
   },
 
   updateDestinationsData: (data) => {
-    updateData('http://localhost:3001/api/v1/destinations', data)
+    updateData("http://localhost:3001/api/v1/destinations", data)
   }
 }
 

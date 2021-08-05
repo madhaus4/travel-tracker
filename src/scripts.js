@@ -20,9 +20,9 @@ function checkAPICalls() {
     let currentUserData = promise[1]
     let tripsData = promise[2]
     let destinationsData = promise[3]
-    console.log('travelersData', travelersData)
-    console.log('currentUserData', currentUserData)
-    console.log('tripsData', tripsData)
-    console.log('destinationsData', destinationsData)
+    // console.log('travelersData', travelersData)
+    // console.log('currentUserData', currentUserData)
+    // console.log('tripsData', tripsData)
+    // console.log('destinationsData', destinationsData)
   })
 }

@@ -26,7 +26,6 @@ const retrieveDestinationsData = () => {
     .catch(err => console.log('Error upon us'));
 }
 
-// DYNAMIC FETCH FUNCTION
 // const retrieveData = (path) => {
 //   fetch(path)
 //     .then(response => response.json())
@@ -53,6 +52,31 @@ const checkForError = (response) => {
   }
 }
 
+const requestData = {
+  // getTravelersData: () => {
+  //   retrieveData('http://localhost:3001/api/v1/travelers')
+  // },
+
+  // getCurrentUserData: (userID) => {
+  //   retrieveData(`http://localhost:3001/api/v1/travelers/${userID}`)
+  // },
+
+  // getTripsData: () => {
+  //   retrieveData('http://localhost:3001/api/v1/trips')
+  // },
+
+  // getDestinationsData: () => {
+  //   retrieveData('http://localhost:3001/api/v1/destinations')
+  // },
+
+  updateTripsData: (data) => {
+    updateData('http://localhost:3001/api/v1/trips', data);
+  },
+
+  updateDestinationsData: (data) => {
+    updateData('http://localhost:3001/api/v1/destinations', data)
+  }
+}
 
 
 const getData = () => {
@@ -65,4 +89,5 @@ const getData = () => {
 }
 
 
-export default {getData, updateData, checkForError};
+
+export default {updateData, checkForError, requestData, getData};

@@ -7,7 +7,7 @@ import apiCalls from './apiCalls.js';
 import './images/menu.png';
 
 
-
+let travelersData, currentUserData, tripsData, destinationsData;
 // EVENT LISTENERS
 window.addEventListener('load', checkAPICalls)
 
@@ -16,13 +16,30 @@ window.addEventListener('load', checkAPICalls)
 function checkAPICalls() {
   apiCalls.getData()
     .then(promise => {
-    let travelersData = promise[0]
-    let currentUserData = promise[1]
-    let tripsData = promise[2]
-    let destinationsData = promise[3]
+    travelersData = promise[0]
+    currentUserData = promise[1]
+    tripsData = promise[2]
+    destinationsData = promise[3]
     // console.log('travelersData', travelersData)
     // console.log('currentUserData', currentUserData)
     // console.log('tripsData', tripsData)
     // console.log('destinationsData', destinationsData)
+    attemptToPostData(tripsData, newTrip)
   })
+}
+
+let newTrip = {
+  id: 201, 
+  userID: 8, 
+  destinationID: 9, 
+  travelers: 2, 
+  date: '2022/06/10', 
+  duration: 7, 
+  status: 'pending', 
+  suggestedActivities: []
+}
+
+function attemptToPostData(path, data) {
+  apiCalls.requestData.updateTripsData(path, data)
+  console.log(data)
 }

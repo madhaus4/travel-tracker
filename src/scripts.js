@@ -1,11 +1,9 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+// FILES
 import './css/main.scss';
+import apiCalls from './apiCalls.js';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
+
+// IMAGES
 import './images/menu.png';
 import './images/next.png'
 
@@ -17,4 +15,40 @@ import './images/photo-1553882951-9c3dab4a50cb.jpeg';
 import Glide from '@glidejs/glide'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+
+let travelersData, currentUserData, tripsData, destinationsData;
+// EVENT LISTENERS
+window.addEventListener('load', checkAPICalls)
+
+
+// FUNCTIONS
+function checkAPICalls() {
+  apiCalls.getData()
+    .then(promise => {
+    travelersData = promise[0]
+    currentUserData = promise[1]
+    tripsData = promise[2]
+    destinationsData = promise[3]
+    // console.log('travelersData', travelersData)
+    // console.log('currentUserData', currentUserData)
+    // console.log('tripsData', tripsData)
+    // console.log('destinationsData', destinationsData)
+    attemptToPostData(tripsData, newTrip)
+  })
+}
+
+let newTrip = {
+  id: 201, 
+  userID: 8, 
+  destinationID: 9, 
+  travelers: 2, 
+  date: '2022/06/10', 
+  duration: 7, 
+  status: 'pending', 
+  suggestedActivities: []
+}
+
+function attemptToPostData(path, data) {
+  apiCalls.requestData.updateTripsData(path, data)
+  console.log(data)
+}

@@ -1,10 +1,9 @@
 // IMAGES, FONTS& WHATEVER I DON'T KNOW WHAT TO DO WITH GOES IN HERE
   // MARGIN, PADDING, BORDERS, COLORS
 
-
 * {
+  font-family: 'Hind Siliguri', sans-serif;
   font-size: 1em;
-  // border: 2px solid pink;
   margin: 0;
 }
 
@@ -12,6 +11,7 @@ body {
   overflow: auto;
   margin: 5px;
 }
+
 
 // NAV CONTAINER
 .menu-icon {
@@ -22,14 +22,14 @@ body {
 
 // MAIN CONTAINER
 .main-section {
-  border-radius: 1em;
-  background-color: #c6e2e9;
-  filter: drop-shadow(0px 2px 2px grey);
+  border-radius: $radius;
+  background-color: #A6F5EE;
+  filter: $drop-shadow;
 
   .main-content {
-    border-radius: 1em;
+    border-radius: $radius;
     background-color: #ffffff;
-    filter: drop-shadow(0px 2px 2px grey);
+    filter: $drop-shadow;
 
     h4 {
       padding-left: 10px;
@@ -40,8 +40,15 @@ body {
 
 
 // TRIPS CONTAINER
+.image-1 {
+  height: 200px;
+  width: 200px;
+}
 
-
+.next-icon {
+  height: 30px;
+  width: 30px;
+}
 
 
 

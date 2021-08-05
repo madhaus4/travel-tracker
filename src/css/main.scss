@@ -1,4 +1,8 @@
-@use './_abstracts.scss';
-@use './_base.scss';
-@use './_components.scss';
-@use './_layout.scss';
+@import './_abstracts.scss';
+@import './_layout.scss';
+@import './_base.scss';
+@import './_components.scss';
+
+
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";

@@ -1,5 +1,5 @@
 // LAYOUT STYLES GO IN HERE, HEIGHT & WIDTH
-
+// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 
 
 // NAV CONTAINER
@@ -7,13 +7,12 @@
   height: 60px;
   display: flex;
   justify-content: space-between;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
 }
+
+div {
+  @include center-items(flex-end);
+}
+
 
 
 
@@ -21,32 +20,25 @@
 .main-container {
   height: 60vh;
   margin-bottom: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include center-items(center);
 }
 
 .main-section {
   height: 55vh;
   width: 80vw;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include center-items(center);
   justify-content: space-around;
 
   .main-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include center-items(center);
   }
 
   .main-content {
     height: 40vh;
     width: 65vw;
     margin-bottom: -80px;
-    display: flex;
-    flex-direction: column;
+    @include center-items(flex-start);
     justify-content: space-evenly;
   }
 }
@@ -54,14 +46,22 @@
 
 
 // TRIPS CONTAINER
-
 .trips-container {
-  height: 100vh;
+  height: 200vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
 
   article {
-    height: 30vh;
+    height: 40vh;
   }
 }
+
+// UPCOMING TRIPS
+// .glide-container {
+//   @include center-items(center);
+// }
+
+// .glide {
+//   align-items: center;
+// }

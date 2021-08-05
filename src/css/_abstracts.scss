@@ -1,1 +1,15 @@
 // VARIABLES AND MIXINS GO IN HERE
+
+// BASE VARIABLES
+$radius: 1em;
+$drop-shadow: drop-shadow(0px 2px 2px grey);
+
+
+
+// LAYOUT MIXINS
+@mixin center-items($placement) {
+  display: flex;
+  flex-direction: column;
+  align-items: $placement;
+}
+

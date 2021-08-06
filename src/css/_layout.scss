@@ -38,11 +38,14 @@ div {
     height: 40vh;
     width: 65vw;
     margin-bottom: -80px;
-    // @include center-items(flex-start);
+    @include center-items(center);
     justify-content: space-evenly;
   }
 }
 
+.trip-request-form {
+  @include center-items(flex-start);
+}
 
 
 // TRIPS CONTAINER

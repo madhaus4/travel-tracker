@@ -28,13 +28,13 @@
         <p>You Ready?</p>
       </div>
       <div class="main-content">
-        <form>
+        <form class="trip-request-form">
           <!-- <h4>Start Date</h4> -->
-          <!-- <label for=""></label> -->
-          <input type="date" id="startDate" name="startDate" placeholder="Start Date" required>
+          <label for="startDate">Start Day</label>
+          <input type="date" id="startDate" name="startDate" required>
           <!-- <h4>End Date</h4> -->
-          <!-- <label for=""></label> -->
-          <input type="date" id="endDate" name="endDate" placeholder="End Date" required>
+          <label for="endDate">End Date</label>
+          <input type="date" id="endDate" name="endDate" required>
           <!-- <h4>Destination</h4> -->
           <!-- <label for=""></label> -->
           <input type="list" list="destinationsList" id="destinationChoice" name="" placeholder="Destination" required>
@@ -45,7 +45,7 @@
           </datalist>    
           <!-- <h4>Travelers</h4> -->
           <!-- <label for=""></label> -->
-          <input type="number" id="numOfTravelers" name="numOfTravelers" value="0" min="1" max="50" placeholder="Travelers" required>
+          <input type="number" id="numOfTravelers" name="numOfTravelers" value="0" min="1" max="50" placeholder="Travelers" size="6" required>
           <button type="">Check Prices</button>
         </form>
       </div>

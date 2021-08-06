@@ -7,17 +7,17 @@ import sampleDestinations from '../src/data/destinationsData-sample.js';
 
 
 describe('Trips', () => {
-  let 
+  let allTrips;
 
   beforeEach(() => {
-
+    allTrips = new Trips(sampleTrips);
   });
 
   it('should be a function', () => {
-    expect().to.be.a('function');
+    expect(Trips).to.be.a('function');
   })
 
   it('should be an instance of Trips', () => {
-    expect().to.be.an.instanceOf(Trips)
+    expect(allTrips).to.be.an.instanceOf(Trips)
   })
 });

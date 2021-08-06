@@ -38,7 +38,7 @@ div {
     height: 40vh;
     width: 65vw;
     margin-bottom: -80px;
-    @include center-items(flex-start);
+    // @include center-items(flex-start);
     justify-content: space-evenly;
   }
 }

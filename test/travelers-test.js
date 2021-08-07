@@ -14,13 +14,17 @@ describe('Travelers', () => {
     traveler3 = new Travelers(sampleTravelers[2]);
   })
 
-  it('it should be a function', () => {
+  it('should be a function', () => {
     expect(Travelers).to.be.a('function');
   })
   
-  it('it should be an instance of Travelers', () => {
+  it('should be an instance of Travelers', () => {
     expect(traveler1).to.be.an.instanceOf(Travelers);
     expect(traveler2).to.be.an.instanceOf(Travelers);
     expect(traveler3).to.be.an.instanceOf(Travelers);
   })
+
+  // it('should have a user id', () => {
+  //   expect(traveler1.id).to.equal(1)
+  // })
 });

@@ -1,8 +1,8 @@
 class Travelers {
-  constructor(travelerID, travelerName, travelerType) {
-    this.id = travelerID;
-    this.name = travelerName;
-    this.travelerType = travelerType;
+  constructor(traveler) {
+    this.id = traveler.id;
+    this.name = traveler.name;
+    this.travelerType = traveler.travelerType;
   }
 }
 

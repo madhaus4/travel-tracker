@@ -215,9 +215,7 @@ describe('Trips', () => {
     })
 
     it('should have a way to calculate the amount a user spent on trips this year', () => {
-
       expect(tripsData.calculateTripsTotal(3, 9, 2020)).to.equal(6039);
     })
   })    
-
 });

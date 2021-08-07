@@ -214,12 +214,10 @@ describe('Trips', () => {
       expect(tripsData.returnTripTotalForGroup(3, 9)).to.equal(59565);
     })
 
+    it('should have a way to calculate the amount a user spent on trips this year', () => {
 
-    it.skip('should have a way to calculate the amount a user spent on trips this year', () => {
-      expect().to.equal(10500);
+      expect(tripsData.calculateTripsTotal(3, 9, 2020)).to.equal(6039);
     })
   })    
-
-
 
 });

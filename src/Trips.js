@@ -40,14 +40,14 @@ class Trips {
   // TRIP COSTS METHODS
   calculateTripCostPerPerson(userID, destinationID) {
     const userTrips = this.findCurrentUserTrips(userID)
-    const currrentTrip = userTrips.find(trip => {
+    const currentTrip = userTrips.find(trip => {
       if (trip.destinationID === destinationID) {
         return trip
       }
     })
     let total = this.allDestinations.reduce((num, place) => {
       if (place.id === destinationID) {
-        num = (place.estimatedLodgingCostPerDay * currrentTrip.duration) + place.estimatedFlightCostPerPerson
+        num = (place.estimatedLodgingCostPerDay * currentTrip.duration) + place.estimatedFlightCostPerPerson
       }
       return num
     }, 0)
@@ -82,6 +82,25 @@ class Trips {
   returnTripTotalForGroup(userID, destinationID) {
     return this.calculateTripCostForGroup(userID, destinationID) + this.calculateAgentFeeForGroup(userID, destinationID)
   }
+
+  calculateTripsTotal(userID, destinationID, year) {
+    const userTrips = this.findCurrentUserTrips(userID)
+    let dates = []
+    userTrips.forEach(trip => {
+      if (trip.date.includes(year)) {
+        dates.push(trip)
+      }
+    })
+
+    return dates.reduce((num, date) => {
+      if (date.destinationID) {
+        destinationID = date.destinationID 
+        num += this.returnTripTotalPerPerson(userID, destinationID)
+      }
+      return num
+    }, 0)
+  }
+
 }
 
 

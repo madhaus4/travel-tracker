@@ -17,14 +17,24 @@ class Trips {
   }
 
   determinePastTrips(userID, date) {
-    return this.allTrips.filter(trip => trip.userID === userID && trip.date < date)
+    const userTrips = this.determineCurrentUserTrips(userID)
+    return userTrips.filter(trip => trip.date < date)
   }
 
-  determindPresentTrips(userID, date) {}
+  determinePresentTrips(userID, date) {
+    const userTrips = this.determineCurrentUserTrips(userID)
+    return userTrips.filter(trip => trip.date === date)
+  }
 
-  determineUpcomingTrips(userID, date) {}
+  determineUpcomingTrips(userID, date) {
+    const userTrips = this.determineCurrentUserTrips(userID)
+    return userTrips.filter(trip => trip.date > date)
+  }
 
-  determinePendingTrips(userID, date) {}
+  determinePendingTrips(userID, date) {
+    const userTrips = this.determineCurrentUserTrips(userID)
+    return userTrips.filter(trip => trip.status === 'pending')
+  }
 
 
 }

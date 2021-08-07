@@ -10,17 +10,21 @@ class Trips {
     this.duration = tripData.duration;
     this.status = tripData.status;
     this.suggestedActivities = tripData.suggestedActivities;
-    // this.suggestedActivities = []
-    // console.log(this.allTrips )
   }
 
-  determinePastTrips() {}
+  determineCurrentUserTrips(userID) {
+    return this.allTrips.filter(trip => trip.userID === userID)
+  }
 
-  determindPresentTrips() {}
+  determinePastTrips(userID, date) {
+    return this.allTrips.filter(trip => trip.userID === userID && trip.date < date)
+  }
 
-  determineUpcomingTrips() {}
+  determindPresentTrips(userID, date) {}
 
-  determinePendingTrips() {}
+  determineUpcomingTrips(userID, date) {}
+
+  determinePendingTrips(userID, date) {}
 
 
 }

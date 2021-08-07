@@ -120,11 +120,11 @@ describe('Trips', () => {
         }
       ]
 
-      expect(tripsData.determineCurrentUserTrips(3)).to.deep.equal(currentUserTrips);
+      expect(tripsData.findCurrentUserTrips(3)).to.deep.equal(currentUserTrips);
     })
 
     it('should have a way to find all of a user\'s past trips', () => {
-      expect(tripsData.determinePastTrips(3, date)).to.deep.equal([  
+      expect(tripsData.findPastTrips(3, date)).to.deep.equal([  
         {
           id: 100,
           userID: 3,
@@ -159,11 +159,11 @@ describe('Trips', () => {
     })
 
     it('should have a way to find all of a user\'s present trips', () => {
-      expect(tripsData.determinePresentTrips(3, date)).to.deep.equal([]);
+      expect(tripsData.findPresentTrips(3, date)).to.deep.equal([]);
     })
 
     it('should have a way to find all of a user\'s upcoming trips', () => {
-      expect(tripsData.determineUpcomingTrips(3, date)).to.deep.equal([  
+      expect(tripsData.findUpcomingTrips(3, date)).to.deep.equal([  
         {
           id: 21,
           userID: 3,
@@ -188,22 +188,35 @@ describe('Trips', () => {
     })
 
     it('should have a way to find all of a user\'s pending trips', () => {
-      expect(tripsData.determinePendingTrips(3)).to.deep.equal([]);
+      expect(tripsData.findPendingTrips(3)).to.deep.equal([]);
     })
   })
 
   describe('Trip Costs', () => {
-    it('should have a way to calculate the amount per trip', () => {
-      expect(tripsData.determineTripCostPerPerson(3, 9)).to.equal(2850);
-      expect(tripsData.determineTripCostForGroup(3, 9)).to.equal(54150);
+    it('should have a way to calculate the amount of a trip per person', () => {
+      expect(tripsData.calculateTripCostPerPerson(3, 9)).to.equal(2850);
     })
+
+    it('should have a way to calculate the amount of a trip for a group', () => {
+      expect(tripsData.calculateTripCostForGroup(3, 9)).to.equal(54150);
+    })
+    
+    it('should have a way to calculate the travel agent\'s 10% fee', () => {
+      tripsData.calculateTripCostPerPerson(3, 9);
+      tripsData.calculateTripCostForGroup(3, 9);
+
+      expect(tripsData.calculateAgentFeePerPerson(3, 9)).to.equal(285);
+      expect(tripsData.calculateAgentFeeForGroup(3, 9)).to.equal(5415);
+    })
+
+    it('should have a way to return the trip total with the agent\'s fee', () => {
+      expect(tripsData.returnTripTotalPerPerson(3, 9)).to.equal(3135);
+      expect(tripsData.returnTripTotalForGroup(3, 9)).to.equal(59565);
+    })
+
 
     it.skip('should have a way to calculate the amount a user spent on trips this year', () => {
-      expect().to.equal();
-    })
-
-    it.skip('should have a way to calculate the travel agent\'s 10% fee', () => {
-      expect().to.equal();
+      expect().to.equal(10500);
     })
   })    
 

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Trips from '../src/Trips.js';
+import Trip from '../src/Trip.js';
 import sampleTrips from '../src/data/tripsData-sample.js';
 import sampleDestinations from '../src/data/destinationsData-sample.js';
 
@@ -8,17 +8,17 @@ describe('Trips', () => {
   let tripsData, currentTrip, date;
 
   beforeEach(() => {
-    tripsData = new Trips(sampleTrips, sampleDestinations);
-    currentTrip = new Trips(sampleTrips[3], sampleDestinations[1]);
+    tripsData = new Trip(sampleTrips, sampleDestinations);
+    currentTrip = new Trip(sampleTrips[3], sampleDestinations[1]);
     date = '2021/08/07';
   })
 
   it('should be a function', () => {
-    expect(Trips).to.be.a('function');
+    expect(Trip).to.be.a('function');
   })
 
   it('should be an instance of Trips', () => {
-    expect(tripsData).to.be.an.instanceOf(Trips);
+    expect(tripsData).to.be.an.instanceOf(Trip);
   })
 
   it('should hold the data for all trips', () => {
@@ -30,7 +30,7 @@ describe('Trips', () => {
   })
 
   it('should hold data for a single trip', () => {
-    expect(currentTrip).to.be.an.instanceOf(Trips);
+    expect(currentTrip).to.be.an.instanceOf(Trip);
   })
 
   it('should have a specific id for the trip', () => {

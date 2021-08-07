@@ -1,4 +1,4 @@
-class Trips {
+class Trip {
   constructor(tripData, allDestinations) {
     this.allTrips = tripData;
     this.allDestinations = allDestinations;
@@ -104,4 +104,4 @@ class Trips {
 }
 
 
-export default Trips;
+export default Trip;

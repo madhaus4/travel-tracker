@@ -1,4 +1,4 @@
-class Travelers {
+class Traveler {
   constructor(traveler) {
     this.id = traveler.id;
     this.name = traveler.name;
@@ -7,4 +7,4 @@ class Travelers {
 }
 
 
-export default Travelers;
+export default Traveler;

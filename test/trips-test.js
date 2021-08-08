@@ -7,13 +7,13 @@ import sampleDestinations from '../src/data/destinationsData-sample.js';
 
 
 describe('Trips', () => {
-  let currentTraveler;
+  // let currentTraveler;
   let currentTrip, date;
 
   beforeEach(() => {
     // tripsData = new Trip(sampleTrips, sampleDestinations);
     currentTrip = new Trip(sampleTrips[3]);
-    currentTraveler = new Traveler(sampleTravelers[2]);
+    // currentTraveler = new Traveler(sampleTravelers[2]);
     // console.log('currentTrip', currentTrip)
     // console.log('currentTraveler', currentTraveler)
     date = '2021/08/07';
@@ -71,7 +71,7 @@ describe('Trips', () => {
     expect(currentTrip.suggestedActivities).to.deep.equal([])
   })
 
-  describe('User Trips', () => {
+  // describe('User Trips', () => {
     it('should have a way to access a single user', () => {
       const currentUserTrips = [  
         {
@@ -126,7 +126,7 @@ describe('Trips', () => {
         }
       ]
 
-      expect(currentTraveler.findCurrentUserTrips(3)).to.deep.equal(currentUserTrips);
+      expect(currentTrip.findCurrentTrips(sampleTrips)).to.deep.equal(currentUserTrips);
     })
 
   //   it('should have a way to find all of a user\'s past trips', () => {
@@ -196,32 +196,32 @@ describe('Trips', () => {
   //   it('should have a way to find all of a user\'s pending trips', () => {
   //     expect(currentTrip.findPendingTrips(3)).to.deep.equal([]);
   //   })
-  })
+  // })
 
   describe('Trip Costs', () => {
     it('should have a way to calculate the amount of a trip per person', () => {
-      expect(currentTrip.calculateTripCostPerPerson(3, 9)).to.equal(2850);
+      expect(currentTrip.calculateTripCostPerPerson(sampleTrips, sampleDestinations)).to.equal(2850);
     })
 
     it('should have a way to calculate the amount of a trip for a group', () => {
-      expect(currentTrip.calculateTripCostForGroup(3, 9)).to.equal(54150);
+      expect(currentTrip.calculateTripCostForGroup(sampleTrips, sampleDestinations)).to.equal(54150);
     })
     
     it('should have a way to calculate the travel agent\'s 10% fee', () => {
-      currentTrip.calculateTripCostPerPerson(3, 9);
-      currentTrip.calculateTripCostForGroup(3, 9);
+      currentTrip.calculateTripCostPerPerson(sampleTrips, sampleDestinations);
+      currentTrip.calculateTripCostForGroup(sampleTrips, sampleDestinations);
 
-      expect(currentTrip.calculateAgentFeePerPerson(3, 9)).to.equal(285);
-      expect(currentTrip.calculateAgentFeeForGroup(3, 9)).to.equal(5415);
+      expect(currentTrip.calculateAgentFeePerPerson(sampleTrips, sampleDestinations)).to.equal(285);
+      expect(currentTrip.calculateAgentFeeForGroup(sampleTrips, sampleDestinations)).to.equal(5415);
     })
 
     it('should have a way to return the trip total with the agent\'s fee', () => {
-      expect(currentTrip.returnTripTotalPerPerson(3, 9)).to.equal(3135);
-      expect(currentTrip.returnTripTotalForGroup(3, 9)).to.equal(59565);
+      expect(currentTrip.returnTripTotalPerPerson(sampleTrips, sampleDestinations)).to.equal(3135);
+      expect(currentTrip.returnTripTotalForGroup(sampleTrips, sampleDestinations)).to.equal(59565);
     })
 
     it('should have a way to calculate the amount a user spent on trips this year', () => {
-      expect(currentTrip.calculateYearlyTripsTotal(3, 9, 2020)).to.equal(6039);
+      expect(currentTrip.calculateYearlyTripsTotal(sampleTrips, sampleDestinations, 2020)).to.equal(6039);
     })
   })    
 });

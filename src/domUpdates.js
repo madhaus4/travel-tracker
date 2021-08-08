@@ -1,15 +1,19 @@
 const domUpdates = {
 
-  renderPastTrips(trips) {
+  renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
-    trips.forEach(trip => {
+    destinations.forEach(destination => {
       pastTrips.innerHTML += `
-      <h5>${trip.destination}</h5>
-      <img src=${trip.image} alt=${trip.alt}>
+      <h5>${destination.destination}</h5>
+      <img src=${destination.image} alt=${destination.alt}>
       <h6></h6>
       `;
     })
-  }
+  },
+
+  // renderPresentTrips() {},
+  // renderUpcomingTrips() {},
+  // renderPendingTrips() {}
 
 
 }

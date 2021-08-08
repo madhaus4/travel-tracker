@@ -49,23 +49,43 @@ function getAPIdata() {
     date = '2021/08/08';
 
     getTrips(currentUserData, tripsData, '2021/08/08')
+    displayTrips(currentUserData)
   })
 }
 
 
 // display
-function displayTrips() {}
-
-function displayPastTrips(userID, date) {
-  const pastTrips = getPastTrips(userID, date)
-  domUpdates.renderPastTrips(pastTrips);
+function displayTrips(currentUserID) {
+  displayPastTrips(currentUserID, date)
+  // displayPresentTrips()
+  // displayUpcomingTrips()
+  // displayPendingTrips()
 }
 
-function displayPresentTrips() {}
-function displayUpcomingTrips() {}
-function displayPendingTrips() {}
+function displayPastTrips(currentUserID, date) {
+  const destinations = getDestinationData(currentUserID.id);
+  const pastTrips = getPastTrips(currentUserID, date);
+  console.log('destinations', destinations)
+  console.log('pastTrips', pastTrips)
+  domUpdates.renderPastTrips(pastTrips, destinations);
+}
 
-// get
+// function displayPresentTrips() {
+//   const presentTrips = getPresentTrips();
+//   domUpdates.renderPresentTrips(presentTrips);
+// }
+// function displayUpcomingTrips() {
+//   const upcomingTrips = getUpcomingTrips();
+//   domUpdates.renderUpcomingTrips(upcomingTrips);
+// }
+// function displayPendingTrips() {
+//   const pendingTrips = getPendingTrips();
+//   domUpdates.renderPendingTrips(pendingTrips);
+// }
+
+
+
+// HELPER FUNCTIONS
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
@@ -76,35 +96,35 @@ function getTrips(currentUserID, tripsData, date) {
   getDestinationData(currentUserID)
 }
 
-
 function getUserTrips(currentUserID) {
-  return currentTraveler.findCurrentUserTrips(tripsData, currentUserID.id)
+  return currentTraveler.findCurrentUserTrips(tripsData, currentUserID)
 }
 
 function getPastTrips(tripsData, currentUserID, date) {
-  let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID.id, date);
+  let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID, date);
   // console.log('pastTrips', pastTrips)
   return pastTrips;
 }
 
 function getPresentTrips(tripsData, currentUserID, date) {
-  let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID.id, date)
+  let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID, date)
   // console.log('presentTrips', presentTrips)
   return presentTrips;
 }
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
-  let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID.id, date)
+  let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
   // console.log('upcomingTrips', upcomingTrips)
   return upcomingTrips;
 }
 
 function getPendingTrips(tripsData, currentUserID) {
-  return currentTraveler.findPendingTrips(tripsData, currentUserID.id)
+  return currentTraveler.findPendingTrips(tripsData, currentUserID)
 }
 
 function getDestinationData(currentUserID) {
-  let userTrips = getUserTrips(currentUserID.id)
+  let userTrips = getUserTrips(currentUserID)
+  // console.log('userTrips', userTrips)
   let userDestinations = []
   destinationsData.filter(destination => {
     userTrips.forEach(trip => {

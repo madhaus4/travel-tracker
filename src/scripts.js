@@ -1,8 +1,8 @@
 import './css/main.scss';
 // FILES
 import Glide from '@glidejs/glide'
-import Travelers from './Traveler.js';
-import Trips from './Trip.js';
+import Traveler from './Traveler.js';
+import Trip from './Trip.js';
 import apiCalls from './apiCalls.js';
 import domUpdates from './domUpdates.js'
 // IMAGES
@@ -26,7 +26,10 @@ import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
   //   "suggestedActivities": []
   // }
   
-let travelersData, currentUserData, tripsData, destinationsData, currentTraveler, currentTrip;
+let travelersData, currentUserData, tripsData, destinationsData;
+let currentTraveler, currentTrip;
+let date;
+
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
@@ -41,10 +44,11 @@ function getAPIdata() {
     tripsData = promise[2].trips
     destinationsData = promise[3].destinations
     
-    currentTraveler = new Travelers(generateRandomUser(travelersData))
-    currentTrip = new Trips(tripsData, destinationsData)
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData[0])
+    date = '2021/08/08';
 
-    displayPastTrips(currentTraveler)
+    getTrips(currentUserData, tripsData, '2021/08/08')
   })
 }
 
@@ -56,15 +60,46 @@ function displayPastTrips(userID, date) {
 }
 
 // get
-function getPastTrips(userID, date) {
-  console.log('tripsData', currentTrip)
-  return currentTrip.findPastTrips(userID, date);
+function getTrips(currentUserID, tripsData, date) {
+  getUserTrips(currentUserID)
+  getPastTrips(tripsData, currentUserID, date)
+  getPresentTrips(tripsData, currentUserID, date)
+  getUpcomingTrips(tripsData, currentUserID, date)
+  getPendingTrips(tripsData, currentUserID)
 }
 
 
+function getUserTrips(currentUserID) {
+  let userTrips = currentTraveler.findCurrentUserTrips(tripsData, currentUserID.id)
+  // console.log('userTrips', userTrips)
+  return userTrips;
+}
+
+function getPastTrips(tripsData, currentUserID, date) {
+  let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID.id, date);
+  // console.log('pastTrips', pastTrips)
+  return pastTrips;
+}
+
+function getPresentTrips(tripsData, currentUserID, date) {
+  let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID.id, date)
+  // console.log('presentTrips', presentTrips)
+  return presentTrips;
+}
+
+function getUpcomingTrips(tripsData, currentUserID, date) {
+  let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID.id, date)
+  // console.log('upcomingTrips', upcomingTrips)
+  return upcomingTrips;
+}
+
+function getPendingTrips(tripsData, currentUserID) {
+  let pendingTrips = currentTraveler.findPendingTrips(tripsData, currentUserID.id)
+  return pendingTrips;
+}
+
 
 function generateRandomUser(data) {
-  console.log(Math.floor(Math.random() * data.length))
   return Math.floor(Math.random() * data.length);
 }
 

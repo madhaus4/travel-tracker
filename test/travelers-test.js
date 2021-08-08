@@ -95,12 +95,12 @@ describe('Travelers', () => {
           suggestedActivities: []
         }
       ]
-      expect(traveler1.findCurrentUserTrips(sampleTrips)).to.deep.equal(currentUserTrips)
+      expect(traveler1.findCurrentUserTrips(sampleTrips, 3)).to.deep.equal(currentUserTrips)
       expect(traveler1.allTrips.length).to.equal(5);
     })
 
     it('should have a way to find all of a traveler\'s past trips', () => {
-      expect(traveler1.findPastTrips(sampleTrips, date)).to.deep.equal([  
+      expect(traveler1.findPastTrips(sampleTrips, 3, date)).to.deep.equal([  
         {
           id: 100,
           userID: 3,
@@ -164,7 +164,7 @@ describe('Travelers', () => {
     })
 
     it('should have a way to find all of a traveler\'s pending trips', () => {
-      expect(traveler1.findPendingTrips(sampleTrips)).to.deep.equal([]);
+      expect(traveler1.findPendingTrips(sampleTrips, 3)).to.deep.equal([]);
     })
   })
 

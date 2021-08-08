@@ -4,35 +4,55 @@ class Traveler {
     this.name = traveler.name;
     this.travelerType = traveler.travelerType;
     this.allTrips = [];
+    this.pastTrips = [];
+    this.presentTrips = [];
+    this.upcomingTrips = [];
+    this.pendingTrips = [];
   }
 
-  findCurrentUserTrips(trips) {
+  findCurrentUserTrips(trips, id) {
     trips.filter(trip => {
-      if (trip.userID === this.id) {
+      if (trip.userID === id) {
         this.allTrips.push(trip)
       } 
     })
     return this.allTrips 
   }
 
-  findPastTrips(trips, date) {
-    const userTrips = this.findCurrentUserTrips(trips)
-    return userTrips.filter(trip => trip.date < date)
+  findPastTrips(date) {
+    this.allTrips.filter(trip => {
+      if (trip.date < date) {
+        this.pastTrips.push(trip)
+      }
+    })
+    return this.pastTrips
   }
 
-  findPresentTrips(trips, date) {
-    const userTrips = this.findCurrentUserTrips(trips)
-    return userTrips.filter(trip => trip.date === date)
+  findPresentTrips(date) {
+    this.allTrips.filter(trip => {
+      if (trip.date === date) {
+        this.presentTrips.push(trip)
+      }
+    })
+    return this.presentTrips;
   }
 
-  findUpcomingTrips(trips, date) {
-    const userTrips = this.findCurrentUserTrips(trips)
-    return userTrips.filter(trip => trip.date > date)
+  findUpcomingTrips(date) {
+    this.allTrips.filter(trip => {
+      if (trip.date > date) {
+        this.upcomingTrips.push(trip)
+      }
+    })
+    return this.upcomingTrips;
   }
 
-  findPendingTrips(trips) {
-    const userTrips = this.findCurrentUserTrips(trips)
-    return userTrips.filter(trip => trip.status === 'pending')
+  findPendingTrips(trips, id) {
+    trips.filter(trip => {
+      if (trip.userID === id && trip.status === 'pending') {
+        this.pendingTrips.push(trip)
+      }
+    })
+    return this.pendingTrips;
   }
 }
 

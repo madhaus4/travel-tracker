@@ -1,6 +1,6 @@
 import './css/main.scss';
 // FILES
-import Glide from '@glidejs/glide'
+// import Glide from '@glidejs/glide'
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 import apiCalls from './apiCalls.js';
@@ -58,15 +58,13 @@ function getAPIdata() {
 function displayTrips(currentUserID) {
   displayPastTrips(currentUserID, date)
   // displayPresentTrips()
-  // displayUpcomingTrips()
-  // displayPendingTrips()
+  displayUpcomingTrips(currentUserID)
+  displayPendingTrips(currentUserID)
 }
 
 function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const pastTrips = getPastTrips(currentUserID, date);
-  console.log('destinations', destinations)
-  console.log('pastTrips', pastTrips)
   domUpdates.renderPastTrips(pastTrips, destinations);
 }
 
@@ -74,14 +72,18 @@ function displayPastTrips(currentUserID, date) {
 //   const presentTrips = getPresentTrips();
 //   domUpdates.renderPresentTrips(presentTrips);
 // }
-// function displayUpcomingTrips() {
-//   const upcomingTrips = getUpcomingTrips();
-//   domUpdates.renderUpcomingTrips(upcomingTrips);
-// }
-// function displayPendingTrips() {
-//   const pendingTrips = getPendingTrips();
-//   domUpdates.renderPendingTrips(pendingTrips);
-// }
+
+function displayUpcomingTrips(currentUserID) {
+  const destinations = getDestinationData(currentUserID.id);
+  const upcomingTrips = getUpcomingTrips(currentUserID);
+  domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
+}
+
+function displayPendingTrips(currentUserID) {
+  const destinations = getDestinationData(currentUserID.id);
+  const pendingTrips = getPendingTrips(currentUserID);
+  domUpdates.renderPendingTrips(pendingTrips, destinations);
+}
 
 
 

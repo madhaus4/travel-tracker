@@ -56,7 +56,9 @@ div {
   justify-content: center;
 
   article {
-    height: 40vh;
+    height: 50vh;
+    margin: 10px;
+    overflow:scroll;
   }
 }
 

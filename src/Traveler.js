@@ -3,7 +3,10 @@ class Traveler {
     this.id = traveler.id;
     this.name = traveler.name;
     this.travelerType = traveler.travelerType;
+    this.allTrips = [];
   }
+
+  
 }
 
 

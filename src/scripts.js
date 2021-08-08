@@ -1,8 +1,8 @@
 import './css/main.scss';
 // FILES
 import Glide from '@glidejs/glide'
-import Travelers from './Travelers.js';
-import Trips from './Trips.js';
+import Travelers from './Traveler.js';
+import Trips from './Trip.js';
 import apiCalls from './apiCalls.js';
 import domUpdates from './domUpdates.js'
 // IMAGES

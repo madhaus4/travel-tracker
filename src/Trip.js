@@ -32,7 +32,7 @@ class Trip {
     return userTrips.filter(trip => trip.date > date)
   }
 
-  findPendingTrips(userID, date) {
+  findPendingTrips(userID) {
     const userTrips = this.findCurrentUserTrips(userID)
     return userTrips.filter(trip => trip.status === 'pending')
   }
@@ -83,7 +83,7 @@ class Trip {
     return this.calculateTripCostForGroup(userID, destinationID) + this.calculateAgentFeeForGroup(userID, destinationID)
   }
 
-  calculateTripsTotal(userID, destinationID, year) {
+  calculateYearlyTripsTotal(userID, destinationID, year) {
     const userTrips = this.findCurrentUserTrips(userID)
     let dates = []
     userTrips.forEach(trip => {

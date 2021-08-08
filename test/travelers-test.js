@@ -9,7 +9,7 @@ describe('Travelers', () => {
   let traveler1, traveler2, traveler3;
 
   beforeEach(() => {
-    traveler1 = new Traveler(sampleTravelers[0]);
+    traveler1 = new Traveler(sampleTravelers[0], sampleTrips, sampleDestinations);
     traveler2 = new Traveler(sampleTravelers[1]);
     traveler3 = new Traveler(sampleTravelers[2]);
   })
@@ -23,4 +23,23 @@ describe('Travelers', () => {
     expect(traveler2).to.be.an.instanceOf(Traveler);
     expect(traveler3).to.be.an.instanceOf(Traveler);
   })
+
+  it('should have a traveler id', () => {
+    expect(traveler1.id).to.equal(1);
+  })
+
+  it('should have a traveler name', () => {
+    expect(traveler1.name).to.equal('Leila Thebeaud');
+  })
+
+  it('should have a traveler type', () => {
+    expect(traveler1.travelerType).to.equal('photographer');
+  })
+
+  it('should have a default value for all trips', () => {
+    expect(traveler1.allTrips).to.deep.equal([]);
+  })
+
+  
+
 });

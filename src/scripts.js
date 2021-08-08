@@ -54,10 +54,16 @@ function getAPIdata() {
 
 
 // display
+function displayTrips() {}
+
 function displayPastTrips(userID, date) {
   const pastTrips = getPastTrips(userID, date)
   domUpdates.renderPastTrips(pastTrips);
 }
+
+function displayPresentTrips() {}
+function displayUpcomingTrips() {}
+function displayPendingTrips() {}
 
 // get
 function getTrips(currentUserID, tripsData, date) {
@@ -66,13 +72,13 @@ function getTrips(currentUserID, tripsData, date) {
   getPresentTrips(tripsData, currentUserID, date)
   getUpcomingTrips(tripsData, currentUserID, date)
   getPendingTrips(tripsData, currentUserID)
+
+  getDestinationData(currentUserID)
 }
 
 
 function getUserTrips(currentUserID) {
-  let userTrips = currentTraveler.findCurrentUserTrips(tripsData, currentUserID.id)
-  // console.log('userTrips', userTrips)
-  return userTrips;
+  return currentTraveler.findCurrentUserTrips(tripsData, currentUserID.id)
 }
 
 function getPastTrips(tripsData, currentUserID, date) {
@@ -94,15 +100,32 @@ function getUpcomingTrips(tripsData, currentUserID, date) {
 }
 
 function getPendingTrips(tripsData, currentUserID) {
-  let pendingTrips = currentTraveler.findPendingTrips(tripsData, currentUserID.id)
-  return pendingTrips;
+  return currentTraveler.findPendingTrips(tripsData, currentUserID.id)
+}
+
+function getDestinationData(currentUserID) {
+  let userTrips = getUserTrips(currentUserID.id)
+  let userDestinations = []
+  destinationsData.filter(destination => {
+    userTrips.forEach(trip => {
+      if (destination.id === trip.destinationID) {
+        userDestinations.push(destination)
+      }
+    })
+  })
+  return userDestinations;
 }
 
 
-function generateRandomUser(data) {
-  return Math.floor(Math.random() * data.length);
-}
 
+
+
+
+
+
+// function generateRandomUser(data) {
+//   return Math.floor(Math.random() * data.length);
+// }
 
 // function attemptToPostData(data) {
 //   apiCalls.requestData.updateTripsData(data)

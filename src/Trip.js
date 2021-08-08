@@ -1,52 +1,30 @@
 class Trip {
-  constructor(tripData, allDestinations) {
-    this.allTrips = tripData;
-    this.allDestinations = allDestinations;
-    this.id = tripData.id;
-    this.userID = tripData.userID;
-    this.destinationID = tripData.destinationID;
-    this.travelers = tripData.travelers;
-    this.date = tripData.date;
-    this.duration = tripData.duration;
-    this.status = tripData.status;
-    this.suggestedActivities = tripData.suggestedActivities;
+  constructor(currentTrip) {
+    this.id = currentTrip.id;
+    this.userID = currentTrip.userID;
+    this.destinationID = currentTrip.destinationID;
+    this.travelers = currentTrip.travelers;
+    this.date = currentTrip.date;
+    this.duration = currentTrip.duration;
+    this.status = currentTrip.status;
+    this.suggestedActivities = currentTrip.suggestedActivities;
   }
 
-  // USER TRIPS METHODS
-  findCurrentUserTrips(userID) {
-    return this.allTrips.filter(trip => trip.userID === userID)
-  }
-
-  findPastTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date < date)
-  }
-
-  findPresentTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date === date)
-  }
-
-  findUpcomingTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date > date)
-  }
-
-  findPendingTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.status === 'pending')
+  findCurrentTrips(trips) {
+    let userTrips = trips.filter(trip => trip.userID === this.userID)
+    return userTrips
   }
 
   // TRIP COSTS METHODS
-  calculateTripCostPerPerson(userID, destinationID) {
-    const userTrips = this.findCurrentUserTrips(userID)
+  calculateTripCostPerPerson(trips, destinations) {
+    const userTrips = this.findCurrentTrips(trips)
     const currentTrip = userTrips.find(trip => {
-      if (trip.destinationID === destinationID) {
+      if (trip.destinationID === this.destinationID) {
         return trip
       }
     })
-    let total = this.allDestinations.reduce((num, place) => {
-      if (place.id === destinationID) {
+    let total = destinations.reduce((num, place) => {
+      if (place.id === this.destinationID) {
         num = (place.estimatedLodgingCostPerDay * currentTrip.duration) + place.estimatedFlightCostPerPerson
       }
       return num
@@ -54,37 +32,37 @@ class Trip {
     return total
   }
 
-  calculateTripCostForGroup(userID, destinationID) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    const costPerPerson = this.calculateTripCostPerPerson(userID, destinationID)
+  calculateTripCostForGroup(trips, destinations) {
+    const userTrips = this.findCurrentTrips(trips)
+    const costPerPerson = this.calculateTripCostPerPerson(trips, destinations)
     return userTrips.reduce((num, trip) => {
-      if (trip.destinationID === destinationID) {
+      if (trip.destinationID === this.destinationID) {
         num = trip.duration * costPerPerson
       }
       return num
     }, 0)
   }
 
-  calculateAgentFeePerPerson(userID, destinationID) {
-    const initialTripCost = this.calculateTripCostPerPerson(userID, destinationID)
+  calculateAgentFeePerPerson(trips, destinations) {
+    const initialTripCost = this.calculateTripCostPerPerson(trips, destinations)
     return initialTripCost * .10
   }
 
-  calculateAgentFeeForGroup(userID, destinationID) {
-    const initialTripCost = this.calculateTripCostForGroup(userID, destinationID)
+  calculateAgentFeeForGroup(trips, destinations) {
+    const initialTripCost = this.calculateTripCostForGroup(trips, destinations)
     return initialTripCost * .10
   }
 
-  returnTripTotalPerPerson(userID, destinationID) {
-    return this.calculateTripCostPerPerson(userID, destinationID) + this.calculateAgentFeePerPerson(userID, destinationID)
+  returnTripTotalPerPerson(trips, destinations) {
+    return this.calculateTripCostPerPerson(trips, destinations) + this.calculateAgentFeePerPerson(trips, destinations)
   }
 
-  returnTripTotalForGroup(userID, destinationID) {
-    return this.calculateTripCostForGroup(userID, destinationID) + this.calculateAgentFeeForGroup(userID, destinationID)
+  returnTripTotalForGroup(trips, destinations) {
+    return this.calculateTripCostForGroup(trips, destinations) + this.calculateAgentFeeForGroup(trips, destinations)
   }
 
-  calculateTripsTotal(userID, destinationID, year) {
-    const userTrips = this.findCurrentUserTrips(userID)
+  calculateYearlyTripsTotal(trips, destinations, year) {
+    const userTrips = this.findCurrentTrips(trips)
     let dates = []
     userTrips.forEach(trip => {
       if (trip.date.includes(year)) {
@@ -94,13 +72,12 @@ class Trip {
 
     return dates.reduce((num, date) => {
       if (date.destinationID) {
-        destinationID = date.destinationID 
-        num += this.returnTripTotalPerPerson(userID, destinationID)
+        this.destinationID = date.destinationID 
+        num += this.returnTripTotalPerPerson(trips, destinations)
       }
       return num
     }, 0)
   }
-
 }
 
 

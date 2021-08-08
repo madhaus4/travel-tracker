@@ -1,41 +1,44 @@
 class Trip {
-  constructor(tripData, allDestinations) {
-    this.allTrips = tripData;
-    this.allDestinations = allDestinations;
-    this.id = tripData.id;
-    this.userID = tripData.userID;
-    this.destinationID = tripData.destinationID;
-    this.travelers = tripData.travelers;
-    this.date = tripData.date;
-    this.duration = tripData.duration;
-    this.status = tripData.status;
-    this.suggestedActivities = tripData.suggestedActivities;
+  constructor(currentTrip) {
+    // this.allTrips = currentTrip;
+    // this.allDestinations = allDestinations;
+    this.id = currentTrip.id;
+    this.userID = currentTrip.userID;
+    this.destinationID = currentTrip.destinationID;
+    this.travelers = currentTrip.travelers;
+    this.date = currentTrip.date;
+    this.duration = currentTrip.duration;
+    this.status = currentTrip.status;
+    this.suggestedActivities = currentTrip.suggestedActivities;
   }
 
   // USER TRIPS METHODS
   findCurrentUserTrips(userID) {
-    return this.allTrips.filter(trip => trip.userID === userID)
+    let userTrips = currentTraveler.findCurrentUserTrips(userID)
+    // console.log(userTrips)
+    // return this.allTrips.filter(trip => trip.userID === userID)
+    return userTrips
   }
 
-  findPastTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date < date)
-  }
+  // findPastTrips(userID, date) {
+  //   const userTrips = this.findCurrentUserTrips(userID)
+  //   return userTrips.filter(trip => trip.date < date)
+  // }
 
-  findPresentTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date === date)
-  }
+  // findPresentTrips(userID, date) {
+  //   const userTrips = this.findCurrentUserTrips(userID)
+  //   return userTrips.filter(trip => trip.date === date)
+  // }
 
-  findUpcomingTrips(userID, date) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.date > date)
-  }
+  // findUpcomingTrips(userID, date) {
+  //   const userTrips = this.findCurrentUserTrips(userID)
+  //   return userTrips.filter(trip => trip.date > date)
+  // }
 
-  findPendingTrips(userID) {
-    const userTrips = this.findCurrentUserTrips(userID)
-    return userTrips.filter(trip => trip.status === 'pending')
-  }
+  // findPendingTrips(userID) {
+  //   const userTrips = this.findCurrentUserTrips(userID)
+  //   return userTrips.filter(trip => trip.status === 'pending')
+  // }
 
   // TRIP COSTS METHODS
   calculateTripCostPerPerson(userID, destinationID) {

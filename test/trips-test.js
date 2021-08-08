@@ -1,21 +1,14 @@
 import { expect } from 'chai';
 import Trip from '../src/Trip.js';
-import Traveler from '../src/Traveler.js';
 import sampleTrips from '../src/data/tripsData-sample.js';
-import sampleTravelers from '../src/data/travelersData-sample.js';
 import sampleDestinations from '../src/data/destinationsData-sample.js';
 
 
 describe('Trips', () => {
-  // let currentTraveler;
   let currentTrip, date;
 
   beforeEach(() => {
-    // tripsData = new Trip(sampleTrips, sampleDestinations);
     currentTrip = new Trip(sampleTrips[3]);
-    // currentTraveler = new Traveler(sampleTravelers[2]);
-    // console.log('currentTrip', currentTrip)
-    // console.log('currentTraveler', currentTraveler)
     date = '2021/08/07';
   })
 
@@ -26,14 +19,6 @@ describe('Trips', () => {
   it('should be an instance of Trips', () => {
     expect(currentTrip).to.be.an.instanceOf(Trip);
   })
-
-  // it('should hold the data for all trips', () => {
-  //   expect(tripsData.allTrips).to.deep.equal(sampleTrips);
-  // })
-
-  // it('should hold the data for all destinations', () => {
-  //   expect(currentTrip.allDestinations).to.deep.equal(sampleDestinations);
-  // })
 
   it('should store data for a single trip', () => {
     expect(currentTrip).to.be.an.instanceOf(Trip);
@@ -71,132 +56,62 @@ describe('Trips', () => {
     expect(currentTrip.suggestedActivities).to.deep.equal([])
   })
 
-  // describe('User Trips', () => {
-    it('should have a way to access a single user', () => {
-      const currentUserTrips = [  
-        {
-          id: 21,
-          userID: 3,
-          destinationID: 10,
-          travelers: 1,
-          date: '2022/01/28',
-          duration: 18,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 22,
-          userID: 3,
-          destinationID: 9,
-          travelers: 4,
-          date: '2022/05/01',
-          duration: 19,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 100,
-          userID: 3,
-          destinationID: 6,
-          travelers: 6,
-          date: '2020/3/28',
-          duration: 10,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 142,
-          userID: 3,
-          destinationID: 39,
-          travelers: 1,
-          date: '2019/12/14',
-          duration: 20,
-          status: 'approved',
-          suggestedActivities: []
-        },
-        {
-          id: 193,
-          userID: 3,
-          destinationID: 35,
-          travelers: 1,
-          date: '2020/11/09',
-          duration: 19,
-          status: 'approved',
-          suggestedActivities: []
-        }
-      ]
+  it('should have a way to access a single user', () => {
+    const currentUserTrips = [  
+      {
+        id: 21,
+        userID: 3,
+        destinationID: 10,
+        travelers: 1,
+        date: '2022/01/28',
+        duration: 18,
+        status: 'approved',
+        suggestedActivities: []
+      },
+      {
+        id: 22,
+        userID: 3,
+        destinationID: 9,
+        travelers: 4,
+        date: '2022/05/01',
+        duration: 19,
+        status: 'approved',
+        suggestedActivities: []
+      },
+      {
+        id: 100,
+        userID: 3,
+        destinationID: 6,
+        travelers: 6,
+        date: '2020/3/28',
+        duration: 10,
+        status: 'approved',
+        suggestedActivities: []
+      },
+      {
+        id: 142,
+        userID: 3,
+        destinationID: 39,
+        travelers: 1,
+        date: '2019/12/14',
+        duration: 20,
+        status: 'approved',
+        suggestedActivities: []
+      },
+      {
+        id: 193,
+        userID: 3,
+        destinationID: 35,
+        travelers: 1,
+        date: '2020/11/09',
+        duration: 19,
+        status: 'approved',
+        suggestedActivities: []
+      }
+    ]
 
-      expect(currentTrip.findCurrentTrips(sampleTrips)).to.deep.equal(currentUserTrips);
-    })
-
-  //   it('should have a way to find all of a user\'s past trips', () => {
-  //     expect(currentTrip.findPastTrips(3, date)).to.deep.equal([  
-  //       {
-  //         id: 100,
-  //         userID: 3,
-  //         destinationID: 6,
-  //         travelers: 6,
-  //         date: '2020/3/28',
-  //         duration: 10,
-  //         status: 'approved',
-  //         suggestedActivities: []
-  //       },  
-  //       {
-  //         id: 142,
-  //         userID: 3,
-  //         destinationID: 39,
-  //         travelers: 1,
-  //         date: '2019/12/14',
-  //         duration: 20,
-  //         status: 'approved',
-  //         suggestedActivities: []
-  //       },  
-  //       {
-  //         id: 193,
-  //         userID: 3,
-  //         destinationID: 35,
-  //         travelers: 1,
-  //         date: '2020/11/09',
-  //         duration: 19,
-  //         status: 'approved',
-  //         suggestedActivities: []
-  //       }
-  //     ]);
-  //   })
-
-  //   it('should have a way to find all of a user\'s present trips', () => {
-  //     expect(currentTrip.findPresentTrips(3, date)).to.deep.equal([]);
-  //   })
-
-  //   it('should have a way to find all of a user\'s upcoming trips', () => {
-  //     expect(currentTrip.findUpcomingTrips(3, date)).to.deep.equal([  
-  //       {
-  //         id: 21,
-  //         userID: 3,
-  //         destinationID: 10,
-  //         travelers: 1,
-  //         date: '2022/01/28',
-  //         duration: 18,
-  //         status: 'approved',
-  //         suggestedActivities: []
-  //       },
-  //       {
-  //         id: 22,
-  //         userID: 3,
-  //         destinationID: 9,
-  //         travelers: 4,
-  //         date: '2022/05/01',
-  //         duration: 19,
-  //         status: 'approved',
-  //         suggestedActivities: []
-  //       }
-  //     ]);
-  //   })
-
-  //   it('should have a way to find all of a user\'s pending trips', () => {
-  //     expect(currentTrip.findPendingTrips(3)).to.deep.equal([]);
-  //   })
-  // })
+    expect(currentTrip.findCurrentTrips(sampleTrips)).to.deep.equal(currentUserTrips);
+  })
 
   describe('Trip Costs', () => {
     it('should have a way to calculate the amount of a trip per person', () => {

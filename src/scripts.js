@@ -43,9 +43,7 @@ function getAPIdata() {
     
     currentTraveler = new Travelers(generateRandomUser(travelersData))
     currentTrip = new Trips(tripsData, destinationsData)
-    // console.log('tripsData', tripsData)
-    
-    // console.log(currentTraveler)
+
     displayPastTrips(currentTraveler)
   })
 }

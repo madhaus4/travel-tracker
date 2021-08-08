@@ -1,7 +1,5 @@
 class Trip {
   constructor(currentTrip) {
-    // this.allTrips = currentTrip;
-    // this.allDestinations = allDestinations;
     this.id = currentTrip.id;
     this.userID = currentTrip.userID;
     this.destinationID = currentTrip.destinationID;
@@ -12,31 +10,10 @@ class Trip {
     this.suggestedActivities = currentTrip.suggestedActivities;
   }
 
-  // USER TRIPS METHODS
   findCurrentTrips(trips) {
     let userTrips = trips.filter(trip => trip.userID === this.userID)
     return userTrips
   }
-
-  // findPastTrips(userID, date) {
-  //   const userTrips = this.findCurrentUserTrips(userID)
-  //   return userTrips.filter(trip => trip.date < date)
-  // }
-
-  // findPresentTrips(userID, date) {
-  //   const userTrips = this.findCurrentUserTrips(userID)
-  //   return userTrips.filter(trip => trip.date === date)
-  // }
-
-  // findUpcomingTrips(userID, date) {
-  //   const userTrips = this.findCurrentUserTrips(userID)
-  //   return userTrips.filter(trip => trip.date > date)
-  // }
-
-  // findPendingTrips(userID) {
-  //   const userTrips = this.findCurrentUserTrips(userID)
-  //   return userTrips.filter(trip => trip.status === 'pending')
-  // }
 
   // TRIP COSTS METHODS
   calculateTripCostPerPerson(trips, destinations) {
@@ -101,7 +78,6 @@ class Trip {
       return num
     }, 0)
   }
-
 }
 
 

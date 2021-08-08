@@ -47,7 +47,6 @@ class Traveler {
   }
 
   findPendingTrips(trips, id) {
-    console.log(trips)
     trips.filter(trip => {
       if (trip.userID === id && trip.status === 'pending') {
         this.pendingTrips.push(trip)

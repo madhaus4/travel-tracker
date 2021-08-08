@@ -57,8 +57,8 @@ function getAPIdata() {
 // display
 function displayTrips(currentUserID) {
   displayPastTrips(currentUserID, date)
-  // displayPresentTrips()
-  displayUpcomingTrips(currentUserID)
+  displayPresentTrips(currentUserID, date)
+  displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
 }
 
@@ -68,12 +68,13 @@ function displayPastTrips(currentUserID, date) {
   domUpdates.renderPastTrips(pastTrips, destinations);
 }
 
-// function displayPresentTrips() {
-//   const presentTrips = getPresentTrips();
-//   domUpdates.renderPresentTrips(presentTrips);
-// }
+function displayPresentTrips(currentUserID, date) {
+  const destinations = getDestinationData(currentUserID.id);
+  const presentTrips = getPresentTrips(currentUserID);
+  domUpdates.renderPresentTrips(presentTrips, destinations);
+}
 
-function displayUpcomingTrips(currentUserID) {
+function displayUpcomingTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const upcomingTrips = getUpcomingTrips(currentUserID);
   domUpdates.renderUpcomingTrips(upcomingTrips, destinations);

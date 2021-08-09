@@ -206,9 +206,7 @@ function figureOutInputBox() {
   }
   
   currentTrip = new Trip(newTrip)
-  let cost = currentTrip.returnTripTotalForGroup(findDestinationID)
-  console.log('currentTrip', currentTrip)
-  console.log('cost', cost)
+  return currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
 }
 
 

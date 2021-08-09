@@ -25,7 +25,7 @@ const checkPriceBtn = document.querySelector('.check-price-btn')
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
-checkPriceBtn.addEventListener('click', figureOutInputBox)
+checkPriceBtn.addEventListener('click', doThisWhenUserChecksPrice)
 
 
 // FUNCTIONS
@@ -168,6 +168,12 @@ function getDestinationDataByTrip(tripCategory, userDestinations) {
     })
   })
   return destinationArr
+}
+
+function doThisWhenUserChecksPrice(event) {
+  event.preventDefault(event)
+  // figureOutInputBox()
+  domUpdates.renderTripPrice()
 }
 
 function figureOutInputBox() {

@@ -60,12 +60,11 @@ const domUpdates = {
     `;
   },
 
-
-
   renderTripPriceRequest(tripInfo) {
     const tripPriceContainer = document.getElementById('tripPriceContainer')
-    tripPriceContainer.innerHTML += `<p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.newTrip.duration} days for ${tripInfo.newTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>`;
-  }
+    tripPriceContainer.classList.remove('hidden')
+    tripPriceContainer.innerHTML += `<p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.currentTrip.duration} days for ${tripInfo.currentTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>`;
+  },
 
 
 }

@@ -205,9 +205,7 @@ function getTripPriceRequest() {
   
   currentTrip = new Trip(newTrip)
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  // console.log('tripTotalCost', tripTotalCost)
-  // console.log('newTrip', newTrip)
-  return {newTrip, destinationsList, tripTotalCost};
+  return {currentTrip, destinationsList, tripTotalCost};
 }
 
 

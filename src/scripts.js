@@ -166,15 +166,14 @@ function figureOutInputBox() {
   })
 
   let tripDuration = new Date(endDate) - new Date(startDate)
-  console.log(new Date(tripDuration))
-
+  
   let newTrip = {
     "id": Date.now(), 
     "userID": currentTraveler.id,
     "destinationID": Number(destinationListID.join()), 
     "travelers": Number(numOfTravelers), 
     "date": startDate, 
-    "duration": tripDuration, 
+    "duration": (tripDuration / (60*60*24*1000)), 
     "status": 'pending', 
     "suggestedActivities": []
   }

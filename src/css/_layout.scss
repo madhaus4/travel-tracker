@@ -16,16 +16,19 @@
 
 
 // LOGIN PAGE
-.login-page {
-  
-}
-
 .login-section {
-
+  height: 55vh;
+  width: 80vw;
+  margin: 10vh auto;
+  @include center-items(center);
+  justify-content: space-evenly;
 }
 
-.login-title {
-
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 20vh;
 }
 
 

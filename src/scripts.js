@@ -40,8 +40,9 @@ function getAPIdata() {
     
     currentTraveler = new Traveler(currentUserData)
     currentTrip = new Trip(tripsData[0])
-    date = '2021/08/08';
-
+    date = '2021/08/09';
+    
+    console.log(currentTraveler)
     getTrips(currentUserData, tripsData, '2021/08/08')
     displayTrips(currentUserData)
   })
@@ -61,11 +62,11 @@ function displayTrips(currentUserID) {
 
 function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
-  const pastTrips = getPastTrips(currentUserID, date);
-  const destinations2 = getDestinationDataByTrip(pastTrips, destinations)
+  const theseTrips = getPastTrips(currentUserID, date);
+  const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
 
   if (currentTraveler.pastTrips.length > 0) {
-    domUpdates.renderPastTrips(pastTrips, destinations2);
+    domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
     console.log(`You do not have any past trips yet`)
   }
@@ -73,11 +74,11 @@ function displayPastTrips(currentUserID, date) {
 
 function displayPresentTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
-  const presentTrips = getPresentTrips(currentUserID, date);
-  const destinations2 = getDestinationDataByTrip(presentTrips, destinations)
+  const theseTrips = getPresentTrips(currentUserID, date);
+  const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
 
   if (currentTraveler.presentTrips.length > 0) {
-    domUpdates.renderPresentTrips(presentTrips, destinations2);
+    domUpdates.renderPresentTrips(theseTrips, destinations2);
   } else {
     console.log(`You're currently not on a trip`)
   }
@@ -85,24 +86,23 @@ function displayPresentTrips(currentUserID, date) {
 
 function displayUpcomingTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
-  const upcomingTrips = getUpcomingTrips(currentUserID, date);
+  const theseTrips = getUpcomingTrips(currentUserID, date);
+  const destinations2 = getDestinationDataByTrip(theseTrips, destinations);
 
   if (currentTraveler.upcomingTrips.length > 0) {
-    domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
+    domUpdates.renderUpcomingTrips(theseTrips, destinations2);
   } else {
     console.log(`You do not have any upcoming trips`)
   }
 }
 
 function displayPendingTrips(currentUserID) {
-  // const tripTotalCost = getTripPriceRequest()
-  // console.log('tripTotalCost', tripTotalCost)
   const destinations = getDestinationData(currentUserID.id);
-  const pendingTrips = getPendingTrips(currentUserID.id);
-  const destinations2 = getDestinationDataByTrip(pendingTrips, destinations)
+  const theseTrips = getPendingTrips(currentUserID.id);
+  const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
 
   if (currentTraveler.pendingTrips.length > 0) {
-    domUpdates.renderPendingTrips(pendingTrips, destinations2);
+    domUpdates.renderPendingTrips(theseTrips, destinations2);
   } else {
     console.log(`You do not have any pending trips`)
   }
@@ -135,16 +135,16 @@ function getUserTrips(currentUserID) {
   return currentTraveler.findCurrentUserTrips(tripsData, currentUserID)
 }
 
-function getPastTrips(tripsData, currentUserID, date) {
-  return currentTraveler.findPastTrips(tripsData, currentUserID, date);
+function getPastTrips(date) {
+  return currentTraveler.findPastTrips('2021/08/09');
 }
 
-function getPresentTrips(tripsData, currentUserID, date) {
-  return currentTraveler.findPresentTrips(tripsData, currentUserID, date)
+function getPresentTrips(date) {
+  return currentTraveler.findPresentTrips('2021/08/09')
 }
 
-function getUpcomingTrips(tripsData, currentUserID, date) {
-  return currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
+function getUpcomingTrips(date) {
+  return currentTraveler.findUpcomingTrips('2021/08/09')
 }
 
 function getPendingTrips() {

@@ -21,7 +21,7 @@ class Traveler {
 
   findPastTrips(date) {
     this.allTrips.filter(trip => {
-      if (trip.date < date) {
+      if (trip.date < date && !this.pastTrips.includes(trip)) {
         this.pastTrips.push(trip)
       }
     })
@@ -30,7 +30,7 @@ class Traveler {
 
   findPresentTrips(date) {
     this.allTrips.filter(trip => {
-      if (trip.date === date) {
+      if (trip.date === date && !this.presentTrips.includes(trip)) {
         this.presentTrips.push(trip)
       }
     })
@@ -39,7 +39,7 @@ class Traveler {
 
   findUpcomingTrips(date) {
     this.allTrips.filter(trip => {
-      if (trip.date > date) {
+      if (trip.date > date && !this.upcomingTrips.includes(trip)) {
         this.upcomingTrips.push(trip)
       }
     })

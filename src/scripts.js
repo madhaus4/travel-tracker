@@ -13,13 +13,13 @@ import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
 import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
 
 
-// var dayjs = require('dayjs')
-// dayjs().format()
-  
+// GLOBAL VARIABLES
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
 let date;
 
+
+// QUERY SELECTORS
 const checkPriceBtn = document.querySelector('.check-price-btn')
 
 
@@ -176,8 +176,6 @@ function getYearlyTripsTotal() {
   return currentTraveler.calculateYearlyTripsTotal(2021, destinationsData)
 }
 
-
-
 function getTripPriceRequest() {
   let startDate = document.getElementById('startDate')
   let endDate = document.getElementById('endDate')
@@ -191,13 +189,14 @@ function getTripPriceRequest() {
 
   let findDestinationID = destinationsData.find(destination => destination.destination === destinationsList)
   let tripDuration = new Date(endDate) - new Date(startDate)
+  let newStartDate = startDate.split('-').join('/')
 
   let newTrip = {
     "id": Date.now(), 
     "userID": currentTraveler.id,
     "destinationID": findDestinationID.id, 
     "travelers": Number(numOfTravelers), 
-    "date": startDate, 
+    "date": newStartDate, 
     "duration": (tripDuration / (60*60*24*1000)), 
     "status": 'pending', 
     "suggestedActivities": []
@@ -205,6 +204,7 @@ function getTripPriceRequest() {
   
   currentTrip = new Trip(newTrip)
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  apiCalls.requestData.updateTripsData(currentTrip)
   return {currentTrip, destinationsList, tripTotalCost};
 }
 
@@ -215,11 +215,6 @@ function getTripPriceRequest() {
 
 // function generateRandomUser(data) {
 //   return Math.floor(Math.random() * data.length);
-// }
-
-// function attemptToPostData(data) {
-//   apiCalls.requestData.updatedata(data)
-//   console.log(data)
 // }
 
 // function applyGlide() {

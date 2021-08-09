@@ -25,6 +25,7 @@ class Traveler {
         this.pastTrips.push(trip)
       }
     })
+    console.log('past1', this.pastTrips)
     return this.pastTrips;
   }
 

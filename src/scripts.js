@@ -64,7 +64,7 @@ function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPastTrips(currentUserID, date);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
-
+  console.log('past3', theseTrips)
   if (currentTraveler.pastTrips.length > 0) {
     domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
@@ -136,6 +136,7 @@ function getUserTrips(currentUserID) {
 }
 
 function getPastTrips(date) {
+  console.log('past2', currentTraveler.findPastTrips('2021/08/09'))
   return currentTraveler.findPastTrips('2021/08/09');
 }
 
@@ -173,7 +174,7 @@ function getDestinationDataByTrip(tripCategory, userDestinations) {
       }
     })
   })
-  return destinationArr
+  return [...new Set(destinationArr)]
 }
 
 function getYearlyTripsTotal() {

@@ -3,13 +3,13 @@ const domUpdates = {
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {
-      trips.forEach(trip => {
+      // trips.forEach(trip => {
         pastTrips.innerHTML += `
           <h5>${destination.destination}</h5>
           <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6>${trip.date}</h6>
+          <h6></h6>
         `;
-      })
+      // })
     })
   },
 

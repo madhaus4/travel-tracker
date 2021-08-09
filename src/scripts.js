@@ -52,11 +52,11 @@ function getAPIdata() {
 
 // DISPLAY FUNCTIONS
 function displayTrips(currentUserID) {
+  displayYearlyTripsTotal()
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
-  displayYearlyTripsTotal()
 
   domUpdates.renderDestinationsDataList(destinationsData)
 }
@@ -107,7 +107,6 @@ function displayPendingTrips(currentUserID) {
   } else {
     console.log(`You do not have any pending trips`)
   }
-
 }
 
 function displayYearlyTripsTotal() {
@@ -119,6 +118,7 @@ function displayTripPriceRequest(event) {
   event.preventDefault(event)
   const tripTotalCost = getTripPriceRequest()
   domUpdates.renderTripPriceRequest(tripTotalCost)
+  displayPendingTrips(currentTraveler)
 }
 
 

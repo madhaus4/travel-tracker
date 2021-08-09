@@ -46,7 +46,9 @@ div {
 
 // TRIP REQUEST FORM
 .trip-request-form {
-  @include center-items(flex-start);
+  display: flex;
+  flex-direction: column;
+  // @include center-items(flex-start);
 }
 
 
@@ -66,7 +68,7 @@ div {
 
 // TRIPS CONTAINER
 .trips-container {
-  height: 300vh;
+  height: 280vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -82,20 +84,16 @@ div {
     align-items: flex-start;
   }
 
-    // h4 {
-    //   border: 1px dotted pink;
-    // }
-
     article {
-      border: 1px solid black;
+      // border: 1px solid black;
       overflow: scroll;
       display: flex;
       flex-direction: column;
-      // align-content: flex-start;
     }
 }
 
 // CURRENT TRIP DETAILS
+
 // PENDING TRIPS
 
 // UPCOMING TRIPS

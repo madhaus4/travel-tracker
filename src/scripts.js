@@ -95,6 +95,8 @@ function displayUpcomingTrips(currentUserID, date) {
 }
 
 function displayPendingTrips(currentUserID) {
+  // const tripTotalCost = getTripPriceRequest()
+  // console.log('tripTotalCost', tripTotalCost)
   const destinations = getDestinationData(currentUserID.id);
   const pendingTrips = getPendingTrips(currentUserID.id);
   const destinations2 = getDestinationDataByTrip(pendingTrips, destinations)
@@ -104,6 +106,7 @@ function displayPendingTrips(currentUserID) {
   } else {
     console.log(`You do not have any pending trips`)
   }
+
 }
 
 function displayYearlyTripsTotal() {

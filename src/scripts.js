@@ -11,6 +11,7 @@ import './images/next.png'
 import './images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg';
 import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
 import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
+import './images/resul-mentes-DbwYNr8RPbg-unsplash.jpg';
 
 
 // GLOBAL VARIABLES

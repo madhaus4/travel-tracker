@@ -29,16 +29,22 @@ h2 {
   border-radius: $radius;
   background-color: #A6F5EE;
   filter: $drop-shadow;
+  // background-image: url('./images/resul-mentes-DbwYNr8RPbg-unsplash.jpg');
+  // background-position: top;
+  // background-size: contain;
 
   .main-content {
     border-radius: $radius;
     background-color: #ffffff;
     filter: $drop-shadow;
+  }
+}
 
-    // input {
-    //   padding-left: 10px;
-    //   margin-top: -50px;
-    // }
+.main-title {
+  width: 100%;
+
+  h3 {
+    font-size: larger;
   }
 }
 

@@ -25,7 +25,7 @@ class Traveler {
         this.pastTrips.push(trip)
       }
     })
-    return this.pastTrips
+    return this.pastTrips;
   }
 
   findPresentTrips(date) {
@@ -47,8 +47,12 @@ class Traveler {
   }
 
   findPendingTrips() {
-    let pending = this.allTrips.filter(trip => trip.status === 'pending')
-    this.pendingTrips = pending;
+    this.allTrips.filter(trip => {
+      if (trip.status === 'pending' && !this.pendingTrips.includes(trip)) {
+        this.pendingTrips.push(trip)
+      }
+    })
+    return this.pendingTrips;
   }
 }
 

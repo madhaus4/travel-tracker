@@ -13,21 +13,8 @@ import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
 import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
 
 
-var dayjs = require('dayjs')
-dayjs().format()
-
-
-
-// let newTrip = {
-  //   "id": Date.now(), 
-  //   "userID": 8,
-  //   "destinationID": 9, 
-  //   "travelers": 2, 
-  //   "date": '2022/06/10', 
-  //   "duration": 7, 
-  //   "status": 'pending', 
-  //   "suggestedActivities": []
-  // }
+// var dayjs = require('dayjs')
+// dayjs().format()
   
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
@@ -86,13 +73,25 @@ function displayPresentTrips(currentUserID, date) {
 function displayUpcomingTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const upcomingTrips = getUpcomingTrips(currentUserID, date);
-  domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
+
+  if (currentTraveler.upcomingTrips.length > 0) {
+    domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
+  } else {
+    console.log(`You do not have any upcoming trips`)
+  }
 }
 
 function displayPendingTrips(currentUserID) {
   const destinations = getDestinationData(currentUserID.id);
   const pendingTrips = getPendingTrips(currentUserID.id);
-  domUpdates.renderPendingTrips(pendingTrips, destinations);
+  const destinations2 = getDestinationDataByTrip(pendingTrips, destinations)
+
+  if (currentTraveler.pendingTrips.length > 0) {
+    domUpdates.renderPendingTrips(pendingTrips, destinations2);
+  } else {
+    console.log(`You do not have any pending trips`)
+  }
+
 }
 
 
@@ -123,13 +122,17 @@ function getPresentTrips(tripsData, currentUserID, date) {
 }
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
-  let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
-  return upcomingTrips;
+  currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
+
+  if (currentTraveler.upcomingTrips.length > 0) {
+    return currentTraveler.upcomingTrips;
+  }
 }
 
 function getPendingTrips() {
   currentTraveler.findPendingTrips()
   if (currentTraveler.pendingTrips.length > 0) {
+    // console.log('currentTraveler.pendingTrips', currentTraveler.pendingTrips)
     return currentTraveler.pendingTrips
   }
 }
@@ -144,7 +147,21 @@ function getDestinationData(currentUserID) {
       }
     })
   })
-  return userDestinations;
+  return [...new Set(userDestinations)];
+}
+
+function getDestinationDataByTrip(tripCategory, userDestinations) {
+  // console.log('tripCategory', tripCategory)
+  let destinationArr = []
+  tripCategory.filter(trip => {
+    userDestinations.forEach(desto => {
+      if (trip.destinationID === desto.id) {
+        destinationArr.push(desto)
+      }
+    })
+  })
+  // console.log('destinationArr', destinationArr)
+  return destinationArr
 }
 
 function figureOutInputBox() {
@@ -158,27 +175,25 @@ function figureOutInputBox() {
   destinationsList = destinationsList.value
   numOfTravelers = numOfTravelers.value
 
-  let destinationListID = []
-  let findDestinationID = destinationsData.forEach(destination => {
-    if (destination.destination === destinationsList) {
-      destinationListID.push(destination.id)
-    }
-  })
+  let findDestinationID = destinationsData.find(destination => destination.destination === destinationsList)
 
   let tripDuration = new Date(endDate) - new Date(startDate)
 
   let newTrip = {
     "id": Date.now(), 
     "userID": currentTraveler.id,
-    "destinationID": Number(destinationListID.join()), 
+    "destinationID": findDestinationID.id, 
     "travelers": Number(numOfTravelers), 
     "date": startDate, 
     "duration": (tripDuration / (60*60*24*1000)), 
     "status": 'pending', 
     "suggestedActivities": []
   }
-  console.log('newTrip', newTrip)
-  // apiCalls.requestData.updateTripsData(newTrip)
+  
+  currentTrip = new Trip(newTrip)
+  let cost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  // console.log('currentTrip', currentTrip)
+  // console.log('cost', cost)
 }
 
 
@@ -191,7 +206,7 @@ function figureOutInputBox() {
 // }
 
 // function attemptToPostData(data) {
-//   apiCalls.requestData.updateTripsData(data)
+//   apiCalls.requestData.updatedata(data)
 //   console.log(data)
 // }
 

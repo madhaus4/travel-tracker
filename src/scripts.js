@@ -191,13 +191,14 @@ function getTripPriceRequest() {
 
   let findDestinationID = destinationsData.find(destination => destination.destination === destinationsList)
   let tripDuration = new Date(endDate) - new Date(startDate)
+  let newStartDate = startDate.split('-').join('/')
 
   let newTrip = {
     "id": Date.now(), 
     "userID": currentTraveler.id,
     "destinationID": findDestinationID.id, 
     "travelers": Number(numOfTravelers), 
-    "date": startDate, 
+    "date": newStartDate, 
     "duration": (tripDuration / (60*60*24*1000)), 
     "status": 'pending', 
     "suggestedActivities": []
@@ -205,6 +206,8 @@ function getTripPriceRequest() {
   
   currentTrip = new Trip(newTrip)
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  let postData = apiCalls.requestData.updateTripsData(currentTrip)
+  console.log('postData', postData)
   return {currentTrip, destinationsList, tripTotalCost};
 }
 

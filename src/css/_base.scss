@@ -61,10 +61,16 @@ h2 {
 
 
 // TRIP REQUEST FORM
-
 .check-price-btn {
   margin: 5px;
+  
+  &:hover {
+    background-color: #5292B4;
+    color: #ffffff;
+  }
 }
+
+
 
 // TRIP PRICE CONTAINER
 .trip-price-container {

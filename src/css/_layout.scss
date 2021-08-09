@@ -4,22 +4,21 @@
 
 // NAV CONTAINER
 .nav-container {
-  height: 60px;
+  height: 10vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: flex-end;
+  
+  div {
+    @include center-items(flex-end);
+  }
 }
-
-div {
-  @include center-items(flex-end);
-}
-
-
 
 
 // MAIN CONTAINER
 .main-container {
   height: 60vh;
-  margin-bottom: 15vh;
+  margin: 2vh 0 15vh;
   @include center-items(center);
 }
 

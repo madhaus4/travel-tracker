@@ -26,8 +26,9 @@ const checkPriceBtn = document.querySelector('.check-price-btn')
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
-checkPriceBtn.addEventListener('click', displayTripPriceRequest)
-
+checkPriceBtn.addEventListener('click', function(event) {
+ displayTripPriceRequest(event)
+})
 
 // FUNCTIONS
 function getAPIdata() {
@@ -114,7 +115,8 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
-function displayTripPriceRequest() {
+function displayTripPriceRequest(event) {
+  event.preventDefault(event)
   const tripTotalCost = getTripPriceRequest()
   domUpdates.renderTripPriceRequest(tripTotalCost)
 }

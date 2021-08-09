@@ -16,39 +16,39 @@ const domUpdates = {
   renderPresentTrips(trips, destinations) {
     const presentTrips = document.getElementById('currentTripDetails')
     destinations.forEach(destination => {
-      trips.forEach(trip => {
+      // trips.forEach(trip => {
         presentTrips.innerHTML += `
           <h5>${destination.destination}</h5>
           <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6>${trip.date}</h6>
+          <h6></h6>
         `;
-      })
+      // })
     })
   },
 
   renderUpcomingTrips(trips, destinations) {
     const upcomingTrips = document.getElementById('upcomingTrips')
     destinations.forEach(destination => {
-      trips.forEach(trip => {
+      // trips.forEach(trip => {
         upcomingTrips.innerHTML += `
           <h5>${destination.destination}</h5>
           <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6>${trip.date}</h6>
+          <h6></h6>
         `;
-      })
+      // })
     })
   },
 
   renderPendingTrips(trips, destinations) {
     const pendingTrips = document.getElementById('pendingTrips')
     destinations.forEach(destination => {
-      trips.forEach(trip => {
+      // trips.forEach(trip => {
         pendingTrips.innerHTML += `
           <h5>${destination.destination}</h5>
           <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6>${trip.date}</h6>
+          <h6></h6>
         `;
-      })
+      // })
     })
   },
 

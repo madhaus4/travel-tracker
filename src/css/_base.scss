@@ -33,6 +33,22 @@ h2 {
   // background-position: top;
   // background-size: contain;
 
+  .main-title {
+    width: 100%;
+  
+    h3 {
+      font-size: 1.45em;
+      text-align: center;
+      padding: 3px;
+      margin: 5px;
+    }
+  
+    p {
+      font-size: 1.25em;
+      padding: 3px;
+    }
+  }
+
   .main-content {
     border-radius: $radius;
     background-color: #ffffff;
@@ -40,15 +56,10 @@ h2 {
   }
 }
 
-.main-title {
-  width: 100%;
-
-  h3 {
-    font-size: larger;
-  }
-}
 
 // TRIP REQUEST FORM
+
+
 
 // TRIP PRICE CONTAINER
 .trip-price-container {
@@ -59,15 +70,19 @@ h2 {
 }
 
 // TRIPS CONTAINER
-.image-1 {
-  height: 200px;
-  width: 200px;
-}
+// h4 {
+  // position: sticky;
+// }
 
-.next-icon {
-  height: 30px;
-  width: 30px;
-}
+// .image-1 {
+//   height: 200px;
+//   width: 200px;
+// }
+
+// .next-icon {
+//   height: 30px;
+//   width: 30px;
+// }
 
 // CURRENT TRIP DETAILS
 // PENDING TRIPS

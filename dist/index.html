@@ -33,10 +33,10 @@
 
         <form class="trip-request-form">
 
-          <label for="startDate">Leave On</label>
+          <label for="startDate">Check In</label>
           <input type="date" id="startDate" name="startDate" required>
 
-          <label for="endDate">Return</label>
+          <label for="endDate">Check Out</label>
           <input type="date" id="endDate" name="endDate" required>
 
           <input type="list" list="destinationsList" id="destinationChoice" name="" placeholder="Destination" required>
@@ -60,25 +60,26 @@
 
   <section class="trips-container">
 
-    <article class="current-trip-details">
+    <div>
       <h4>Current Trip Details</h4>
-      <article id="currentTripDetails">
+      <article class="current-trip-details" id="currentTripDetails">
         <!-- current trip details render here -->
       </article>
-    </article>
+    </div>
 
-    <article class="pending-trips">
+    <div>
       <h4>Pending Trips</h4>
-      <article id="pendingTrips">
+      <article class="pending-trips" id="pendingTrips">
         <!-- pending trips render here -->
-      </article>
-    </article> 
+      </article> 
+    </div>
 
-    <article class="upcoming-trips">
+    <div>
       <h4>Upcoming Trips</h4>
-      <article id="upcomingTrips">
+      <article class="upcoming-trips" id="upcomingTrips">
         <!-- upcoming trips render here -->
-      </article>
+      </article> 
+    </div>
       <!-- <div class="glide-container">
         <div class="glide">
           <div data-glide-el="track" class="glide__track">
@@ -96,14 +97,13 @@
 
       <!-- <img class="next-icon" src="./images/next.png" alt="next icon"> -->
 
-    </article> 
 
-    <article class="past-trips">
+    <div>
       <h4>Past Trips</h4>
-      <article id="pastTrips">
+      <article class="past-trips"  id="pastTrips">
         <!-- past trips render here -->
-      </article>
-    </article> 
+      </article> 
+    </div>
 
   </section>
 

@@ -19,7 +19,7 @@ div {
 // MAIN CONTAINER
 .main-container {
   height: 60vh;
-  margin-bottom: 10vh;
+  margin-bottom: 15vh;
   @include center-items(center);
 }
 
@@ -35,7 +35,7 @@ div {
   }
 
   .main-content {
-    height: 40vh;
+    height: 45vh;
     width: 70vw;
     margin-bottom: -80px;
     @include center-items(center);
@@ -43,11 +43,12 @@ div {
   }
 }
 
+
+// TRIP REQUEST FORM
 .trip-request-form {
   @include center-items(flex-start);
 }
 
-// TRIP REQUEST FORM
 
 // TRIP PRICE CONTAINER
 .trip-price-container {
@@ -65,16 +66,33 @@ div {
 
 // TRIPS CONTAINER
 .trips-container {
-  height: 200vh;
+  height: 300vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: flex-start;
 
-  article {
-    height: 50vh;
+  div {
+    height: 60vh;
     margin: 10px;
-    overflow:scroll;
+    // overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
   }
+
+    // h4 {
+    //   border: 1px dotted pink;
+    // }
+
+    article {
+      border: 1px solid black;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      // align-content: flex-start;
+    }
 }
 
 // CURRENT TRIP DETAILS

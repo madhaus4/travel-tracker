@@ -111,10 +111,8 @@ function displayYearlyTripsTotal() {
 }
 
 function displayTripPriceRequest() {
-  // tripPriceContainer.classList.remove('.hidden')
-
-  domUpdates.renderTripPriceRequest()
-  figureOutInputBox()
+  const tripTotalCost = getTripPriceRequest()
+  domUpdates.renderTripPriceRequest(tripTotalCost)
 }
 
 
@@ -180,7 +178,7 @@ function getYearlyTripsTotal() {
 
 
 
-function figureOutInputBox() {
+function getTripPriceRequest() {
   let startDate = document.getElementById('startDate')
   let endDate = document.getElementById('endDate')
   let destinationsList = document.getElementById('destinationChoice')
@@ -206,7 +204,10 @@ function figureOutInputBox() {
   }
   
   currentTrip = new Trip(newTrip)
-  return currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  // console.log('tripTotalCost', tripTotalCost)
+  // console.log('newTrip', newTrip)
+  return {newTrip, destinationsList, tripTotalCost};
 }
 
 

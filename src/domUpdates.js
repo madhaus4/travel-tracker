@@ -62,10 +62,9 @@ const domUpdates = {
 
 
 
-  renderTripPriceRequest() {
+  renderTripPriceRequest(tripInfo) {
     const tripPriceContainer = document.getElementById('tripPriceContainer')
-    tripPriceContainer.classList.remove('.hidden')
-    tripPriceContainer.innerHTML += `<p>Hello World</p>`;
+    tripPriceContainer.innerHTML += `<p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.newTrip.duration} days for ${tripInfo.newTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>`;
   }
 
 

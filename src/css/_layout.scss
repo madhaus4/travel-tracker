@@ -51,11 +51,15 @@ div {
 
 // TRIP PRICE CONTAINER
 .trip-price-container {
-  height: 15vh;
+  height: fit-content;
   width: 80vw;
   margin: auto;
   @include center-items(center);
 }
+
+// .trip-price-request-msg{
+
+// }
 
 
 // TRIPS CONTAINER

@@ -54,6 +54,25 @@ class Traveler {
     })
     return this.pendingTrips;
   }
+
+  calculateYearlyTripsTotal(year, destinations) {
+    let dates = []
+    this.allTrips.forEach(trip => {
+      if (trip.date.includes(year)) {
+        dates.push(trip)
+      }
+    })
+    let total;
+    return destinations.reduce((num, destination) => {
+      dates.forEach(date => {
+        if (destination.id === date.destinationID) {
+          total = (destination.estimatedLodgingCostPerDay * date.duration) + destination.estimatedFlightCostPerPerson
+        }
+        num = total
+      })
+      return num;
+    }, 0)
+  }
 }
 
 

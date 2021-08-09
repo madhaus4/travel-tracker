@@ -63,23 +63,23 @@ class Trip {
     return this.calculateTripCostForGroup(trips, destinations) + this.calculateAgentFeeForGroup(trips, destinations)
   }
 
-  calculateYearlyTripsTotal(trips, destinations, year) {
-    const userTrips = this.findCurrentTrips(trips)
-    let dates = []
-    userTrips.forEach(trip => {
-      if (trip.date.includes(year)) {
-        dates.push(trip)
-      }
-    })
+  // calculateYearlyTripsTotal(trips, destinations, year) {
+  //   const userTrips = this.findCurrentTrips(trips)
+  //   let dates = []
+  //   userTrips.forEach(trip => {
+  //     if (trip.date.includes(year)) {
+  //       dates.push(trip)
+  //     }
+  //   })
 
-    return dates.reduce((num, date) => {
-      if (date.destinationID) {
-        this.destinationID = date.destinationID 
-        num += this.returnTripTotalPerPerson(trips, destinations)
-      }
-      return num
-    }, 0)
-  }
+  //   return dates.reduce((num, date) => {
+  //     if (date.destinationID) {
+  //       this.destinationID = date.destinationID 
+  //       num += this.returnTripTotalPerPerson(trips, destinations)
+  //     }
+  //     return num
+  //   }, 0)
+  // }
 }
 
 

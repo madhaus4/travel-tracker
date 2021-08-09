@@ -54,6 +54,7 @@ function displayTrips(currentUserID) {
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
+  displayYearlyTripsTotal()
 
   domUpdates.renderDestinationsDataList(destinationsData)
 }
@@ -103,6 +104,11 @@ function displayPendingTrips(currentUserID) {
   } else {
     console.log(`You do not have any pending trips`)
   }
+}
+
+function displayYearlyTripsTotal() {
+  let yearlyTotalTripsAmount = getYearlyTripsTotal()
+  domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
 
@@ -169,6 +175,21 @@ function getDestinationDataByTrip(tripCategory, userDestinations) {
   })
   return destinationArr
 }
+
+function getYearlyTripsTotal() {
+  let total = currentTraveler.calculateYearlyTripsTotal(2020, destinationsData)
+  console.log(total)
+  return total
+}
+
+
+
+
+
+
+
+
+
 
 function doThisWhenUserChecksPrice(event) {
   event.preventDefault(event)

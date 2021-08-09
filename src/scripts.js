@@ -160,8 +160,6 @@ function figureOutInputBox() {
 
   let destinationListID = []
   let findDestinationID = destinationsData.forEach(destination => {
-    console.log('name', destination.destination)
-    console.log('value', destinationsList)
     if (destination.destination === destinationsList) {
       destinationListID.push(destination.id)
     }

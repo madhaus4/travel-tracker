@@ -25,7 +25,7 @@ class Traveler {
         this.pastTrips.push(trip)
       }
     })
-    return this.pastTrips
+    return this.pastTrips;
   }
 
   findPresentTrips(date) {
@@ -46,13 +46,33 @@ class Traveler {
     return this.upcomingTrips;
   }
 
-  findPendingTrips(trips, id) {
-    trips.filter(trip => {
-      if (trip.userID === id && trip.status === 'pending') {
+  findPendingTrips() {
+    this.allTrips.filter(trip => {
+      if (trip.status === 'pending' && !this.pendingTrips.includes(trip)) {
         this.pendingTrips.push(trip)
       }
     })
     return this.pendingTrips;
+  }
+
+  // MOVED FROM TRIPS > NEED TO TEST
+  calculateYearlyTripsTotal(year, destinations) {
+    let dates = []
+    this.allTrips.forEach(trip => {
+      if (trip.date.includes(year)) {
+        dates.push(trip)
+      }
+    })
+    let total;
+    return destinations.reduce((num, destination) => {
+      dates.forEach(date => {
+        if (destination.id === date.destinationID) {
+          total = (destination.estimatedLodgingCostPerDay * date.duration) + destination.estimatedFlightCostPerPerson
+        }
+        num = total
+      })
+      return num;
+    }, 0)
   }
 }
 

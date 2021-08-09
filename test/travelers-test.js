@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Traveler from '../src/Traveler.js';
+import Trip from '../src/Trip.js';
 import sampleTravelers from '../src/data/travelersData-sample.js';
 import sampleTrips from '../src/data/tripsData-sample.js';
 import sampleDestinations from '../src/data/destinationsData-sample.js';
@@ -12,6 +13,7 @@ describe('Travelers', () => {
     traveler1 = new Traveler(sampleTravelers[2]);
     traveler2 = new Traveler(sampleTravelers[1]);
     traveler3 = new Traveler(sampleTravelers[0]);
+    currentTrip = new Trip()
     date = '2021/08/07';
   })
 

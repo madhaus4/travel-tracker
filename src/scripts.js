@@ -1,6 +1,6 @@
 import './css/main.scss';
 // FILES
-import Glide from '@glidejs/glide'
+// import Glide from '@glidejs/glide'
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 import apiCalls from './apiCalls.js';
@@ -13,26 +13,19 @@ import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
 import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
 
 
-
-
-// let newTrip = {
-  //   "id": Date.now(), 
-  //   "userID": 8,
-  //   "destinationID": 9, 
-  //   "travelers": 2, 
-  //   "date": '2022/06/10', 
-  //   "duration": 7, 
-  //   "status": 'pending', 
-  //   "suggestedActivities": []
-  // }
+// var dayjs = require('dayjs')
+// dayjs().format()
   
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
 let date;
 
+const checkPriceBtn = document.querySelector('.check-price-btn')
+
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
+checkPriceBtn.addEventListener('click', displayTripPriceRequest)
 
 
 // FUNCTIONS
@@ -49,62 +42,113 @@ function getAPIdata() {
     date = '2021/08/08';
 
     getTrips(currentUserData, tripsData, '2021/08/08')
+    displayTrips(currentUserData)
   })
 }
 
 
-// display
-function displayTrips() {}
+// DISPLAY FUNCTIONS
+function displayTrips(currentUserID) {
+  displayPastTrips(currentUserID, date)
+  displayPresentTrips(currentUserID, date)
+  displayUpcomingTrips(currentUserID, date)
+  displayPendingTrips(currentUserID)
+  displayYearlyTripsTotal()
 
-function displayPastTrips(userID, date) {
-  const pastTrips = getPastTrips(userID, date)
-  domUpdates.renderPastTrips(pastTrips);
+  domUpdates.renderDestinationsDataList(destinationsData)
 }
 
-function displayPresentTrips() {}
-function displayUpcomingTrips() {}
-function displayPendingTrips() {}
+function displayPastTrips(currentUserID, date) {
+  const destinations = getDestinationData(currentUserID.id);
+  const pastTrips = getPastTrips(currentUserID, date);
+  const destinations2 = getDestinationDataByTrip(pastTrips, destinations)
 
-// get
+  if (currentTraveler.pastTrips.length > 0) {
+    domUpdates.renderPastTrips(pastTrips, destinations2);
+  } else {
+    console.log(`You do not have any past trips yet`)
+  }
+}
+
+function displayPresentTrips(currentUserID, date) {
+  const destinations = getDestinationData(currentUserID.id);
+  const presentTrips = getPresentTrips(currentUserID, date);
+  const destinations2 = getDestinationDataByTrip(presentTrips, destinations)
+
+  if (currentTraveler.presentTrips.length > 0) {
+    domUpdates.renderPresentTrips(presentTrips, destinations2);
+  } else {
+    console.log(`You're currently not on a trip`)
+  }
+}
+
+function displayUpcomingTrips(currentUserID, date) {
+  const destinations = getDestinationData(currentUserID.id);
+  const upcomingTrips = getUpcomingTrips(currentUserID, date);
+
+  if (currentTraveler.upcomingTrips.length > 0) {
+    domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
+  } else {
+    console.log(`You do not have any upcoming trips`)
+  }
+}
+
+function displayPendingTrips(currentUserID) {
+  const destinations = getDestinationData(currentUserID.id);
+  const pendingTrips = getPendingTrips(currentUserID.id);
+  const destinations2 = getDestinationDataByTrip(pendingTrips, destinations)
+
+  if (currentTraveler.pendingTrips.length > 0) {
+    domUpdates.renderPendingTrips(pendingTrips, destinations2);
+  } else {
+    console.log(`You do not have any pending trips`)
+  }
+}
+
+function displayYearlyTripsTotal() {
+  let yearlyTotalTripsAmount = getYearlyTripsTotal()
+  domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
+}
+
+function displayTripPriceRequest() {
+  const tripTotalCost = getTripPriceRequest()
+  domUpdates.renderTripPriceRequest(tripTotalCost)
+}
+
+
+// HELPER FUNCTIONS
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
   getPresentTrips(tripsData, currentUserID, date)
   getUpcomingTrips(tripsData, currentUserID, date)
-  getPendingTrips(tripsData, currentUserID)
+  getPendingTrips()
 
   getDestinationData(currentUserID)
 }
 
-
 function getUserTrips(currentUserID) {
-  return currentTraveler.findCurrentUserTrips(tripsData, currentUserID.id)
+  return currentTraveler.findCurrentUserTrips(tripsData, currentUserID)
 }
 
 function getPastTrips(tripsData, currentUserID, date) {
-  let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID.id, date);
-  // console.log('pastTrips', pastTrips)
-  return pastTrips;
+  return currentTraveler.findPastTrips(tripsData, currentUserID, date);
 }
 
 function getPresentTrips(tripsData, currentUserID, date) {
-  let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID.id, date)
-  // console.log('presentTrips', presentTrips)
-  return presentTrips;
+  return currentTraveler.findPresentTrips(tripsData, currentUserID, date)
 }
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
-  let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID.id, date)
-  // console.log('upcomingTrips', upcomingTrips)
-  return upcomingTrips;
+  return currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
 }
 
-function getPendingTrips(tripsData, currentUserID) {
-  return currentTraveler.findPendingTrips(tripsData, currentUserID.id)
+function getPendingTrips() {
+  return currentTraveler.findPendingTrips()
 }
 
 function getDestinationData(currentUserID) {
-  let userTrips = getUserTrips(currentUserID.id)
+  let userTrips = getUserTrips(currentUserID)
   let userDestinations = []
   destinationsData.filter(destination => {
     userTrips.forEach(trip => {
@@ -113,10 +157,56 @@ function getDestinationData(currentUserID) {
       }
     })
   })
-  return userDestinations;
+  return [...new Set(userDestinations)];
+}
+
+function getDestinationDataByTrip(tripCategory, userDestinations) {
+  let destinationArr = []
+  tripCategory.filter(trip => {
+    userDestinations.forEach(desto => {
+      if (trip.destinationID === desto.id) {
+        destinationArr.push(desto)
+      }
+    })
+  })
+  return destinationArr
+}
+
+function getYearlyTripsTotal() {
+  return currentTraveler.calculateYearlyTripsTotal(2021, destinationsData)
 }
 
 
+
+function getTripPriceRequest() {
+  let startDate = document.getElementById('startDate')
+  let endDate = document.getElementById('endDate')
+  let destinationsList = document.getElementById('destinationChoice')
+  let numOfTravelers = document.getElementById('numOfTravelers')
+
+  startDate = startDate.value
+  endDate = endDate.value
+  destinationsList = destinationsList.value
+  numOfTravelers = numOfTravelers.value
+
+  let findDestinationID = destinationsData.find(destination => destination.destination === destinationsList)
+  let tripDuration = new Date(endDate) - new Date(startDate)
+
+  let newTrip = {
+    "id": Date.now(), 
+    "userID": currentTraveler.id,
+    "destinationID": findDestinationID.id, 
+    "travelers": Number(numOfTravelers), 
+    "date": startDate, 
+    "duration": (tripDuration / (60*60*24*1000)), 
+    "status": 'pending', 
+    "suggestedActivities": []
+  }
+  
+  currentTrip = new Trip(newTrip)
+  let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  return {currentTrip, destinationsList, tripTotalCost};
+}
 
 
 
@@ -128,7 +218,7 @@ function getDestinationData(currentUserID) {
 // }
 
 // function attemptToPostData(data) {
-//   apiCalls.requestData.updateTripsData(data)
+//   apiCalls.requestData.updatedata(data)
 //   console.log(data)
 // }
 

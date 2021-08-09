@@ -17,7 +17,9 @@
     <img class="menu-icon" src="./images/menu.png" alt="menu icon">
     <div>
       <h1>Rovewind Tours</h1>
-      <h2>Sign In</h2>
+      <div id="yearlyTotal">
+        <!-- render amount spent per year here -->
+      </div>
     </div>
   </nav>
   
@@ -28,54 +30,61 @@
         <p>You Ready?</p>
       </div>
       <div class="main-content">
+
         <form class="trip-request-form">
-          <!-- <h4>Start Date</h4> -->
-          <label for="startDate">Start Day</label>
+
+          <label for="startDate">Leave On</label>
           <input type="date" id="startDate" name="startDate" required>
-          <!-- <h4>End Date</h4> -->
-          <label for="endDate">End Date</label>
+
+          <label for="endDate">Return</label>
           <input type="date" id="endDate" name="endDate" required>
-          <!-- <h4>Destination</h4> -->
-          <!-- <label for=""></label> -->
+
           <input type="list" list="destinationsList" id="destinationChoice" name="" placeholder="Destination" required>
+
           <datalist id="destinationsList">
-            <option value="Norway">
-            <option value="Sweden">
-            <option value="Finland">
-          </datalist>    
-          <!-- <h4>Travelers</h4> -->
-          <!-- <label for=""></label> -->
+            <!-- destination options appear here -->
+          </datalist>  
+
           <input type="number" id="numOfTravelers" name="numOfTravelers" value="0" min="1" max="50" placeholder="Travelers" size="6" required>
-          <button type="">Check Prices</button>
+
+          <button class="check-price-btn" type="button">Check Prices</button>
         </form>
+
       </div>
     </section>
-    <section class="hidden">
-      <!-- this is where the total cost pops up -->
-    </section>
   </main>
+  
+  <section class="hidden trip-price-container" id="tripPriceContainer">
+    <!-- this is where the total cost pops up -->
+  </section>
 
   <section class="trips-container">
-    <article class="current-trip">
+
+    <article class="current-trip-details">
       <h4>Current Trip Details</h4>
+      <article id="currentTripDetails">
+        <!-- current trip details render here -->
+      </article>
     </article>
-    <article class="pending-container">
+
+    <article class="pending-trips">
       <h4>Pending Trips</h4>
+      <article id="pendingTrips">
+        <!-- pending trips render here -->
+      </article>
     </article> 
-    <article class="upcoming-container">
+
+    <article class="upcoming-trips">
       <h4>Upcoming Trips</h4>
-      <!-- <article>
-        <h5></h5>
-        <img src="" alt="">
-        <h6></h6>
-      </article> -->
-      <div class="glide-container">
+      <article id="upcomingTrips">
+        <!-- upcoming trips render here -->
+      </article>
+      <!-- <div class="glide-container">
         <div class="glide">
           <div data-glide-el="track" class="glide__track">
             <ul class="glide__slides">
               <li class="glide__slide"><img class="image-1" src="./images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg" alt="sky image"></li>
               <li class="glide__slide"><img class="image-1" src="./images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg" alt="sky image"></li>
-              <!-- <li class="glide__slide"><img class="image-1" src="./images/carlos-machado-yGbh_mg9DH8-unsplash.jpg" alt="sky image"></li> -->
             </ul>
           </div>
           <div class="glide__arrows" data-glide-el="controls">
@@ -83,29 +92,26 @@
             <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- <img class="next-icon" src="./images/next.png" alt="next icon"> -->
 
     </article> 
-    <article class="past-container">
+
+    <article class="past-trips">
       <h4>Past Trips</h4>
       <article id="pastTrips">
-        <h5></h5>
-        <img src="" alt="">
-        <h6></h6>
+        <!-- past trips render here -->
       </article>
     </article> 
+
   </section>
 
   <footer></footer>
 
 
-  
-
-
-
-  <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script>
+  <!-- <script src="path/to/dayjs/dayjs.min.js"></script> -->
+  <!-- <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script> -->
   <script src="bundle.js"></script>
 </body>
 </html>

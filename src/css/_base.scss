@@ -19,6 +19,10 @@ body {
   width: 30px;
 }
 
+h2 {
+  font-size: .5em;
+}
+
 
 // MAIN CONTAINER
 .main-section {
@@ -38,10 +42,15 @@ body {
   }
 }
 
-.trip-request-form {
+// TRIP REQUEST FORM
 
+// TRIP PRICE CONTAINER
+.trip-price-container {
+  background-color: #A6F5EE;
+  border-radius: $radius;
+  filter: $drop-shadow;
+  text-align: center;
 }
-
 
 // TRIPS CONTAINER
 .image-1 {
@@ -54,8 +63,15 @@ body {
   width: 30px;
 }
 
+// CURRENT TRIP DETAILS
+// PENDING TRIPS
+// UPCOMING TRIPS
 
-
+// PAST TRIPS
+.travel-photos {
+  height: 30vh;
+  width: auto;
+}
 
 
 

@@ -47,6 +47,21 @@ div {
   @include center-items(flex-start);
 }
 
+// TRIP REQUEST FORM
+
+// TRIP PRICE CONTAINER
+.trip-price-container {
+  height: fit-content;
+  width: 75vw;
+  padding: 10px;
+  margin: auto;
+  @include center-items(center);
+}
+
+// .trip-price-request-msg{
+
+// }
+
 
 // TRIPS CONTAINER
 .trips-container {
@@ -56,9 +71,14 @@ div {
   justify-content: center;
 
   article {
-    height: 40vh;
+    height: 50vh;
+    margin: 10px;
+    overflow:scroll;
   }
 }
+
+// CURRENT TRIP DETAILS
+// PENDING TRIPS
 
 // UPCOMING TRIPS
 // .glide-container {
@@ -68,3 +88,5 @@ div {
 // .glide {
 //   align-items: center;
 // }
+
+// PAST TRIPS

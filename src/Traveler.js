@@ -55,6 +55,7 @@ class Traveler {
     return this.pendingTrips;
   }
 
+  // MOVED FROM TRIPS > NEED TO TEST
   calculateYearlyTripsTotal(year, destinations) {
     let dates = []
     this.allTrips.forEach(trip => {

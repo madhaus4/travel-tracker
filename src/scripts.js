@@ -177,9 +177,7 @@ function getDestinationDataByTrip(tripCategory, userDestinations) {
 }
 
 function getYearlyTripsTotal() {
-  let total = currentTraveler.calculateYearlyTripsTotal(2020, destinationsData)
-  console.log(total)
-  return total
+  return currentTraveler.calculateYearlyTripsTotal(2021, destinationsData)
 }
 
 

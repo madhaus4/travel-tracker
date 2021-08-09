@@ -53,25 +53,22 @@ const domUpdates = {
     })
   },
 
-
-
-
   renderYearlyTripsTotal(total) {
     const yearlyTripsTotal = document.getElementById('yearlyTotal')
-    yearlyTripsTotal.innerText = `
+    yearlyTripsTotal.innerHTML = `
       <h2>This year you've spent $${total} on amazing experiences</h2>
     `;
+  },
+
+
+
+
+
+  renderTripPrice() {
+    const tripPriceContainer = document.getElementById('tripPriceContainer')
+    tripPriceContainer.classList.remove('.hidden')
+    tripPriceContainer.innerHTML += ``;
   }
-
-
-
-
-
-  // renderTripPrice() {
-  //   const tripPriceContainer = document.getElementById('tripPriceContainer')
-  //   tripPriceContainer.classList.remove('.hidden')
-  //   tripPriceContainer.innerHTML += ``;
-  // }
 
 
 }

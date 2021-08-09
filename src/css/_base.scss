@@ -42,10 +42,14 @@ h2 {
   }
 }
 
-.trip-request-form {
+// TRIP REQUEST FORM
 
+// TRIP PRICE CONTAINER
+.trip-price-container {
+  background-color: #A6F5EE;
+  border-radius: $radius;
+  filter: $drop-shadow;
 }
-
 
 // TRIPS CONTAINER
 .image-1 {

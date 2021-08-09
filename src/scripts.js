@@ -61,13 +61,25 @@ function displayTrips(currentUserID) {
 function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const pastTrips = getPastTrips(currentUserID, date);
-  domUpdates.renderPastTrips(pastTrips, destinations);
+  const destinations2 = getDestinationDataByTrip(pastTrips, destinations)
+
+  if (currentTraveler.pastTrips.length > 0) {
+    domUpdates.renderPastTrips(pastTrips, destinations2);
+  } else {
+    console.log(`You do not have any past trips yet`)
+  }
 }
 
 function displayPresentTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const presentTrips = getPresentTrips(currentUserID, date);
-  domUpdates.renderPresentTrips(presentTrips, destinations);
+  const destinations2 = getDestinationDataByTrip(presentTrips, destinations)
+
+  if (currentTraveler.presentTrips.length > 0) {
+    domUpdates.renderPresentTrips(presentTrips, destinations2);
+  } else {
+    console.log(`You're currently not on a trip`)
+  }
 }
 
 function displayUpcomingTrips(currentUserID, date) {
@@ -91,9 +103,7 @@ function displayPendingTrips(currentUserID) {
   } else {
     console.log(`You do not have any pending trips`)
   }
-
 }
-
 
 
 // HELPER FUNCTIONS
@@ -123,7 +133,6 @@ function getPresentTrips(tripsData, currentUserID, date) {
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
   currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
-
   if (currentTraveler.upcomingTrips.length > 0) {
     return currentTraveler.upcomingTrips;
   }
@@ -132,7 +141,6 @@ function getUpcomingTrips(tripsData, currentUserID, date) {
 function getPendingTrips() {
   currentTraveler.findPendingTrips()
   if (currentTraveler.pendingTrips.length > 0) {
-    // console.log('currentTraveler.pendingTrips', currentTraveler.pendingTrips)
     return currentTraveler.pendingTrips
   }
 }
@@ -151,7 +159,6 @@ function getDestinationData(currentUserID) {
 }
 
 function getDestinationDataByTrip(tripCategory, userDestinations) {
-  // console.log('tripCategory', tripCategory)
   let destinationArr = []
   tripCategory.filter(trip => {
     userDestinations.forEach(desto => {
@@ -160,7 +167,6 @@ function getDestinationDataByTrip(tripCategory, userDestinations) {
       }
     })
   })
-  // console.log('destinationArr', destinationArr)
   return destinationArr
 }
 

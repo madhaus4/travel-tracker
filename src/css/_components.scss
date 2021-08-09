@@ -1,2 +1,20 @@
 // BUTTONS/ WIDGET STYLES GO IN HERE
 
+// TRIP REQUEST FORM
+.check-price-btn {
+  width: 40vw;
+  margin: 5px;
+  align-self: center;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: .25em;
+  text-transform: uppercase;
+  
+  &:hover {
+    background-color: #5292B4;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+
+

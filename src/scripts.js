@@ -13,6 +13,9 @@ import './images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg';
 import './images/carlos-machado-yGbh_mg9DH8-unsplash.jpg';
 
 
+var dayjs = require('dayjs')
+dayjs().format()
+
 
 
 // let newTrip = {
@@ -150,15 +153,35 @@ function figureOutInputBox() {
   let destinationsList = document.getElementById('destinationChoice')
   let numOfTravelers = document.getElementById('numOfTravelers')
 
-  startDate = startDate.value 
+  startDate = startDate.value
   endDate = endDate.value
   destinationsList = destinationsList.value
   numOfTravelers = numOfTravelers.value
-  console.log(startDate)
-  console.log(endDate)
-  console.log(destinationsList)
-  console.log(numOfTravelers)
 
+  let destinationListID = []
+  let findDestinationID = destinationsData.forEach(destination => {
+    console.log('name', destination.destination)
+    console.log('value', destinationsList)
+    if (destination.destination === destinationsList) {
+      destinationListID.push(destination.id)
+    }
+  })
+
+  let tripDuration = new Date(endDate) - new Date(startDate)
+  console.log(new Date(tripDuration))
+
+  let newTrip = {
+    "id": Date.now(), 
+    "userID": currentTraveler.id,
+    "destinationID": Number(destinationListID.join()), 
+    "travelers": Number(numOfTravelers), 
+    "date": startDate, 
+    "duration": tripDuration, 
+    "status": 'pending', 
+    "suggestedActivities": []
+  }
+  console.log(newTrip)
+  // apiCalls.requestData.updateTripsData(newTrip)
 }
 
 

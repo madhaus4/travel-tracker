@@ -51,6 +51,12 @@ const domUpdates = {
         <option value="${destination.destination}">
       `;
     })
+  },
+
+  renderTripPrice() {
+    const tripPriceContainer = document.getElementById('tripPriceContainer')
+    tripPriceContainer.classList.remove('.hidden')
+    tripPriceContainer.innerHTML += ``;
   }
 
 

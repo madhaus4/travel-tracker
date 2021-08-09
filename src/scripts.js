@@ -166,7 +166,7 @@ function figureOutInputBox() {
   })
 
   let tripDuration = new Date(endDate) - new Date(startDate)
-  
+
   let newTrip = {
     "id": Date.now(), 
     "userID": currentTraveler.id,
@@ -177,7 +177,7 @@ function figureOutInputBox() {
     "status": 'pending', 
     "suggestedActivities": []
   }
-  console.log(newTrip)
+  console.log('newTrip', newTrip)
   // apiCalls.requestData.updateTripsData(newTrip)
 }
 

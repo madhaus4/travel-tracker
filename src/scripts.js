@@ -25,7 +25,7 @@ const checkPriceBtn = document.querySelector('.check-price-btn')
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
-checkPriceBtn.addEventListener('click', doThisWhenUserChecksPrice)
+checkPriceBtn.addEventListener('click', displayTripPriceRequest)
 
 
 // FUNCTIONS
@@ -39,7 +39,6 @@ function getAPIdata() {
     
     currentTraveler = new Traveler(currentUserData)
     currentTrip = new Trip(tripsData[0])
-    // console.log('currentTrip', currentTrip)
     date = '2021/08/08';
 
     getTrips(currentUserData, tripsData, '2021/08/08')
@@ -111,6 +110,13 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
+function displayTripPriceRequest() {
+  // tripPriceContainer.classList.remove('.hidden')
+
+  domUpdates.renderTripPriceRequest()
+  figureOutInputBox()
+}
+
 
 // HELPER FUNCTIONS
 function getTrips(currentUserID, tripsData, date) {
@@ -128,27 +134,19 @@ function getUserTrips(currentUserID) {
 }
 
 function getPastTrips(tripsData, currentUserID, date) {
-  let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID, date);
-  return pastTrips;
+  return currentTraveler.findPastTrips(tripsData, currentUserID, date);
 }
 
 function getPresentTrips(tripsData, currentUserID, date) {
-  let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID, date)
-  return presentTrips;
+  return currentTraveler.findPresentTrips(tripsData, currentUserID, date)
 }
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
-  currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
-  if (currentTraveler.upcomingTrips.length > 0) {
-    return currentTraveler.upcomingTrips;
-  }
+  return currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
 }
 
 function getPendingTrips() {
-  currentTraveler.findPendingTrips()
-  if (currentTraveler.pendingTrips.length > 0) {
-    return currentTraveler.pendingTrips
-  }
+  return currentTraveler.findPendingTrips()
 }
 
 function getDestinationData(currentUserID) {
@@ -182,19 +180,6 @@ function getYearlyTripsTotal() {
 
 
 
-
-
-
-
-
-
-
-function doThisWhenUserChecksPrice(event) {
-  event.preventDefault(event)
-  // figureOutInputBox()
-  domUpdates.renderTripPrice()
-}
-
 function figureOutInputBox() {
   let startDate = document.getElementById('startDate')
   let endDate = document.getElementById('endDate')
@@ -207,7 +192,6 @@ function figureOutInputBox() {
   numOfTravelers = numOfTravelers.value
 
   let findDestinationID = destinationsData.find(destination => destination.destination === destinationsList)
-
   let tripDuration = new Date(endDate) - new Date(startDate)
 
   let newTrip = {
@@ -222,9 +206,9 @@ function figureOutInputBox() {
   }
   
   currentTrip = new Trip(newTrip)
-  let cost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  // console.log('currentTrip', currentTrip)
-  // console.log('cost', cost)
+  let cost = currentTrip.returnTripTotalForGroup(findDestinationID)
+  console.log('currentTrip', currentTrip)
+  console.log('cost', cost)
 }
 
 

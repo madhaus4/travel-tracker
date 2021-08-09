@@ -62,12 +62,10 @@ const domUpdates = {
 
 
 
-
-
-  renderTripPrice() {
+  renderTripPriceRequest() {
     const tripPriceContainer = document.getElementById('tripPriceContainer')
     tripPriceContainer.classList.remove('.hidden')
-    tripPriceContainer.innerHTML += ``;
+    tripPriceContainer.innerHTML += `<p>Hello World</p>`;
   }
 
 

@@ -30,9 +30,12 @@ let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
 let date;
 
+const checkPriceBtn = document.querySelector('.check-price-btn')
+
 
 // EVENT LISTENERS
 window.addEventListener('load', getAPIdata)
+checkPriceBtn.addEventListener('click', figureOutInputBox)
 
 
 // FUNCTIONS
@@ -46,6 +49,7 @@ function getAPIdata() {
     
     currentTraveler = new Traveler(currentUserData)
     currentTrip = new Trip(tripsData[0])
+    // console.log('currentTrip', currentTrip)
     date = '2021/08/08';
 
     getTrips(currentUserData, tripsData, '2021/08/08')
@@ -54,12 +58,14 @@ function getAPIdata() {
 }
 
 
-// display
+// DISPLAY FUNCTIONS
 function displayTrips(currentUserID) {
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
+
+  domUpdates.renderDestinationsDataList(destinationsData)
 }
 
 function displayPastTrips(currentUserID, date) {
@@ -70,19 +76,19 @@ function displayPastTrips(currentUserID, date) {
 
 function displayPresentTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
-  const presentTrips = getPresentTrips(currentUserID);
+  const presentTrips = getPresentTrips(currentUserID, date);
   domUpdates.renderPresentTrips(presentTrips, destinations);
 }
 
 function displayUpcomingTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
-  const upcomingTrips = getUpcomingTrips(currentUserID);
+  const upcomingTrips = getUpcomingTrips(currentUserID, date);
   domUpdates.renderUpcomingTrips(upcomingTrips, destinations);
 }
 
 function displayPendingTrips(currentUserID) {
   const destinations = getDestinationData(currentUserID.id);
-  const pendingTrips = getPendingTrips(currentUserID);
+  const pendingTrips = getPendingTrips(currentUserID.id);
   domUpdates.renderPendingTrips(pendingTrips, destinations);
 }
 
@@ -94,7 +100,7 @@ function getTrips(currentUserID, tripsData, date) {
   getPastTrips(tripsData, currentUserID, date)
   getPresentTrips(tripsData, currentUserID, date)
   getUpcomingTrips(tripsData, currentUserID, date)
-  getPendingTrips(tripsData, currentUserID)
+  getPendingTrips()
 
   getDestinationData(currentUserID)
 }
@@ -105,29 +111,28 @@ function getUserTrips(currentUserID) {
 
 function getPastTrips(tripsData, currentUserID, date) {
   let pastTrips = currentTraveler.findPastTrips(tripsData, currentUserID, date);
-  // console.log('pastTrips', pastTrips)
   return pastTrips;
 }
 
 function getPresentTrips(tripsData, currentUserID, date) {
   let presentTrips = currentTraveler.findPresentTrips(tripsData, currentUserID, date)
-  // console.log('presentTrips', presentTrips)
   return presentTrips;
 }
 
 function getUpcomingTrips(tripsData, currentUserID, date) {
   let upcomingTrips = currentTraveler.findUpcomingTrips(tripsData, currentUserID, date)
-  // console.log('upcomingTrips', upcomingTrips)
   return upcomingTrips;
 }
 
-function getPendingTrips(tripsData, currentUserID) {
-  return currentTraveler.findPendingTrips(tripsData, currentUserID)
+function getPendingTrips() {
+  currentTraveler.findPendingTrips()
+  if (currentTraveler.pendingTrips.length > 0) {
+    return currentTraveler.pendingTrips
+  }
 }
 
 function getDestinationData(currentUserID) {
   let userTrips = getUserTrips(currentUserID)
-  // console.log('userTrips', userTrips)
   let userDestinations = []
   destinationsData.filter(destination => {
     userTrips.forEach(trip => {
@@ -139,7 +144,22 @@ function getDestinationData(currentUserID) {
   return userDestinations;
 }
 
+function figureOutInputBox() {
+  let startDate = document.getElementById('startDate')
+  let endDate = document.getElementById('endDate')
+  let destinationsList = document.getElementById('destinationChoice')
+  let numOfTravelers = document.getElementById('numOfTravelers')
 
+  startDate = startDate.value 
+  endDate = endDate.value
+  destinationsList = destinationsList.value
+  numOfTravelers = numOfTravelers.value
+  console.log(startDate)
+  console.log(endDate)
+  console.log(destinationsList)
+  console.log(numOfTravelers)
+
+}
 
 
 

@@ -6,7 +6,7 @@ const retrieveTravelersData = () => {
 }
 
 const retrieveCurrentUserData = () => {
-  return fetch(`http://localhost:3001/api/v1/travelers/${38}`)
+  return fetch(`http://localhost:3001/api/v1/travelers/${7}`)
     .then(response => response.json())
     .then(data => data)
     .catch(err => console.log("Error upon us"));

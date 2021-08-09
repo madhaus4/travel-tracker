@@ -4,9 +4,9 @@ const domUpdates = {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {
       pastTrips.innerHTML += `
-      <h5>${destination.destination}</h5>
-      <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-      <h6></h6>
+        <h5>${destination.destination}</h5>
+        <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+        <h6></h6>
       `;
     })
   },
@@ -15,9 +15,9 @@ const domUpdates = {
     const presentTrips = document.getElementById('currentTripDetails')
     destinations.forEach(destination => {
       presentTrips.innerHTML += `
-      <h5>${destination.destination}</h5>
-      <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-      <h6></h6>
+        <h5>${destination.destination}</h5>
+        <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+        <h6></h6>
       `;
     })
   },
@@ -29,7 +29,7 @@ const domUpdates = {
         <h5>${destination.destination}</h5>
         <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
         <h6></h6>
-        `;
+      `;
     })
   },
 
@@ -40,7 +40,16 @@ const domUpdates = {
         <h5>${destination.destination}</h5>
         <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
         <h6></h6>
-        `;
+      `;
+    })
+  },
+
+  renderDestinationsDataList(destinations) {
+    const destinationsDataList = document.getElementById('destinationsList')
+    destinations.forEach(destination => {
+      destinationsDataList.innerHTML += `
+        <option value="${destination.destination}">
+      `;
     })
   }
 

@@ -46,13 +46,9 @@ class Traveler {
     return this.upcomingTrips;
   }
 
-  findPendingTrips(trips, id) {
-    trips.filter(trip => {
-      if (trip.userID === id && trip.status === 'pending') {
-        this.pendingTrips.push(trip)
-      }
-    })
-    return this.pendingTrips;
+  findPendingTrips() {
+    let pending = this.allTrips.filter(trip => trip.status === 'pending')
+    this.pendingTrips = pending;
   }
 }
 

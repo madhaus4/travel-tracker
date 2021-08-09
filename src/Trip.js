@@ -11,14 +11,12 @@ class Trip {
   }
 
   findCurrentTrips(trips) {
-    let userTrips = trips.filter(trip => trip.userID === this.userID)
-    return userTrips
+    return trips.filter(trip => trip.userID === this.userID)
   }
 
   // TRIP COSTS METHODS
   calculateTripCostPerPerson(destination) {
-    let total = (destination.estimatedLodgingCostPerDay * this.duration) + destination.estimatedFlightCostPerPerson
-    return total
+    return (destination.estimatedLodgingCostPerDay * this.duration) + destination.estimatedFlightCostPerPerson
   }
 
   calculateTripCostForGroup(trip, destination) {

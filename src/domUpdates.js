@@ -64,7 +64,7 @@ const domUpdates = {
   renderYearlyTripsTotal(total) {
     const yearlyTripsTotal = document.getElementById('yearlyTotal')
     yearlyTripsTotal.innerHTML = `
-      <h2>You've spent $${total} on amazing experiences so far this year</h2>
+      <h2>You've spent $${total} on amazing experiences this year</h2>
     `;
   },
 

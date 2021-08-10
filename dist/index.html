@@ -8,8 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <base href="/">
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-  <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css"> -->
   <title>rovewind tours</title>
 </head>
 <body>
@@ -23,8 +21,7 @@
       <h2>Rovewind Tours</h2>
     </div>
   </nav>
-    
-
+  
     <section class="login-page" id="loginPage">
       <div class="custom-shape-divider-top-1628566746-login">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -40,13 +37,12 @@
           <input aria-label="username-field" class="userName" type="text" id="userName" placeholder="username" autocomplete="off" required>
           <input aria-label="password-field" class="password" type="text" id="password" placeholder="password" autocomplete="off" required>
         </form>
-        <button class="contine-btn" id="continueBtn">Continue</button>
+        <button type="submit" class="contine-btn" id="continueBtn">Continue</button>
       </div>  
       <div class=" hidden trip-price-container" id="incorrectLoginInfo">
         <!-- render incorrect login info msg here -->
       </div>
     </section>  
-    
     
     <main class=" hidden main-container" id="mainContainer">
       <div class="custom-shape-divider-top-1628566746">
@@ -112,23 +108,6 @@
         <!-- upcoming trips render here -->
       </article> 
     </div>
-      <!-- <div class="glide-container">
-        <div class="glide">
-          <div data-glide-el="track" class="glide__track">
-            <ul class="glide__slides">
-              <li class="glide__slide"><img class="image-1" src="./images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg" alt="sky image"></li>
-              <li class="glide__slide"><img class="image-1" src="./images/marek-piwnicki-3Exh4BdB2yA-unsplash.jpg" alt="sky image"></li>
-            </ul>
-          </div>
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <img class="next-icon" src="./images/next.png" alt="next icon"> -->
-
 
     <div>
       <h4>Past Trips</h4>
@@ -138,12 +117,6 @@
     </div>
 
   </section>
-
-  <footer></footer>
-
-
-  <!-- <script src="path/to/dayjs/dayjs.min.js"></script> -->
-  <!-- <script src="node_modules/@glidejs/glide/dist/glide.min.js"></script> -->
   <script src="bundle.js"></script>
 </body>
 </html>

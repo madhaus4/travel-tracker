@@ -5,8 +5,8 @@ const retrieveTravelersData = () => {
     .catch(err => console.log("Error upon us"));
 }
 
-const retrieveCurrentUserData = () => {
-  return fetch(`http://localhost:3001/api/v1/travelers/${44}`)
+const retrieveCurrentUserData = (id) => {
+  return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
     .then(response => response.json())
     .then(data => data)
     .catch(err => console.log("Error upon us"));
@@ -79,10 +79,10 @@ const requestData = {
 }
 
 
-const getData = () => {
+const getData = (id) => {
   return Promise.all([
     retrieveTravelersData(), 
-    retrieveCurrentUserData(), 
+    retrieveCurrentUserData(id), 
     retrieveTripsData(), 
     retrieveDestinationsData()
   ]);

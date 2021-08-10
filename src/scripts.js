@@ -17,7 +17,6 @@ import './images/resul-mentes-DbwYNr8RPbg-unsplash.jpg';
 // GLOBAL VARIABLES
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
-// let currentTravelerID;
 let date ='2021/08/10';
 
 
@@ -27,11 +26,11 @@ const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
-// window.addEventListener('load', getFetchedData)
+window.addEventListener('load', getFetchedData)
+continueBtn.addEventListener('click', displayMainPage)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
-continueBtn.addEventListener('click', displayMainPage)
 
 // FUNCTIONS
 function getFetchedData(id) {
@@ -49,33 +48,23 @@ function assignFetchedData(data) {
     currentUserData = data[1]
     tripsData = data[2].trips
     destinationsData = data[3].destinations
-    console.log('blah', currentUserData)
+    console.log('currentUserData', currentUserData)
+
+    // currentTraveler = new Traveler(currentUserData)
+    // currentTrip = new Trip(tripsData)
 }
-
-// function getAPIdata() {
-  // apiCalls.getData()
-    // travelersData = promise[0].travelers
-    // currentUserData = promise[1]
-    // tripsData = promise[2].trips
-    // destinationsData = promise[3].destinations
-    
-    // currentTraveler = new Traveler(`currentUserData${44}`)
-    // currentTrip = new Trip(tripsData[0])
-    // date = '2021/08/09';
-    
-//     console.log('currentTraveler', currentTraveler)
-//     getTrips(currentUserData, tripsData, '2021/08/08')
-//     // displayTrips(currentTraveler)
-//   })
-// }
-
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
   const userLoginInput = getUserInputID()
-  getFetchedData(userLoginInput)
-  const isLoginValid = checkUserInputID(userLoginInput)
 
+  getFetchedData(userLoginInput)
+  currentTraveler = new Traveler(currentUserData)
+  currentTrip = new Trip(tripsData)
+  getTrips(userLoginInput, tripsData, date)
+
+  const isLoginValid = checkUserInputID(userLoginInput)
+  
   if (isLoginValid) {
     domUpdates.renderMainPage()
     displayTrips(currentTraveler)
@@ -167,7 +156,6 @@ function displayTripPriceRequest(event) {
 
 // HELPER FUNCTIONS
 function getUserInputID() {
-
   let userName = document.getElementById('userName')
   let verifiedUserName = userName.value.split()
   let userID = []
@@ -179,15 +167,11 @@ function getUserInputID() {
   })
 
   let userID2 = Number(userID.join(''))
-  console.log('userID2', userID2)
-
   return userID2
 }
 
 function checkUserInputID(userID) {
   let password = document.getElementById('password')
-  
-  console.log('travelersData', travelersData)
   let findUser = travelersData.find(traveler => {
     if (traveler.id === userID) {
       return traveler
@@ -196,7 +180,6 @@ function checkUserInputID(userID) {
  
   const passingUsername = `traveler${findUser.id}`
   const passingPasssword = 'travel'
-
   if (passingUsername && password.value === passingPasssword) {
     return true
   } else {

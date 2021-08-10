@@ -14,8 +14,9 @@ $drop-shadow: drop-shadow(0px 2px 2px grey);
 }
 
 @mixin for-laptop() {
-  @media (min-width: 600px) {
+  @media screen and (min-width: 600px) {
     flex-direction: row;
+    // justify-content: space-around;
     overflow-x: scroll;
     overflow-y: hidden;
   }

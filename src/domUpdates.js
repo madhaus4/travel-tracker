@@ -5,9 +5,11 @@ const domUpdates = {
     destinations.forEach(destination => {
       // trips.forEach(trip => {
         pastTrips.innerHTML += `
-          <h5>${destination.destination}</h5>
-          <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6></h6>
+          <div class="destination-containers">
+            <h5>${destination.destination}</h5>
+            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+            <h6></h6>
+          </div>
         `;
       // })
     })
@@ -18,9 +20,11 @@ const domUpdates = {
     destinations.forEach(destination => {
       // trips.forEach(trip => {
         presentTrips.innerHTML += `
-          <h5>${destination.destination}</h5>
-          <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6></h6>
+          <div class="destination-containers">
+            <h5>${destination.destination}</h5>
+            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+            <h6></h6>
+          </div
         `;
       // })
     })
@@ -31,9 +35,11 @@ const domUpdates = {
     destinations.forEach(destination => {
       // trips.forEach(trip => {
         upcomingTrips.innerHTML += `
-          <h5>${destination.destination}</h5>
-          <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6></h6>
+          <div class="destination-containers">
+            <h5>${destination.destination}</h5>
+            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+            <h6></h6>
+          </div>  
         `;
       // })
     })
@@ -44,9 +50,11 @@ const domUpdates = {
     destinations.forEach(destination => {
       // trips.forEach(trip => {
         pendingTrips.innerHTML += `
-          <h5>${destination.destination}</h5>
-          <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-          <h6></h6>
+          <div class="destination-containers">
+            <h5>${destination.destination}</h5>
+            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+            <h6></h6>
+          </div>  
         `;
       // })
     })

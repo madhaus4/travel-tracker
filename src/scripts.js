@@ -119,6 +119,9 @@ function assignFetchedData(data) {
     currentTraveler = new Traveler(currentUserData)
     currentTrip = new Trip(tripsData)
     console.log('currentTraveler', currentTraveler)
+
+    let name = currentTraveler.name.split(' ')
+    domUpdates.renderWelcomeMsg(name[0]) 
 }
 
 

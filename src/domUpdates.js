@@ -1,5 +1,11 @@
 const domUpdates = {
 
+  renderLoginFailedMsg() {
+    const incorrectLoginInfo = document.getElementById('incorrectLoginInfo')
+    incorrectLoginInfo.classList.remove('hidden')
+    incorrectLoginInfo.innerHTML = `Please enter a valid username and password`;
+  },
+
   renderMainPage() {
     const loginPage = document.getElementById('loginPage')
     const mainPage = document.getElementById('mainContainer')
@@ -9,10 +15,12 @@ const domUpdates = {
     tripContainer.classList.remove('hidden')
   },
 
-  renderLoginFailedMsg() {
-    const incorrectLoginInfo = document.getElementById('incorrectLoginInfo')
-    incorrectLoginInfo.classList.remove('hidden')
-    incorrectLoginInfo.innerHTML = `Please enter a valid username and password`;
+  renderWelcomeMsg(name) {
+    const welcomeMsg = document.querySelector('.main-title')
+    welcomeMsg.innerHTML = `
+      <h3>Let's Explore this Beautiful World</h3>
+      <p><span>${name},</span> You Ready?</p>
+    `;
   },
 
   renderPastTrips(trips, destinations) {

@@ -58,8 +58,9 @@ function displayMainPage() {
   
   if (userLoginInput) {
     domUpdates.renderMainPage()
+  } else if (!userLoginInput) {
+    console.log(`Please enter a valid username and password`)
   }
-
 }
 
 
@@ -139,11 +140,31 @@ function getUserLoginInput() {
   let userName = document.getElementById('userName')
   let password = document.getElementById('password')
 
-  userName = userName.value
-  password = password.value
+  let verifiedUserName = userName.value.split()
+  let userID = []
 
-  console.log('userName', userName)
-  console.log('password', password)
+  verifiedUserName.forEach(elem => {
+    let a = elem.charAt(8)
+    let b = elem.charAt(9)
+    userID.push(a, b)
+  })
+
+  let userID2 = Number(userID.join(''))
+
+  let findUser = travelersData.find(traveler => {
+    if (traveler.id === userID2) {
+      return traveler
+    }
+  })
+
+  const passingUsername = `traveler${findUser.id}`
+  const passingPasssword = 'travel'
+  
+  if (passingUsername && password.value === passingPasssword) {
+    return true
+  } else {
+    return false
+  }
 }
 
 function getTrips(currentUserID, tripsData, date) {

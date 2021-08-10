@@ -12,7 +12,7 @@ const domUpdates = {
   renderLoginFailedMsg() {
     const incorrectLoginInfo = document.getElementById('incorrectLoginInfo')
     incorrectLoginInfo.classList.remove('hidden')
-    incorrectLoginInfo.innerHTML += `Please enter a valid username and password`;
+    incorrectLoginInfo.innerHTML = `Please enter a valid username and password`;
   },
 
   renderPastTrips(trips, destinations) {

@@ -21,13 +21,13 @@
   width: 80vw;
   margin: 10vh auto;
   @include center-items(center);
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   height: 20vh;
 }
 

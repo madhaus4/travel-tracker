@@ -13,7 +13,7 @@ const updateData = (data) => {
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
   })
-    .then(response => checkForErrors(response))
+    .then(response => checkForError(response))
     .then(data => {
       return data
     })

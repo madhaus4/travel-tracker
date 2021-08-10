@@ -32,7 +32,7 @@ checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
 
-// FUNCTIONS
+// FETCH FUNCTIONS
 function getFetchedData(id) {
   Promise.all([
     apiCalls.retrieveData(`travelers`),
@@ -48,10 +48,6 @@ function assignFetchedData(data) {
     currentUserData = data[1]
     tripsData = data[2].trips
     destinationsData = data[3].destinations
-    console.log('currentUserData', currentUserData)
-
-    // currentTraveler = new Traveler(currentUserData)
-    // currentTrip = new Trip(tripsData)
 }
 
 // DISPLAY FUNCTIONS
@@ -64,7 +60,6 @@ function displayMainPage() {
   getTrips(userLoginInput, tripsData, date)
 
   const isLoginValid = checkUserInputID(userLoginInput)
-  
   if (isLoginValid) {
     domUpdates.renderMainPage()
     displayTrips(currentTraveler)
@@ -72,7 +67,6 @@ function displayMainPage() {
     console.log(`Please enter a valid username and password`)
   }
 }
-
 
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
@@ -138,19 +132,13 @@ function displayYearlyTripsTotal() {
 }
 
 function displayTripPriceRequest(event) {
-
   event.preventDefault(event)
+  currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
-  console.log('tripTotalCost', tripTotalCost)
-
 
   domUpdates.renderTripPriceRequest(tripTotalCost)
   displayPendingTrips(currentTraveler)
 }
-
-
-
-
 
 
 
@@ -188,15 +176,11 @@ function checkUserInputID(userID) {
 }
 
 function getTrips(currentUserID, tripsData, date) {
-
-  console.log('currentUserID', currentUserID)
-
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
   getPresentTrips(tripsData, currentUserID, date)
   getUpcomingTrips(tripsData, currentUserID, date)
   getPendingTrips()
-
   getDestinationData(currentUserID)
 }
 
@@ -271,27 +255,16 @@ function getTripPriceRequest() {
     "travelers": Number(numOfTravelers), 
     "date": newStartDate, 
     "duration": (tripDuration / (60*60*24*1000)), 
-    "status": 'pending', 
+    "status": "pending", 
     "suggestedActivities": []
   }
   
   currentTrip = new Trip(newTrip)
-  console.log('currentTrip', currentTrip)
-
+  apiCalls.updateData(currentTrip)
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  apiCalls.updateData({currentTrip})
 
   return {currentTrip, destinationsList, tripTotalCost};
 }
-
-
-
-
-
-
-// function generateRandomUser(data) {
-//   return Math.floor(Math.random() * data.length);
-// }
 
 // function applyGlide() {
 //   const config = {

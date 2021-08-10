@@ -62,7 +62,7 @@ function displayMainPage() {
   if (!userNameInput) {
     domUpdates.renderLoginFailedMsg()
   }
-  
+
   getFetchedData(userNameInput)
   currentTraveler = new Traveler(currentUserData)
   currentTrip = new Trip(tripsData)
@@ -71,14 +71,10 @@ function displayMainPage() {
 }
 
 function verifyLoginInput(userID) {
-  let password = document.getElementById('password')
-
   const userInfo = checkUserInputID(userID)
   const passingUsername = `traveler${userInfo.id}`
   const passingPasssword = 'travel'
-  console.log('userInfo', userInfo)
 
- 
   if (userInfo && passingUsername && passingPasssword) {
     domUpdates.renderMainPage()
     displayTrips(userID)
@@ -183,7 +179,6 @@ function getUserInputID() {
   })
 
   let userID2 = Number(userID.join(''))
-  console.log('userID2>>> ', userID2)
   if (userID2) {
     return userID2
   } else if (isNaN()) {
@@ -192,14 +187,7 @@ function getUserInputID() {
 }
 
 function checkUserInputID(userID) {
-  let userInputID = travelersData.find(traveler => {
-    if (traveler.id === userID) {
-      return traveler
-    }
-  })
-  // let userInputID2 = userInputID.id
-  // console.log('userInputID',userInputID.id)
-  if (userInputID.id <= 50 && userInputID.id > 0) {
+  if (userID <= 50 && userID > 0) {
     return true
   } else {
     return false

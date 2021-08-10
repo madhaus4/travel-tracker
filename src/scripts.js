@@ -84,9 +84,10 @@ function verifyLoginInput(userID) {
 } 
 
 function verifyPassword() {
-  if (passwordField.input === 'travel') {
+  if (passwordField.value === 'travel') {
     return true
-  } else if (passwordField.input !== 'travel') {
+  } else 
+  if (passwordField.value !== 'travel') {
     return false
   }
 }

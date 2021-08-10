@@ -17,7 +17,7 @@ import './images/resul-mentes-DbwYNr8RPbg-unsplash.jpg';
 // GLOBAL VARIABLES
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
-let date;
+let date ='2021/08/10';
 
 
 // QUERY SELECTORS
@@ -26,55 +26,54 @@ const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
-window.addEventListener('load', getAPIdata)
+window.addEventListener('load', getFetchedData)
+continueBtn.addEventListener('click', displayMainPage)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
-continueBtn.addEventListener('click', displayMainPage)
 
-// FUNCTIONS
-function getAPIdata() {
-  apiCalls.getData()
-    .then(promise => {
-    travelersData = promise[0].travelers
-    currentUserData = promise[1]
-    tripsData = promise[2].trips
-    destinationsData = promise[3].destinations
-    
-    currentTraveler = new Traveler(currentUserData)
-    currentTrip = new Trip(tripsData[0])
-    date = '2021/08/09';
-    
-    // console.log(currentTraveler)
-    getTrips(currentUserData, tripsData, '2021/08/08')
-    // displayTrips(currentTraveler)
-  })
+// FETCH FUNCTIONS
+function getFetchedData(id) {
+  Promise.all([
+    apiCalls.retrieveData(`travelers`),
+    apiCalls.retrieveData(`travelers/${id}`),
+    apiCalls.retrieveData(`trips`),
+    apiCalls.retrieveData(`destinations`)
+  ])
+  .then(data => assignFetchedData(data))
 }
 
+function assignFetchedData(data) {
+    travelersData = data[0].travelers
+    currentUserData = data[1]
+    tripsData = data[2].trips
+    destinationsData = data[3].destinations
+}
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
   const userLoginInput = getUserInputID()
+
+  getFetchedData(userLoginInput)
+  currentTraveler = new Traveler(currentUserData)
+  currentTrip = new Trip(tripsData)
+  getTrips(userLoginInput, tripsData, date)
+
   const isLoginValid = checkUserInputID(userLoginInput)
-  
   if (isLoginValid) {
     domUpdates.renderMainPage()
-    // console.log('logging this here', currentTraveler)
-    // currentTraveler = new Traveler(currentUserData)
     displayTrips(currentTraveler)
-
   } else if (!isLoginValid) {
     console.log(`Please enter a valid username and password`)
   }
 }
 
-
 function displayTrips(currentUserID) {
+  displayYearlyTripsTotal()
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
-  displayYearlyTripsTotal()
 
   domUpdates.renderDestinationsDataList(destinationsData)
 }
@@ -125,7 +124,6 @@ function displayPendingTrips(currentUserID) {
   } else {
     console.log(`You do not have any pending trips`)
   }
-
 }
 
 function displayYearlyTripsTotal() {
@@ -135,9 +133,13 @@ function displayYearlyTripsTotal() {
 
 function displayTripPriceRequest(event) {
   event.preventDefault(event)
+  currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
+
   domUpdates.renderTripPriceRequest(tripTotalCost)
+  displayPendingTrips(currentTraveler)
 }
+
 
 
 // HELPER FUNCTIONS
@@ -158,7 +160,6 @@ function getUserInputID() {
 
 function checkUserInputID(userID) {
   let password = document.getElementById('password')
-
   let findUser = travelersData.find(traveler => {
     if (traveler.id === userID) {
       return traveler
@@ -167,7 +168,6 @@ function checkUserInputID(userID) {
  
   const passingUsername = `traveler${findUser.id}`
   const passingPasssword = 'travel'
-
   if (passingUsername && password.value === passingPasssword) {
     return true
   } else {
@@ -181,7 +181,6 @@ function getTrips(currentUserID, tripsData, date) {
   getPresentTrips(tripsData, currentUserID, date)
   getUpcomingTrips(tripsData, currentUserID, date)
   getPendingTrips()
-
   getDestinationData(currentUserID)
 }
 
@@ -256,24 +255,16 @@ function getTripPriceRequest() {
     "travelers": Number(numOfTravelers), 
     "date": newStartDate, 
     "duration": (tripDuration / (60*60*24*1000)), 
-    "status": 'pending', 
+    "status": "pending", 
     "suggestedActivities": []
   }
   
   currentTrip = new Trip(newTrip)
+  apiCalls.updateData(currentTrip)
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  apiCalls.requestData.updateTripsData(currentTrip)
+
   return {currentTrip, destinationsList, tripTotalCost};
 }
-
-
-
-
-
-
-// function generateRandomUser(data) {
-//   return Math.floor(Math.random() * data.length);
-// }
 
 // function applyGlide() {
 //   const config = {

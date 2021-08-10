@@ -7,7 +7,7 @@
   height: 10vh;
   display: flex;
   justify-content: space-around;
-  align-items: flex-end;
+  align-items: center;
   
   div {
     @include center-items(flex-end);
@@ -38,6 +38,7 @@
   height: 60vh;
   margin: 2vh 0 15vh;
   @include center-items(center);
+  position: relative;
 }
 
 .main-section {
@@ -78,10 +79,6 @@
   @include center-items(center);
 }
 
-// .trip-price-request-msg{
-
-// }
-
 
 // TRIPS CONTAINER
 .trips-container {
@@ -91,23 +88,43 @@
   justify-content: space-evenly;
   align-items: flex-start;
 
+  // @media screen and (min-width: 600px) {
+  //   height: 200vh;
+  //   width: 97vw;
+  // }
+
   div {
     height: 60vh;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
 
+  //   @media screen and (min-width: 600px) {
+  //     width: 40vw;
+  // }
+    
     article {
-      overflow: scroll;
+      overflow-y: scroll;
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
+
+      @include for-laptop() 
+      // @media (min-width: 600px) {
+      //   width: 97vw;
+      // }
     }
+  }
 }
 
-
+// .destination-containers {
+//   display: flex;
+//   justify-content: flex-start;
+//   width: 40vw;
+//   overflow-y: scroll;
+//   overflow-x: hidden;
+// }
 
 // CURRENT TRIP DETAILS
 

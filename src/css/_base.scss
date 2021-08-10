@@ -9,11 +9,15 @@
 
 body {
   overflow: auto;
-  margin: 5px;
+  // margin: 5px;
 }
 
 
 // NAV CONTAINER
+.nav-container {
+  // background-color: lightblue;
+}
+
 .menu-icon {
   height: 30px;
   width: 30px;
@@ -102,10 +106,15 @@ h1 {
 
 // TRIP PRICE CONTAINER
 .trip-price-container {
-  background-color: #A6F5EE;
+  // background-color: #A6F5EE;
   border-radius: $radius;
   filter: $drop-shadow;
   text-align: center;
+  background-color: #df656dd4;
+  // background-color: #ab4b52;
+  color: white;
+  
+
 }
 
 // #8DFBD1
@@ -117,6 +126,10 @@ h4 {
   font-size: 1.15em;
   border-bottom: 1px solid #5292B4;
   width: 90vw;
+
+  // @media (min-width: 600px) {
+  //   width: 97vw;
+  // }
 }
 
 
@@ -127,7 +140,11 @@ h4 {
 // PAST TRIPS
 .travel-photos {
   height: 35vh;
-  width: 100%;;
+  width: 100%;
+
+  // @media (min-width: 600px) {
+  //   width: 40vw;
+  // }
 }
 
 
@@ -136,3 +153,10 @@ h4 {
 .hidden {
   display: none;
 }
+
+
+// hsl(114deg 76% 41% / 17%);
+// #00ffb147
+// #5eff001c
+
+

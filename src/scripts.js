@@ -23,11 +23,16 @@ let date ='2021/08/10';
 // QUERY SELECTORS
 const checkPriceBtn = document.querySelector('.check-price-btn')
 const continueBtn = document.getElementById('continueBtn')
-
+const passwordField = document.getElementById('password')
 
 // EVENT LISTENERS
 window.addEventListener('load', getFetchedData)
 continueBtn.addEventListener('click', displayMainPage)
+passwordField.addEventListener('keyup', function(event) {
+  if (event.code === 'Enter') {
+    continueBtn.click();
+  }
+})
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })

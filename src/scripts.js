@@ -22,6 +22,7 @@ let date;
 
 // QUERY SELECTORS
 const checkPriceBtn = document.querySelector('.check-price-btn')
+const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
@@ -29,6 +30,7 @@ window.addEventListener('load', getAPIdata)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
+continueBtn.addEventListener('click', displayMainPage)
 
 // FUNCTIONS
 function getAPIdata() {
@@ -43,7 +45,7 @@ function getAPIdata() {
     currentTrip = new Trip(tripsData[0])
     date = '2021/08/09';
     
-    console.log(currentTraveler)
+    // console.log(currentTraveler)
     getTrips(currentUserData, tripsData, '2021/08/08')
     displayTrips(currentUserData)
   })
@@ -51,6 +53,16 @@ function getAPIdata() {
 
 
 // DISPLAY FUNCTIONS
+function displayMainPage() {
+  const userLoginInput = getUserLoginInput()
+  
+  if (userLoginInput) {
+    domUpdates.renderMainPage()
+  }
+
+}
+
+
 function displayTrips(currentUserID) {
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
@@ -123,6 +135,17 @@ function displayTripPriceRequest(event) {
 
 
 // HELPER FUNCTIONS
+function getUserLoginInput() {
+  let userName = document.getElementById('userName')
+  let password = document.getElementById('password')
+
+  userName = userName.value
+  password = password.value
+
+  console.log('userName', userName)
+  console.log('password', password)
+}
+
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
@@ -138,7 +161,6 @@ function getUserTrips(currentUserID) {
 }
 
 function getPastTrips(date) {
-  console.log('past2', currentTraveler.findPastTrips('2021/08/09'))
   return currentTraveler.findPastTrips('2021/08/09');
 }
 

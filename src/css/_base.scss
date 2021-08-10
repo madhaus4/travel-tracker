@@ -19,9 +19,43 @@ body {
   width: 30px;
 }
 
-h2 {
+h1 {
   font-size: .5em;
 }
+
+
+
+
+// LOGIN PAGE
+.login-page {
+  
+}
+
+.login-section {
+  border-radius: $radius;
+  background-color: #A6F5EE;
+  filter: $drop-shadow;
+  background-image: url('https://images.unsplash.com/photo-1522441815192-d9f04eb0615c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-title {
+  width: 100%;
+  text-align: center;
+  
+  h3 {
+    font-size: 1.45em;
+    padding: 3px;
+    margin: 5px;
+  }
+
+  p {
+    font-size: 1.25em;
+    padding: 3px;
+  }
+}
+
 
 
 // MAIN CONTAINER
@@ -56,6 +90,7 @@ h2 {
     border-radius: $radius;
     background-color: #ffffff;
     filter: $drop-shadow;
+    font-size: smaller;
   }
 }
 
@@ -77,7 +112,8 @@ h2 {
 
 // TRIPS CONTAINER
 h4 {
-  color: #5292B4;
+  // color: #5292B4;
+  color: #315B72;
   font-size: 1.15em;
   border-bottom: 1px solid #5292B4;
   width: 90vw;

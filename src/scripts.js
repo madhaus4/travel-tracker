@@ -22,6 +22,7 @@ let date;
 
 // QUERY SELECTORS
 const checkPriceBtn = document.querySelector('.check-price-btn')
+const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
@@ -29,6 +30,7 @@ window.addEventListener('load', getAPIdata)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
+continueBtn.addEventListener('click', displayMainPage)
 
 // FUNCTIONS
 function getAPIdata() {
@@ -43,14 +45,30 @@ function getAPIdata() {
     currentTrip = new Trip(tripsData[0])
     date = '2021/08/09';
     
-    console.log(currentTraveler)
+    // console.log(currentTraveler)
     getTrips(currentUserData, tripsData, '2021/08/08')
-    displayTrips(currentUserData)
+    // displayTrips(currentTraveler)
   })
 }
 
 
 // DISPLAY FUNCTIONS
+function displayMainPage() {
+  const userLoginInput = getUserInputID()
+  const isLoginValid = checkUserInputID(userLoginInput)
+  
+  if (isLoginValid) {
+    domUpdates.renderMainPage()
+    // console.log('logging this here', currentTraveler)
+    // currentTraveler = new Traveler(currentUserData)
+    displayTrips(currentTraveler)
+
+  } else if (!isLoginValid) {
+    console.log(`Please enter a valid username and password`)
+  }
+}
+
+
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
   displayPastTrips(currentUserID, date)
@@ -123,6 +141,40 @@ function displayTripPriceRequest(event) {
 
 
 // HELPER FUNCTIONS
+function getUserInputID() {
+  let userName = document.getElementById('userName')
+  let verifiedUserName = userName.value.split()
+  let userID = []
+
+  verifiedUserName.forEach(elem => {
+    let a = elem.charAt(8)
+    let b = elem.charAt(9)
+    userID.push(a, b)
+  })
+
+  let userID2 = Number(userID.join(''))
+  return userID2
+}
+
+function checkUserInputID(userID) {
+  let password = document.getElementById('password')
+
+  let findUser = travelersData.find(traveler => {
+    if (traveler.id === userID) {
+      return traveler
+    }
+  })
+ 
+  const passingUsername = `traveler${findUser.id}`
+  const passingPasssword = 'travel'
+
+  if (passingUsername && password.value === passingPasssword) {
+    return true
+  } else {
+    return false
+  }
+}
+
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
@@ -138,7 +190,6 @@ function getUserTrips(currentUserID) {
 }
 
 function getPastTrips(date) {
-  console.log('past2', currentTraveler.findPastTrips('2021/08/09'))
   return currentTraveler.findPastTrips('2021/08/09');
 }
 

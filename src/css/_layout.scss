@@ -15,6 +15,24 @@
 }
 
 
+// LOGIN PAGE
+.login-section {
+  height: 55vh;
+  width: 80vw;
+  margin: 10vh auto;
+  @include center-items(center);
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20vh;
+}
+
+
+
 // MAIN CONTAINER
 .main-container {
   height: 60vh;

@@ -1,5 +1,14 @@
 const domUpdates = {
 
+  renderMainPage() {
+    const loginPage = document.getElementById('loginPage')
+    const mainPage = document.getElementById('mainContainer')
+    const tripContainer = document.getElementById('tripContainer')
+    loginPage.classList.add('hidden')
+    mainPage.classList.remove('hidden')
+    tripContainer.classList.remove('hidden')
+  },
+
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {
@@ -72,9 +81,7 @@ const domUpdates = {
     const tripPriceContainer = document.getElementById('tripPriceContainer')
     tripPriceContainer.classList.remove('hidden')
     tripPriceContainer.innerHTML += `<p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.currentTrip.duration} days for ${tripInfo.currentTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>`;
-  },
-
-
+  }
 }
 
 

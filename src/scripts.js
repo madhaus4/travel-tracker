@@ -57,21 +57,44 @@ function assignFetchedData(data) {
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
-  const userLoginInput = getUserInputID()
+  const userNameInput = getUserInputID()
 
-  getFetchedData(userLoginInput)
+  if (!userNameInput) {
+    domUpdates.renderLoginFailedMsg()
+  }
+  
+  getFetchedData(userNameInput)
   currentTraveler = new Traveler(currentUserData)
   currentTrip = new Trip(tripsData)
-  getTrips(userLoginInput, tripsData, date)
+  getTrips(userNameInput, tripsData, date)
+  verifyLoginInput(userNameInput)
+}
 
-  const isLoginValid = checkUserInputID(userLoginInput)
-  if (isLoginValid) {
+function verifyLoginInput(userID) {
+  let password = document.getElementById('password')
+
+  const userInfo = checkUserInputID(userID)
+  const passingUsername = `traveler${userInfo.id}`
+  const passingPasssword = 'travel'
+  console.log('userInfo', userInfo)
+
+ 
+  if (userInfo && passingUsername && passingPasssword) {
     domUpdates.renderMainPage()
-    displayTrips(currentTraveler)
-  } else if (!isLoginValid) {
-    console.log(`Please enter a valid username and password`)
+    displayTrips(userID)
+  } else if (!userInfo || !passingUsername || !passingPasssword) {
+    domUpdates.renderLoginFailedMsg()
   }
 }
+
+
+
+
+
+
+
+
+
 
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
@@ -160,20 +183,23 @@ function getUserInputID() {
   })
 
   let userID2 = Number(userID.join(''))
-  return userID2
+  console.log('userID2>>> ', userID2)
+  if (userID2) {
+    return userID2
+  } else if (isNaN()) {
+    return false
+  }
 }
 
 function checkUserInputID(userID) {
-  let password = document.getElementById('password')
-  let findUser = travelersData.find(traveler => {
+  let userInputID = travelersData.find(traveler => {
     if (traveler.id === userID) {
       return traveler
     }
   })
- 
-  const passingUsername = `traveler${findUser.id}`
-  const passingPasssword = 'travel'
-  if (passingUsername && password.value === passingPasssword) {
+  // let userInputID2 = userInputID.id
+  // console.log('userInputID',userInputID.id)
+  if (userInputID.id <= 50 && userInputID.id > 0) {
     return true
   } else {
     return false

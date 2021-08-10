@@ -9,6 +9,12 @@ const domUpdates = {
     tripContainer.classList.remove('hidden')
   },
 
+  renderLoginFailedMsg() {
+    const incorrectLoginInfo = document.getElementById('incorrectLoginInfo')
+    incorrectLoginInfo.classList.remove('hidden')
+    incorrectLoginInfo.innerHTML += `Please enter a valid username and password`;
+  },
+
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {

@@ -17,6 +17,7 @@ import './images/resul-mentes-DbwYNr8RPbg-unsplash.jpg';
 // GLOBAL VARIABLES
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
+let currentTravelerID;
 let date;
 
 
@@ -26,13 +27,21 @@ const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
-window.addEventListener('load', getAPIdata)
+// window.addEventListener('load', getAPIdata)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
 continueBtn.addEventListener('click', displayMainPage)
 
 // FUNCTIONS
+// function getFetchedData() {
+//   Promise.all([
+//     retrieveTravelersData(), 
+//     retrieveCurrentUserData(currentTravelerID), 
+//     retrieveTripsData(), 
+//     retrieveDestinationsData()])
+// }
+
 function getAPIdata() {
   apiCalls.getData()
     .then(promise => {
@@ -41,11 +50,11 @@ function getAPIdata() {
     tripsData = promise[2].trips
     destinationsData = promise[3].destinations
     
-    currentTraveler = new Traveler(currentUserData)
+    currentTraveler = new Traveler(`currentUserData${currentTravelerID}`)
     currentTrip = new Trip(tripsData[0])
     date = '2021/08/09';
     
-    // console.log(currentTraveler)
+    console.log('currentTraveler', currentTraveler)
     getTrips(currentUserData, tripsData, '2021/08/08')
     // displayTrips(currentTraveler)
   })
@@ -56,13 +65,10 @@ function getAPIdata() {
 function displayMainPage() {
   const userLoginInput = getUserInputID()
   const isLoginValid = checkUserInputID(userLoginInput)
-  
+
   if (isLoginValid) {
     domUpdates.renderMainPage()
-    // console.log('logging this here', currentTraveler)
-    // currentTraveler = new Traveler(currentUserData)
     displayTrips(currentTraveler)
-
   } else if (!isLoginValid) {
     console.log(`Please enter a valid username and password`)
   }
@@ -133,15 +139,26 @@ function displayYearlyTripsTotal() {
 }
 
 function displayTripPriceRequest(event) {
+
   event.preventDefault(event)
   const tripTotalCost = getTripPriceRequest()
+  console.log('tripTotalCost', tripTotalCost)
+
+
   domUpdates.renderTripPriceRequest(tripTotalCost)
   displayPendingTrips(currentTraveler)
 }
 
 
+
+
+
+
+
 // HELPER FUNCTIONS
 function getUserInputID() {
+  getAPIdata()
+
   let userName = document.getElementById('userName')
   let verifiedUserName = userName.value.split()
   let userID = []
@@ -158,14 +175,23 @@ function getUserInputID() {
 
 function checkUserInputID(userID) {
   let password = document.getElementById('password')
-
+  
+  console.log('travelersData', travelersData)
   let findUser = travelersData.find(traveler => {
     if (traveler.id === userID) {
       return traveler
     }
   })
  
-  const passingUsername = `traveler${findUser.id}`
+
+  currentTravelerID = findUser.id
+  currentTraveler = new Traveler(`currentUserData${currentTravelerID}`)
+
+  console.log('currentTravelerID', currentTravelerID)
+  console.log('currentTraveler', currentTraveler)
+
+
+  const passingUsername = `traveler${currentTravelerID}`
   const passingPasssword = 'travel'
 
   if (passingUsername && password.value === passingPasssword) {
@@ -186,6 +212,8 @@ function getTrips(currentUserID, tripsData, date) {
 }
 
 function getUserTrips(currentUserID) {
+  // currentTraveler = `currentUserData${currentTravelerID}`
+  // console.log('currentTraveler', currentTraveler)
   return currentTraveler.findCurrentUserTrips(tripsData, currentUserID)
 }
 
@@ -251,7 +279,7 @@ function getTripPriceRequest() {
 
   let newTrip = {
     "id": Date.now(), 
-    "userID": currentTraveler.id,
+    "userID": currentTravelerID,
     "destinationID": findDestinationID.id, 
     "travelers": Number(numOfTravelers), 
     "date": newStartDate, 
@@ -261,8 +289,11 @@ function getTripPriceRequest() {
   }
   
   currentTrip = new Trip(newTrip)
+  console.log('currentTrip', currentTrip)
+
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  apiCalls.requestData.updateTripsData(currentTrip)
+  apiCalls.updateData({currentTrip})
+
   return {currentTrip, destinationsList, tripTotalCost};
 }
 

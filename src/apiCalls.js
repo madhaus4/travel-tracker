@@ -1,9 +1,27 @@
+
+// const apiCalls = {
+
+// retrieveData(path) {
+//   fetch(path)
+//     .then(response => response.json())
+//     .then(data => data)
+//     .catch(err => displayErrorMessage(err));
+//   },
+
+// }
+
+
+// export default apiCalls;
+
+
+
 const retrieveTravelersData = () => {
   return fetch("http://localhost:3001/api/v1/travelers")
     .then(response => response.json())
     .then(data => data)
     .catch(err => console.log("Error upon us"));
 }
+
 
 const retrieveCurrentUserData = (id) => {
   return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
@@ -33,15 +51,22 @@ const retrieveDestinationsData = () => {
 //     .catch(err => console.log("Error upon us"));
 // }
 
-const updateData = (path, data) => {
-  fetch(path, {
+const updateData = (data) => {
+  fetch("http://localhost:3001/api/v1/trips", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
   })
       .then(response => checkForErrors(response))
       .then(response => console.log(reponse))
-      .catch(err => console.log("ERROR MSG FOR DEVS IN CONSOLE"))
+      .catch(err => displayErrorMessage(err))
+}
+
+const displayErrorMessage = (error) => {
+  const errorField = document.querySelector(".js-error")
+  const message = 
+    error.message === "Failed to fetch" ? "Something went wrong, please check your internet" : error.message
+  errorField.innerText = message  
 }
 
 const checkForError = (response) => {
@@ -52,7 +77,7 @@ const checkForError = (response) => {
   }
 }
 
-const requestData = {
+// const requestData = {
   // getTravelersData: () => {
   //   retrieveData("http://localhost:3001/api/v1/travelers")
   // },
@@ -69,14 +94,10 @@ const requestData = {
   //   retrieveData("http://localhost:3001/api/v1/destinations")
   // },
 
-  updateTripsData: (data) => {
-    updateData("http://localhost:3001/api/v1/trips", data);
-  },
-
-  updateDestinationsData: (data) => {
-    updateData("http://localhost:3001/api/v1/destinations", data)
-  }
-}
+  // updateTripsData: (data) => {
+  //   updateData("http://localhost:3001/api/v1/trips", data);
+  // }
+// }
 
 
 const getData = (id) => {
@@ -90,4 +111,4 @@ const getData = (id) => {
 
 
 
-export default {updateData, checkForError, requestData, getData};
+export default {updateData, checkForError, getData};

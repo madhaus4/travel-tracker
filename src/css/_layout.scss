@@ -74,22 +74,35 @@
   justify-content: space-evenly;
   align-items: flex-start;
 
+  @media (min-width: 600px) {
+    height: 200vh;
+  }
+
   div {
     height: 60vh;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-
+    
     article {
       overflow: scroll;
       overflow-x: hidden;
       display: flex;
       flex-direction: column;
+
+      @include for-laptop()
     }
+  }
 }
 
+// article {
+//   @media (min-width: 600px) {
+//     flex-direction: row;
+//     overflow-x: scroll;
+//     overflow-y: hidden;
+//   }
+// }
 
 
 // CURRENT TRIP DETAILS

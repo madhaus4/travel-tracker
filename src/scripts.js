@@ -54,14 +54,16 @@ function getAPIdata() {
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
-  const userLoginInput = getUserLoginInput()
+  const userLoginInput = getUserInputID()
+  const isLoginValid = checkUserInputID(userLoginInput)
   
-  if (userLoginInput) {
+  if (isLoginValid) {
     domUpdates.renderMainPage()
+    // console.log('logging this here', currentTraveler)
+    // currentTraveler = new Traveler(currentUserData)
     displayTrips(currentTraveler)
-    console.log(currentTraveler)
 
-  } else if (!userLoginInput) {
+  } else if (!isLoginValid) {
     console.log(`Please enter a valid username and password`)
   }
 }
@@ -139,10 +141,8 @@ function displayTripPriceRequest(event) {
 
 
 // HELPER FUNCTIONS
-function getUserLoginInput() {
+function getUserInputID() {
   let userName = document.getElementById('userName')
-  let password = document.getElementById('password')
-
   let verifiedUserName = userName.value.split()
   let userID = []
 
@@ -153,16 +153,21 @@ function getUserLoginInput() {
   })
 
   let userID2 = Number(userID.join(''))
+  return userID2
+}
+
+function checkUserInputID(userID) {
+  let password = document.getElementById('password')
 
   let findUser = travelersData.find(traveler => {
-    if (traveler.id === userID2) {
+    if (traveler.id === userID) {
       return traveler
     }
   })
  
   const passingUsername = `traveler${findUser.id}`
   const passingPasssword = 'travel'
-  
+
   if (passingUsername && password.value === passingPasssword) {
     return true
   } else {

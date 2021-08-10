@@ -20,6 +20,7 @@ let date ='2021/08/10';
 // QUERY SELECTORS
 const checkPriceBtn = document.querySelector('.check-price-btn')
 const continueBtn = document.getElementById('continueBtn')
+const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
 
 // EVENT LISTENERS
@@ -36,6 +37,7 @@ checkPriceBtn.addEventListener('click', function(event) {
 
 // FETCH FUNCTIONS
 function getFetchedData(id) {
+  continueBtn.disabled = false;
   Promise.all([
     apiCalls.retrieveData(`travelers`),
     apiCalls.retrieveData(`travelers/${id}`),
@@ -54,9 +56,7 @@ function assignFetchedData(data) {
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
-
   const userNameInput = getUserInputID()
-  
   if (!userNameInput) {
     domUpdates.renderLoginFailedMsg()
   }
@@ -78,17 +78,18 @@ function verifyLoginInput(userID) {
     displayTrips(userID)
   } else if (!userInfo || !passingUsername || !passingPasssword) {
     domUpdates.renderLoginFailedMsg()
+    continueBtn.disabled = true;
+    clearInputFields()
   }
 }
 
-
-
-
-
-
-
-
-
+function clearInputFields() {
+  if (continueBtn.disabled) {
+    userNameField.value = ''
+    passwordField.value = ''
+    continueBtn.disabled = false;
+  }
+}
 
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
@@ -166,8 +167,8 @@ function displayTripPriceRequest(event) {
 
 // HELPER FUNCTIONS
 function getUserInputID() {
-  let userName = document.getElementById('userName')
-  let verifiedUserName = userName.value.split()
+  // let userNameField = document.getElementById('userName')
+  let verifiedUserName = userNameField.value.split()
   let userID = []
 
   verifiedUserName.forEach(elem => {

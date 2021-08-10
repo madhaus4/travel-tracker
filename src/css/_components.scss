@@ -18,3 +18,64 @@
 }
 
 
+// TRIANGLE HEADER
+// ON LOGIN PAGE
+.custom-shape-divider-top-1628566746-login {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1628566746-login svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 50vh;
+  margin-top: -80px;
+}
+
+.custom-shape-divider-top-1628566746-login 
+.shape-fill {
+  fill: #5E779647;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-top-1628566746-login svg {
+    width: calc(100% + 1.3px);
+    height: 40vh;
+    margin-top: 0px;
+  }
+}
+
+// ON MAIN PAGE
+.custom-shape-divider-top-1628566746 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1628566746 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 50vh;
+  margin-top: -80px;
+}
+
+.custom-shape-divider-top-1628566746 .shape-fill {
+  fill: #5E779647;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-top-1628566746 svg {
+    width: calc(100% + 1.3px);
+    height: 40vh;
+    margin-top: -75px;
+  }
+}

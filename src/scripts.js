@@ -71,7 +71,7 @@ function displayMainPage() {
 function verifyLoginInput(userID) {
   const userInfo = checkUserInputID(userID)
   const passingUsername = `traveler${userInfo.id}`
-  const passingPasssword = 'travel'
+  const passingPasssword = verifyPassword()
 
   if (userInfo && passingUsername && passingPasssword) {
     domUpdates.renderMainPage()
@@ -80,6 +80,14 @@ function verifyLoginInput(userID) {
     domUpdates.renderLoginFailedMsg()
     continueBtn.disabled = true;
     clearInputFields()
+  }
+} 
+
+function verifyPassword() {
+  if (passwordField.input === 'travel') {
+    return true
+  } else if (passwordField.input !== 'travel') {
+    return false
   }
 }
 

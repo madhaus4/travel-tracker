@@ -47,7 +47,7 @@ function getAPIdata() {
     
     // console.log(currentTraveler)
     getTrips(currentUserData, tripsData, '2021/08/08')
-    displayTrips(currentUserData)
+    // displayTrips(currentTraveler)
   })
 }
 
@@ -58,6 +58,9 @@ function displayMainPage() {
   
   if (userLoginInput) {
     domUpdates.renderMainPage()
+    displayTrips(currentTraveler)
+    console.log(currentTraveler)
+
   } else if (!userLoginInput) {
     console.log(`Please enter a valid username and password`)
   }
@@ -156,7 +159,7 @@ function getUserLoginInput() {
       return traveler
     }
   })
-
+ 
   const passingUsername = `traveler${findUser.id}`
   const passingPasssword = 'travel'
   

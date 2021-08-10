@@ -1,11 +1,8 @@
 import './css/main.scss';
-// FILES
-// import Glide from '@glidejs/glide'
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 import apiCalls from './apiCalls.js';
 import domUpdates from './domUpdates.js'
-// IMAGES
 import './images/menu.png';
 import './images/next.png'
 import './images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg';
@@ -57,8 +54,9 @@ function assignFetchedData(data) {
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
-  const userNameInput = getUserInputID()
 
+  const userNameInput = getUserInputID()
+  
   if (!userNameInput) {
     domUpdates.renderLoginFailedMsg()
   }
@@ -284,12 +282,3 @@ function getTripPriceRequest() {
 
   return {currentTrip, destinationsList, tripTotalCost};
 }
-
-// function applyGlide() {
-//   const config = {
-//     type: 'carousel',
-//     startAt: 0,
-//     perView: 1
-//   }
-//   new Glide('.glide', config).mount()
-// }

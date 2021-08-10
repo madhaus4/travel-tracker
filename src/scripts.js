@@ -17,8 +17,8 @@ import './images/resul-mentes-DbwYNr8RPbg-unsplash.jpg';
 // GLOBAL VARIABLES
 let travelersData, currentUserData, tripsData, destinationsData;
 let currentTraveler, currentTrip;
-let currentTravelerID;
-let date;
+// let currentTravelerID;
+let date ='2021/08/10';
 
 
 // QUERY SELECTORS
@@ -27,43 +27,53 @@ const continueBtn = document.getElementById('continueBtn')
 
 
 // EVENT LISTENERS
-// window.addEventListener('load', getAPIdata)
+// window.addEventListener('load', getFetchedData)
 checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
 continueBtn.addEventListener('click', displayMainPage)
 
 // FUNCTIONS
-// function getFetchedData() {
-//   Promise.all([
-//     retrieveTravelersData(), 
-//     retrieveCurrentUserData(currentTravelerID), 
-//     retrieveTripsData(), 
-//     retrieveDestinationsData()])
-// }
-
-function getAPIdata() {
-  apiCalls.getData()
-    .then(promise => {
-    travelersData = promise[0].travelers
-    currentUserData = promise[1]
-    tripsData = promise[2].trips
-    destinationsData = promise[3].destinations
-    
-    currentTraveler = new Traveler(`currentUserData${currentTravelerID}`)
-    currentTrip = new Trip(tripsData[0])
-    date = '2021/08/09';
-    
-    console.log('currentTraveler', currentTraveler)
-    getTrips(currentUserData, tripsData, '2021/08/08')
-    // displayTrips(currentTraveler)
-  })
+function getFetchedData(id) {
+  Promise.all([
+    apiCalls.retrieveData(`travelers`),
+    apiCalls.retrieveData(`travelers/${id}`),
+    apiCalls.retrieveData(`trips`),
+    apiCalls.retrieveData(`destinations`)
+  ])
+  .then(data => assignFetchedData(data))
 }
+
+function assignFetchedData(data) {
+    travelersData = data[0].travelers
+    currentUserData = data[1]
+    tripsData = data[2].trips
+    destinationsData = data[3].destinations
+    console.log('blah', currentUserData)
+}
+
+// function getAPIdata() {
+  // apiCalls.getData()
+    // travelersData = promise[0].travelers
+    // currentUserData = promise[1]
+    // tripsData = promise[2].trips
+    // destinationsData = promise[3].destinations
+    
+    // currentTraveler = new Traveler(`currentUserData${44}`)
+    // currentTrip = new Trip(tripsData[0])
+    // date = '2021/08/09';
+    
+//     console.log('currentTraveler', currentTraveler)
+//     getTrips(currentUserData, tripsData, '2021/08/08')
+//     // displayTrips(currentTraveler)
+//   })
+// }
 
 
 // DISPLAY FUNCTIONS
 function displayMainPage() {
   const userLoginInput = getUserInputID()
+  getFetchedData(userLoginInput)
   const isLoginValid = checkUserInputID(userLoginInput)
 
   if (isLoginValid) {
@@ -157,7 +167,6 @@ function displayTripPriceRequest(event) {
 
 // HELPER FUNCTIONS
 function getUserInputID() {
-  getAPIdata()
 
   let userName = document.getElementById('userName')
   let verifiedUserName = userName.value.split()
@@ -170,6 +179,8 @@ function getUserInputID() {
   })
 
   let userID2 = Number(userID.join(''))
+  console.log('userID2', userID2)
+
   return userID2
 }
 
@@ -183,15 +194,7 @@ function checkUserInputID(userID) {
     }
   })
  
-
-  currentTravelerID = findUser.id
-  currentTraveler = new Traveler(`currentUserData${currentTravelerID}`)
-
-  console.log('currentTravelerID', currentTravelerID)
-  console.log('currentTraveler', currentTraveler)
-
-
-  const passingUsername = `traveler${currentTravelerID}`
+  const passingUsername = `traveler${findUser.id}`
   const passingPasssword = 'travel'
 
   if (passingUsername && password.value === passingPasssword) {
@@ -202,6 +205,9 @@ function checkUserInputID(userID) {
 }
 
 function getTrips(currentUserID, tripsData, date) {
+
+  console.log('currentUserID', currentUserID)
+
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
   getPresentTrips(tripsData, currentUserID, date)
@@ -212,8 +218,6 @@ function getTrips(currentUserID, tripsData, date) {
 }
 
 function getUserTrips(currentUserID) {
-  // currentTraveler = `currentUserData${currentTravelerID}`
-  // console.log('currentTraveler', currentTraveler)
   return currentTraveler.findCurrentUserTrips(tripsData, currentUserID)
 }
 
@@ -279,7 +283,7 @@ function getTripPriceRequest() {
 
   let newTrip = {
     "id": Date.now(), 
-    "userID": currentTravelerID,
+    "userID": currentTraveler.id,
     "destinationID": findDestinationID.id, 
     "travelers": Number(numOfTravelers), 
     "date": newStartDate, 

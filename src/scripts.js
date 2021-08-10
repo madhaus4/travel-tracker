@@ -35,39 +35,9 @@ checkPriceBtn.addEventListener('click', function(event) {
  displayTripPriceRequest(event)
 })
 
-// FETCH FUNCTIONS
-function getFetchedData(id) {
-  continueBtn.disabled = false;
-  Promise.all([
-    apiCalls.retrieveData(`travelers`),
-    apiCalls.retrieveData(`travelers/${id}`),
-    apiCalls.retrieveData(`trips`),
-    apiCalls.retrieveData(`destinations`)
-  ])
-  .then(data => assignFetchedData(data))
-}
 
-function assignFetchedData(data) {
-    travelersData = data[0].travelers
-    currentUserData = data[1]
-    tripsData = data[2].trips
-    destinationsData = data[3].destinations
-}
 
-// DISPLAY FUNCTIONS
-function displayMainPage() {
-  const userNameInput = getUserInputID()
-  if (!userNameInput) {
-    domUpdates.renderLoginFailedMsg()
-  }
-
-  getFetchedData(userNameInput)
-  currentTraveler = new Traveler(currentUserData)
-  currentTrip = new Trip(tripsData)
-  getTrips(userNameInput, tripsData, date)
-  verifyLoginInput(userNameInput)
-}
-
+// LOGIN FUNCTIONS
 function verifyLoginInput(userID) {
   const userInfo = checkUserInputID(userID)
   const passingUsername = `traveler${userInfo.id}`
@@ -75,13 +45,39 @@ function verifyLoginInput(userID) {
 
   if (userInfo && passingUsername && passingPasssword) {
     domUpdates.renderMainPage()
-    displayTrips(userID)
+    displayTrips(currentTraveler)
   } else if (!userInfo || !passingUsername || !passingPasssword) {
     domUpdates.renderLoginFailedMsg()
     continueBtn.disabled = true;
     clearInputFields()
   }
 } 
+
+function getUserInputID() {
+  let verifiedUserName = userNameField.value.split()
+  let userID = []
+
+  verifiedUserName.forEach(elem => {
+    let a = elem.charAt(8)
+    let b = elem.charAt(9)
+    userID.push(a, b)
+  })
+
+  let userID2 = Number(userID.join(''))
+  if (userID2) {
+    return userID2
+  } else if (isNaN()) {
+    return false
+  }
+}
+
+function checkUserInputID(userID) {
+  if (userID <= 50 && userID > 0) {
+    return true
+  } else {
+    return false
+  }
+}
 
 function verifyPassword() {
   if (passwordField.value === 'travel') {
@@ -100,21 +96,68 @@ function clearInputFields() {
   }
 }
 
+
+
+// FETCH FUNCTIONS
+function getFetchedData(id) {
+  continueBtn.disabled = false;
+  Promise.all([
+    apiCalls.retrieveData(`travelers`),
+    apiCalls.retrieveData(`travelers/${id}`),
+    apiCalls.retrieveData(`trips`),
+    apiCalls.retrieveData(`destinations`)
+  ])
+  .then(data => assignFetchedData(data))
+}
+
+function assignFetchedData(data) {
+    travelersData = data[0].travelers
+    currentUserData = data[1]
+    tripsData = data[2].trips
+    destinationsData = data[3].destinations
+
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData)
+    console.log('currentTraveler', currentTraveler)
+}
+
+
+
+// DISPLAY MAIN PAGE FUNCTION
+function displayMainPage() {
+  const userNameInput = getUserInputID()
+  if (!userNameInput) {
+    domUpdates.renderLoginFailedMsg()
+  } else {
+    
+    getFetchedData(userNameInput)
+    // console.log('userNameInput', userNameInput)
+    
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData)
+    getTrips(userNameInput, tripsData, date)
+    verifyLoginInput(userNameInput)
+  }
+}
+
+
+
+// DISPLAY USER TRIPS
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
-
   domUpdates.renderDestinationsDataList(destinationsData)
+  console.log('fetchedTraveler', currentUserID)
 }
 
 function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPastTrips(currentUserID, date);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
-
+  
   if (currentTraveler.pastTrips.length > 0) {
     domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
@@ -174,34 +217,7 @@ function displayTripPriceRequest(event) {
 
 
 
-// HELPER FUNCTIONS
-function getUserInputID() {
-  // let userNameField = document.getElementById('userName')
-  let verifiedUserName = userNameField.value.split()
-  let userID = []
-
-  verifiedUserName.forEach(elem => {
-    let a = elem.charAt(8)
-    let b = elem.charAt(9)
-    userID.push(a, b)
-  })
-
-  let userID2 = Number(userID.join(''))
-  if (userID2) {
-    return userID2
-  } else if (isNaN()) {
-    return false
-  }
-}
-
-function checkUserInputID(userID) {
-  if (userID <= 50 && userID > 0) {
-    return true
-  } else {
-    return false
-  }
-}
-
+// USER TRIPS HELPER FUNCTIONS
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)

@@ -25,9 +25,9 @@ const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
 const checkInField = document.getElementById('startDate')
 const checkOutField = document.getElementById('endDate')
-// const GoingToField = document.getElementById('destinationChoice')
+const GoingToField = document.getElementById('destinationChoice')
 const GuestsField = document.getElementById('numOfTravelers')
-// const tripContainer = document.getElementById('tripContainer')
+const tripContainer = document.getElementById('tripContainer')
 
 
 // EVENT LISTENERS
@@ -40,6 +40,25 @@ passwordField.addEventListener('keyup', function(event) {
 })
 checkPriceBtn.addEventListener('click', displayTripPriceRequest)
 requestTripBtn.addEventListener('click', displayNewPendingTrips)
+
+
+// DISPLAY MAIN PAGE FUNCTION
+function displayMainPage() {
+  const userNameInput = getUserInputID()
+  if (!userNameInput) {
+    domUpdates.renderLoginFailedMsg()
+  } else {
+    
+    getFetchedData(userNameInput)
+    // console.log('userNameInput', userNameInput)
+    
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData)
+    getTrips(userNameInput, tripsData, date)
+    verifyLoginInput(userNameInput)
+  }
+}
+
 
 
 // LOGIN FUNCTIONS
@@ -98,6 +117,9 @@ function clearInputFields() {
     userNameField.value = ''
     passwordField.value = ''
     continueBtn.disabled = false;
+  } else {
+    userNameField.value = ''
+    passwordField.value = ''
   }
 }
 
@@ -130,23 +152,6 @@ function assignFetchedData(data) {
 }
 
 
-
-// DISPLAY MAIN PAGE FUNCTION
-function displayMainPage() {
-  const userNameInput = getUserInputID()
-  if (!userNameInput) {
-    domUpdates.renderLoginFailedMsg()
-  } else {
-    
-    getFetchedData(userNameInput)
-    // console.log('userNameInput', userNameInput)
-    
-    currentTraveler = new Traveler(currentUserData)
-    currentTrip = new Trip(tripsData)
-    getTrips(userNameInput, tripsData, date)
-    verifyLoginInput(userNameInput)
-  }
-}
 
 
 

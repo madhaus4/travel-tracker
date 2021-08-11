@@ -120,6 +120,7 @@ const domUpdates = {
     const pendingTrips = document.getElementById('pendingTrips')
     pendingTrips.classList.add('.yes-trip-wrapper')
 
+    pendingTrips.innerHTML = ''
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {

@@ -37,9 +37,7 @@ passwordField.addEventListener('keyup', function(event) {
     continueBtn.click();
   }
 })
-checkPriceBtn.addEventListener('click', function(event) {
- displayTripPriceRequest(event)
-})
+checkPriceBtn.addEventListener('click', displayTripPriceRequest)
 
 
 
@@ -202,6 +200,8 @@ function displayPendingTrips(currentUserID) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPendingTrips(currentUserID.id);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
+  console.log('theseTrips', theseTrips)
+  console.log('destinations2', destinations2)
 
   if (currentTraveler.pendingTrips.length > 0) {
     domUpdates.renderPendingTrips(theseTrips, destinations2);
@@ -220,7 +220,7 @@ function displayTripPriceRequest() {
   const tripTotalCost = getTripPriceRequest()
 
   domUpdates.renderTripPriceRequest(tripTotalCost)
-  displayPendingTrips(currentTraveler)
+  // displayPendingTrips(currentTraveler)
   checkPriceBtn.disabled = true;
   if (checkPriceBtn.disabled) {
     clearTripInputFields()

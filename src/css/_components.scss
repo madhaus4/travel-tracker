@@ -1,7 +1,7 @@
 // BUTTONS/ WIDGET STYLES GO IN HERE
 
 // TRIP REQUEST FORM
-.check-price-btn {
+.btns {
   width: 40vw;
   margin: 5px;
   align-self: center;
@@ -14,6 +14,12 @@
     background-color: #5292B4;
     color: #ffffff;
     cursor: pointer;
+  }
+}
+
+.btns {
+  @media (min-width: 768px) {
+    width: 25vw;
   }
 }
 
@@ -50,6 +56,15 @@
   }
 }
 
+@media (min-width: 768px) {
+  .custom-shape-divider-top-1628566746-login svg {
+    width: calc(100% + 1.3px);
+    height: 57vh;
+    margin-top: -4px;
+  }
+}
+
+
 // ON MAIN PAGE
 .custom-shape-divider-top-1628566746 {
   position: absolute;
@@ -64,7 +79,7 @@
   display: block;
   width: calc(100% + 1.3px);
   height: 50vh;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 
 .custom-shape-divider-top-1628566746 .shape-fill {

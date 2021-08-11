@@ -1,11 +1,8 @@
 import './css/main.scss';
-// FILES
-// import Glide from '@glidejs/glide'
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 import apiCalls from './apiCalls.js';
 import domUpdates from './domUpdates.js'
-// IMAGES
 import './images/menu.png';
 import './images/next.png'
 import './images/boris-baldinger-eUFfY6cwjSU-unsplash.jpg';
@@ -21,19 +18,116 @@ let date ='2021/08/10';
 
 
 // QUERY SELECTORS
-const checkPriceBtn = document.querySelector('.check-price-btn')
+const checkPriceBtn = document.getElementById('checkPriceBtn')
 const continueBtn = document.getElementById('continueBtn')
+const requestTripBtn = document.getElementById('requestTripBtn')
+const userNameField = document.getElementById('userName')
+const passwordField = document.getElementById('password')
+const checkInField = document.getElementById('startDate')
+const checkOutField = document.getElementById('endDate')
+const GoingToField = document.getElementById('destinationChoice')
+const GuestsField = document.getElementById('numOfTravelers')
+const tripContainer = document.getElementById('tripContainer')
 
 
 // EVENT LISTENERS
 window.addEventListener('load', getFetchedData)
 continueBtn.addEventListener('click', displayMainPage)
-checkPriceBtn.addEventListener('click', function(event) {
- displayTripPriceRequest(event)
+passwordField.addEventListener('keyup', function(event) {
+  if (event.code === 'Enter') {
+    continueBtn.click();
+  }
 })
+checkPriceBtn.addEventListener('click', displayTripPriceRequest)
+requestTripBtn.addEventListener('click', displayNewPendingTrips)
+
+
+// DISPLAY MAIN PAGE FUNCTION
+function displayMainPage() {
+  const userNameInput = getUserInputID()
+  if (!userNameInput) {
+    domUpdates.renderLoginFailedMsg()
+  } else {
+    
+    getFetchedData(userNameInput)
+    // console.log('userNameInput', userNameInput)
+    
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData)
+    getTrips(userNameInput, tripsData, date)
+    verifyLoginInput(userNameInput)
+  }
+}
+
+
+
+// LOGIN FUNCTIONS
+function verifyLoginInput(userID) {
+  const userInfo = checkUserInputID(userID)
+  const passingUsername = `traveler${userInfo.id}`
+  const passingPasssword = verifyPassword()
+
+  if (userInfo && passingUsername && passingPasssword) {
+    domUpdates.renderMainPage()
+    displayTrips(currentTraveler)
+  } else if (!userInfo || !passingUsername || !passingPasssword) {
+    domUpdates.renderLoginFailedMsg()
+    continueBtn.disabled = true;
+    clearInputFields()
+  }
+} 
+
+function getUserInputID() {
+  let verifiedUserName = userNameField.value.split()
+  let userID = []
+
+  verifiedUserName.forEach(elem => {
+    let a = elem.charAt(8)
+    let b = elem.charAt(9)
+    userID.push(a, b)
+  })
+
+  let userID2 = Number(userID.join(''))
+  if (userID2) {
+    return userID2
+  } else if (isNaN()) {
+    return false
+  }
+}
+
+function checkUserInputID(userID) {
+  if (userID <= 50 && userID > 0) {
+    return true
+  } else {
+    return false
+  }
+}
+
+function verifyPassword() {
+  if (passwordField.value === 'travel') {
+    return true
+  } else 
+  if (passwordField.value !== 'travel') {
+    return false
+  }
+}
+
+function clearInputFields() {
+  if (continueBtn.disabled) {
+    userNameField.value = ''
+    passwordField.value = ''
+    continueBtn.disabled = false;
+  } else {
+    userNameField.value = ''
+    passwordField.value = ''
+  }
+}
+
+
 
 // FETCH FUNCTIONS
 function getFetchedData(id) {
+  continueBtn.disabled = false;
   Promise.all([
     apiCalls.retrieveData(`travelers`),
     apiCalls.retrieveData(`travelers/${id}`),
@@ -48,34 +142,28 @@ function assignFetchedData(data) {
     currentUserData = data[1]
     tripsData = data[2].trips
     destinationsData = data[3].destinations
+
+    currentTraveler = new Traveler(currentUserData)
+    currentTrip = new Trip(tripsData)
+    // console.log('currentTraveler', currentTraveler)
+
+    let name = currentTraveler.name.split(' ')
+    domUpdates.renderWelcomeMsg(name[0]) 
 }
 
-// DISPLAY FUNCTIONS
-function displayMainPage() {
-  const userLoginInput = getUserInputID()
 
-  getFetchedData(userLoginInput)
-  currentTraveler = new Traveler(currentUserData)
-  currentTrip = new Trip(tripsData)
-  getTrips(userLoginInput, tripsData, date)
 
-  const isLoginValid = checkUserInputID(userLoginInput)
-  if (isLoginValid) {
-    domUpdates.renderMainPage()
-    displayTrips(currentTraveler)
-  } else if (!isLoginValid) {
-    console.log(`Please enter a valid username and password`)
-  }
-}
 
+
+// DISPLAY USER TRIPS
 function displayTrips(currentUserID) {
   displayYearlyTripsTotal()
   displayPastTrips(currentUserID, date)
   displayPresentTrips(currentUserID, date)
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
-
   domUpdates.renderDestinationsDataList(destinationsData)
+  console.log('fetchedTraveler', currentUserID)
 }
 
 function displayPastTrips(currentUserID, date) {
@@ -86,7 +174,7 @@ function displayPastTrips(currentUserID, date) {
   if (currentTraveler.pastTrips.length > 0) {
     domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any past trips yet`)
+    domUpdates.renderNoPastTrips()
   }
 }
 
@@ -98,7 +186,7 @@ function displayPresentTrips(currentUserID, date) {
   if (currentTraveler.presentTrips.length > 0) {
     domUpdates.renderPresentTrips(theseTrips, destinations2);
   } else {
-    console.log(`You're currently not on a trip`)
+    domUpdates.renderNoPresentTrips()
   }
 }
 
@@ -110,7 +198,7 @@ function displayUpcomingTrips(currentUserID, date) {
   if (currentTraveler.upcomingTrips.length > 0) {
     domUpdates.renderUpcomingTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any upcoming trips`)
+    domUpdates.renderNoUpcomingTrips()
   }
 }
 
@@ -118,11 +206,13 @@ function displayPendingTrips(currentUserID) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPendingTrips(currentUserID.id);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
+  console.log('theseTrips', theseTrips)
+  console.log('destinations2', destinations2)
 
   if (currentTraveler.pendingTrips.length > 0) {
     domUpdates.renderPendingTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any pending trips`)
+    domUpdates.renderNoPendingTrips()
   }
 }
 
@@ -131,50 +221,29 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
-function displayTripPriceRequest(event) {
-  event.preventDefault(event)
+function displayTripPriceRequest() {
   currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
 
   domUpdates.renderTripPriceRequest(tripTotalCost)
-  displayPendingTrips(currentTraveler)
-}
-
-
-
-// HELPER FUNCTIONS
-function getUserInputID() {
-  let userName = document.getElementById('userName')
-  let verifiedUserName = userName.value.split()
-  let userID = []
-
-  verifiedUserName.forEach(elem => {
-    let a = elem.charAt(8)
-    let b = elem.charAt(9)
-    userID.push(a, b)
-  })
-
-  let userID2 = Number(userID.join(''))
-  return userID2
-}
-
-function checkUserInputID(userID) {
-  let password = document.getElementById('password')
-  let findUser = travelersData.find(traveler => {
-    if (traveler.id === userID) {
-      return traveler
-    }
-  })
- 
-  const passingUsername = `traveler${findUser.id}`
-  const passingPasssword = 'travel'
-  if (passingUsername && password.value === passingPasssword) {
-    return true
-  } else {
-    return false
+  // displayPendingTrips(currentTraveler)
+  checkPriceBtn.disabled = true;
+  if (checkPriceBtn.disabled) {
+    clearTripInputFields()
   }
 }
 
+function clearTripInputFields() {
+  checkInField.value = ''
+  checkOutField.value = ''
+  // goingToField.value = goingToField.reset()
+  GuestsField.value = ''
+  continueBtn.disabled = false;
+}
+
+
+
+// USER TRIPS HELPER FUNCTIONS
 function getTrips(currentUserID, tripsData, date) {
   getUserTrips(currentUserID)
   getPastTrips(tripsData, currentUserID, date)
@@ -266,11 +335,15 @@ function getTripPriceRequest() {
   return {currentTrip, destinationsList, tripTotalCost};
 }
 
-// function applyGlide() {
-//   const config = {
-//     type: 'carousel',
-//     startAt: 0,
-//     perView: 1
-//   }
-//   new Glide('.glide', config).mount()
-// }
+function displayNewPendingTrips() {
+  console.log('currentTrip', currentTrip)
+  domUpdates.renderPendingTrips(currentTrip, destinationsData)
+}
+
+// const show = (element) => {
+//   element.classList.remove('hidden');
+// };
+
+// const hide = (element) => {
+//   element.classList.add('hidden');
+// };

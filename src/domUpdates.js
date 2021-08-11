@@ -137,9 +137,11 @@ const domUpdates = {
   },
 
   renderAdditionalPendingTrips(trip, destinations) {
+    const noPendingTripsMsg = document.getElementById('noPendingTripsMsg')
     const pendingTrips = document.getElementById('pendingTrips')
     pendingTrips.classList.add('.yes-trip-wrapper')
-
+    noPendingTripsMsg.innerHTML = ''
+    
     destinations.forEach(destination => {
       if (destination.id === trip.destinationID) {
         pendingTrips.innerHTML += `
@@ -154,12 +156,11 @@ const domUpdates = {
   },
 
   renderNoPendingTrips() {
-    // const pendingTripWrapper = document.getElementById('pendingTripWrapper')
     const pendingTrips = document.getElementById('pendingTrips')
     pendingTrips.classList.add('.no-trip-wrapper')
 
     pendingTrips.innerHTML = `
-      <div>  
+      <div id="noPendingTripsMsg">  
         <p>You do not have any pending trips</p>
       </div>
     `;
@@ -188,9 +189,16 @@ const domUpdates = {
     tripPriceContainer.innerHTML = `
       <p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.currentTrip.duration} days for ${tripInfo.currentTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>
       <button class="btns request-trip-btn" id="requestTripBtn" type="submit">Request Trip</button>
-      `;
-    }
-  }
+    `;
+  },
+
+  renderTripRequestMsg() {
+    const tripPriceContainer = document.getElementById('tripPriceContainer')
+    tripPriceContainer.innerHTML = `
+      <p>Your trip request has been sent to your Travel Agent.</p>
+    `;
+  }  
+}
   
 
 export default domUpdates;

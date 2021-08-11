@@ -20,16 +20,16 @@ let date ='2021/08/10';
 // QUERY SELECTORS
 const checkPriceBtn = document.getElementById('checkPriceBtn')
 const continueBtn = document.getElementById('continueBtn')
-const requestTripBtn = document.getElementById('requestTripBtn')
 const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
 const checkInField = document.getElementById('startDate')
 const checkOutField = document.getElementById('endDate')
 const goingToField = document.getElementById('destinationChoice')
 const guestsField = document.getElementById('numOfTravelers')
-const tripContainer = document.getElementById('tripContainer')
-
 const tripPriceContainer = document.getElementById('tripPriceContainer')
+
+// const requestTripBtn = document.getElementById('requestTripBtn')
+// const tripContainer = document.getElementById('tripContainer')
 
 
 // EVENT LISTENERS
@@ -141,15 +141,11 @@ function assignFetchedData(data) {
     currentUserData = data[1]
     tripsData = data[2].trips
     destinationsData = data[3].destinations
-
     currentTraveler = new Traveler(currentUserData)
-    // console.log('currentTraveler', currentTraveler)
 
     let name = currentTraveler.name.split(' ')
     domUpdates.renderWelcomeMsg(name[0]) 
 }
-
-
 
 
 
@@ -161,7 +157,6 @@ function displayTrips(currentUserID) {
   displayUpcomingTrips(currentUserID, date)
   displayPendingTrips(currentUserID)
   domUpdates.renderDestinationsDataList(destinationsData)
-  console.log('fetchedTraveler', currentUserID)
 }
 
 function displayPastTrips(currentUserID, date) {
@@ -220,7 +215,6 @@ function displayYearlyTripsTotal() {
 }
 
 function displayTripPriceRequest() {
-  // currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
   domUpdates.renderTripPriceRequest(tripTotalCost)
   checkPriceBtn.disabled = true;
@@ -231,7 +225,7 @@ function clearTripInputFields() {
   checkOutField.value = ''
   goingToField.value = 0
   guestsField.value = ''
-  continueBtn.disabled = false;
+  checkPriceBtn.disabled = false;
 }
 
 
@@ -326,24 +320,18 @@ function getTripPriceRequest() {
     .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
 
   let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  console.log('currentTrip', currentTrip)
   return {currentTrip, destinationsList, tripTotalCost};
 }
 
-function displayNewPendingTrips(event) {
-  if (event.target.closest('request-trip-btn')) {
-    // apiCalls.updateData(currentTrip)
-      // .then(displayPendingTrips(currentTrip, destinationsData, date))
-      // .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
-      
-      console.log('currentTrip', currentTrip)
-      if (checkPriceBtn.disabled) {
-        clearTripInputFields()
-        checkPriceBtn.disabled = false;
-      }
-      // domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData)
-      tripPriceContainer.removeEventListener('click', displayNewPendingTrips)
-    }
+function displayNewPendingTrips() {
+  domUpdates.renderTripRequestMsg()
+  clearTripInputFields()
+  // if (event.target.closest('request-trip-btn')) {   
+
+  // if (checkPriceBtn.disabled) {
+    // checkPriceBtn.disabled = false;
+  // }
+  // }
 }
 
 // const show = (element) => {

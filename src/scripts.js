@@ -25,9 +25,11 @@ const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
 const checkInField = document.getElementById('startDate')
 const checkOutField = document.getElementById('endDate')
-const GoingToField = document.getElementById('destinationChoice')
-const GuestsField = document.getElementById('numOfTravelers')
+const goingToField = document.getElementById('destinationChoice')
+const guestsField = document.getElementById('numOfTravelers')
 const tripContainer = document.getElementById('tripContainer')
+
+const tripPriceContainer = document.getElementById('tripPriceContainer')
 
 
 // EVENT LISTENERS
@@ -39,7 +41,9 @@ passwordField.addEventListener('keyup', function(event) {
   }
 })
 checkPriceBtn.addEventListener('click', displayTripPriceRequest)
-requestTripBtn.addEventListener('click', displayNewPendingTrips)
+tripPriceContainer.addEventListener('click', function(event) {
+  displayNewPendingTrips(event)
+})
 
 
 // DISPLAY MAIN PAGE FUNCTION
@@ -48,12 +52,7 @@ function displayMainPage() {
   if (!userNameInput) {
     domUpdates.renderLoginFailedMsg()
   } else {
-    
     getFetchedData(userNameInput)
-    // console.log('userNameInput', userNameInput)
-    
-    currentTraveler = new Traveler(currentUserData)
-    currentTrip = new Trip(tripsData)
     getTrips(userNameInput, tripsData, date)
     verifyLoginInput(userNameInput)
   }
@@ -144,7 +143,6 @@ function assignFetchedData(data) {
     destinationsData = data[3].destinations
 
     currentTraveler = new Traveler(currentUserData)
-    currentTrip = new Trip(tripsData)
     // console.log('currentTraveler', currentTraveler)
 
     let name = currentTraveler.name.split(' ')
@@ -222,22 +220,17 @@ function displayYearlyTripsTotal() {
 }
 
 function displayTripPriceRequest() {
-  currentTraveler = new Traveler(currentUserData)
+  // currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
-
   domUpdates.renderTripPriceRequest(tripTotalCost)
-  // displayPendingTrips(currentTraveler)
   checkPriceBtn.disabled = true;
-  if (checkPriceBtn.disabled) {
-    clearTripInputFields()
-  }
 }
 
 function clearTripInputFields() {
   checkInField.value = ''
   checkOutField.value = ''
-  // goingToField.value = goingToField.reset()
-  GuestsField.value = ''
+  goingToField.value = 0
+  guestsField.value = ''
   continueBtn.disabled = false;
 }
 
@@ -330,14 +323,27 @@ function getTripPriceRequest() {
   
   currentTrip = new Trip(newTrip)
   apiCalls.updateData(currentTrip)
-  let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+    .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
 
+  let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+  console.log('currentTrip', currentTrip)
   return {currentTrip, destinationsList, tripTotalCost};
 }
 
-function displayNewPendingTrips() {
-  console.log('currentTrip', currentTrip)
-  domUpdates.renderPendingTrips(currentTrip, destinationsData)
+function displayNewPendingTrips(event) {
+  if (event.target.closest('request-trip-btn')) {
+    // apiCalls.updateData(currentTrip)
+      // .then(displayPendingTrips(currentTrip, destinationsData, date))
+      // .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
+      
+      console.log('currentTrip', currentTrip)
+      if (checkPriceBtn.disabled) {
+        clearTripInputFields()
+        checkPriceBtn.disabled = false;
+      }
+      // domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData)
+      tripPriceContainer.removeEventListener('click', displayNewPendingTrips)
+    }
 }
 
 // const show = (element) => {

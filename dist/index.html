@@ -52,8 +52,7 @@
       </div>
     <section class="main-section">
       <div class="main-title">
-        <!-- <h3>Let's Explore this Beautiful World</h3>
-        <p>You Ready?</p> -->
+        <!-- welcome msg renders here -->
       </div>
       <div class="main-content">
 
@@ -73,7 +72,7 @@
           </datalist>  
 
           <label class="formLabel" for="numOfTravelers">Guests</label>
-          <input type="number" id="numOfTravelers" name="numOfTravelers" value="1" min="1" max="50" placeholder="Guests" size="6" required>
+          <input type="number" id="numOfTravelers" name="numOfTravelers" min="1" max="50" placeholder="Guests" size="6" required>
 
           <button class="btns" id="checkPriceBtn" type="submit">Check Prices</button>
         </form>
@@ -83,6 +82,7 @@
   
   <section class="hidden trip-price-container js-error" id="tripPriceContainer">
     <!-- this is where the total cost pops up -->
+    <!-- <button class="hidden btns" id="requestTripBtn" type="submit">Request Trip</button> -->
   </section>
 
   <section class="hidden trips-container" id="tripContainer">

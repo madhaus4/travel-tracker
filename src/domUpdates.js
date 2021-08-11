@@ -120,7 +120,7 @@ const domUpdates = {
     const pendingTrips = document.getElementById('pendingTrips')
     pendingTrips.classList.add('.yes-trip-wrapper')
 
-    pendingTrips.innerHTML += ''
+    // pendingTrips.innerHTML += ''
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {
@@ -133,6 +133,23 @@ const domUpdates = {
           `;
         }
       })
+    })
+  },
+
+  renderAdditionalPendingTrips(trip, destinations) {
+    const pendingTrips = document.getElementById('pendingTrips')
+    pendingTrips.classList.add('.yes-trip-wrapper')
+
+    destinations.forEach(destination => {
+      if (destination.id === trip.destinationID) {
+        pendingTrips.innerHTML += `
+        <div class="destination-cards">
+          <h5>${destination.destination}</h5>
+          <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+          <h6>${trip.date}</h6>
+        </div>  
+      `;
+      }
     })
   },
 
@@ -167,12 +184,13 @@ const domUpdates = {
   renderTripPriceRequest(tripInfo) {
     const tripPriceContainer = document.getElementById('tripPriceContainer')
     tripPriceContainer.classList.remove('hidden')
-    tripPriceContainer.innerHTML += `
-      <p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.currentTrip.duration} days for ${tripInfo.currentTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>
-      <button class="btns" id"requestTripBtn" type="submit">Request Trip</button>
-    `;
-  }
-}
 
+    tripPriceContainer.innerHTML = `
+      <p>Thank you for your trip request to visit ${tripInfo.destinationsList}!  A roundtrip flight and ${tripInfo.currentTrip.duration} days for ${tripInfo.currentTrip.travelers} travelers totals: $<strong>${tripInfo.tripTotalCost}</strong>.</p>
+      <button class="btns request-trip-btn" id="requestTripBtn" type="submit">Request Trip</button>
+      `;
+    }
+  }
+  
 
 export default domUpdates;

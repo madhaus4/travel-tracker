@@ -1,5 +1,5 @@
 // LAYOUT STYLES GO IN HERE, HEIGHT & WIDTH
-// @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
 
 
 // NAV CONTAINER
@@ -13,6 +13,7 @@
     @include center-items(flex-end);
   }
 }
+
 
 
 // LOGIN PAGE
@@ -37,13 +38,13 @@
 .main-container {
   height: 60vh;
   margin: 2vh 0 15vh;
-  @include center-items(center);
   position: relative;
+  @include center-items(center);
 }
 
 .main-section {
-  height: 55vh;
-  width: 80vw;
+  height: 60vh;
+  width: 85vw;
   margin: auto;
   @include center-items(center);
   justify-content: space-around;
@@ -62,12 +63,13 @@
 }
 
 
+
 // TRIP REQUEST FORM
 .trip-request-form {
   display: flex;
   flex-direction: column;
-  // @include center-items(flex-start);
 }
+
 
 
 // TRIP PRICE CONTAINER
@@ -76,67 +78,64 @@
   width: 75vw;
   padding: 10px;
   margin: auto;
+
   @include center-items(center);
 }
 
 
+
 // TRIPS CONTAINER
 .trips-container {
-  height: 280vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
 
-  // @media screen and (min-width: 600px) {
-  //   height: 200vh;
-  //   width: 97vw;
-  // }
-
   div {
-    height: 60vh;
     margin: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 
-  //   @media screen and (min-width: 600px) {
-  //     width: 40vw;
-  // }
-    
-    article {
-      overflow-y: scroll;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-
-      @include for-laptop() 
-      // @media (min-width: 600px) {
-      //   width: 97vw;
-      // }
-    }
   }
 }
 
-// .destination-containers {
-//   display: flex;
-//   justify-content: flex-start;
-//   width: 40vw;
-//   overflow-y: scroll;
-//   overflow-x: hidden;
-// }
+.trips {
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-// CURRENT TRIP DETAILS
+  @include for-laptop() 
+}
 
-// PENDING TRIPS
+.yes-trip-wrapper {
+  height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
-// UPCOMING TRIPS
-// .glide-container {
-//   @include center-items(center);
-// }
+.no-trip-wrapper {
+  height: 10vh;
+}
 
-// .glide {
-//   align-items: center;
-// }
+.destination-cards {
+  border-radius: $radius;
+  background-color: #5E779647;
+}
 
-// PAST TRIPS
+.destination-cards {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+

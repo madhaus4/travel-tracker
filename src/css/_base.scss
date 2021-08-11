@@ -1,6 +1,8 @@
 // IMAGES, FONTS& WHATEVER I DON'T KNOW WHAT TO DO WITH GOES IN HERE
   // MARGIN, PADDING, BORDERS, COLORS
 
+
+
 * {
   font-family: 'Hind Siliguri', sans-serif;
   font-size: 1em;
@@ -13,11 +15,8 @@ body {
 }
 
 
-// NAV CONTAINER
-.nav-container {
-  // background-color: lightblue;
-}
 
+// NAV CONTAINER
 .menu-icon {
   height: 30px;
   width: 30px;
@@ -29,12 +28,7 @@ h1 {
 
 
 
-
 // LOGIN PAGE
-.login-page {
-  
-}
-
 .login-section {
   border-radius: $radius;
   background-color: #A6F5EE;
@@ -107,17 +101,15 @@ h1 {
 // TRIP PRICE CONTAINER
 .trip-price-container {
   // background-color: #A6F5EE;
+  background-color: #df656dd4;
+  // background-color: #ab4b52;
   border-radius: $radius;
   filter: $drop-shadow;
   text-align: center;
-  background-color: #df656dd4;
-  // background-color: #ab4b52;
   color: white;
-  
-
 }
 
-// #8DFBD1
+
 
 // TRIPS CONTAINER
 h4 {
@@ -126,29 +118,16 @@ h4 {
   font-size: 1.15em;
   border-bottom: 1px solid #5292B4;
   width: 90vw;
-
-  // @media (min-width: 600px) {
-  //   width: 97vw;
-  // }
 }
 
-
-// CURRENT TRIP DETAILS
-// PENDING TRIPS
-// UPCOMING TRIPS
-
-// PAST TRIPS
 .travel-photos {
   height: 35vh;
   width: 100%;
-
-  // @media (min-width: 600px) {
-  //   width: 40vw;
-  // }
 }
 
-
-
+.no-trips {
+  text-align: center;
+}
 
 .hidden {
   display: none;
@@ -158,5 +137,5 @@ h4 {
 // hsl(114deg 76% 41% / 17%);
 // #00ffb147
 // #5eff001c
-
+// #8DFBD1
 

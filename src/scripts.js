@@ -26,6 +26,8 @@ const checkInField = document.getElementById('startDate')
 const checkOutField = document.getElementById('endDate')
 const GoingToField = document.getElementById('destinationChoice')
 const GuestsField = document.getElementById('numOfTravelers')
+const tripContainer = document.getElementById('tripContainer')
+
 
 // EVENT LISTENERS
 window.addEventListener('load', getFetchedData)

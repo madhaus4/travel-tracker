@@ -23,22 +23,15 @@ const domUpdates = {
     `;
   },
 
-  // renderNoTripsMsg(trip) {
-  //   `You do not have any past trips yet`
-  //   `You're currently not on a trip`
-  //   `You do not have any upcoming trips`
-  //   `You do not have any pending trips`
-  // },
-
-
-
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
+    pastTrips.classList.add('.yes-trip-wrapper')
+
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {
           pastTrips.innerHTML += `
-            <div class="destination-containers">
+            <div class="destination-cards">
               <h5>${destination.destination}</h5>
               <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
               <h6>${trip.date}</h6>
@@ -51,16 +44,25 @@ const domUpdates = {
 
   renderNoPastTrips() {
     const pastTrips = document.getElementById('pastTrips')
-    pastTrips.innerHTML = `<p>You do not have any past trips yet</p>`
+    pastTrips.classList.add('.no-trip-wrapper')
+
+    pastTrips.innerHTML = `
+      <div>  
+        <p>You do not have any past trips yet</p>
+      </div>
+    `;
   },
 
   renderPresentTrips(trips, destinations) {
+    // const currentTripWrapper = document.getElementById('currentTrips')
     const presentTrips = document.getElementById('currentTripDetails')
+    presentTrips.classList.add('.yes-trip-wrapper')
+  
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {
           presentTrips.innerHTML += `
-            <div class="destination-containers">
+            <div class="destination-cards">
               <h5>${destination.destination}</h5>
               <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
               <h6>${trip.date}</h6>
@@ -72,17 +74,26 @@ const domUpdates = {
   },
 
   renderNoPresentTrips() {
-    const currentTripDetails = document.getElementById('currentTripDetails')
-    currentTripDetails.innerHTML = `<p>You're currently not on a trip</p>`
+    // const currentTripWrapper = document.getElementById('currentTripWrapper')
+    const presentTrips = document.getElementById('currentTripDetails')
+    presentTrips.classList.add('.no-trip-wrapper')
+
+    presentTrips.innerHTML = `
+      <div>  
+        <p>You're currently not on a trip</p>
+      </div>
+    `;
   },
 
   renderUpcomingTrips(trips, destinations) {
     const upcomingTrips = document.getElementById('upcomingTrips')
+    upcomingTrips.classList.add('.yes-trip-wrapper')
+
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {
           upcomingTrips.innerHTML += `
-            <div class="destination-containers">
+            <div class="destination-cards">
               <h5>${destination.destination}</h5>
               <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
               <h6>${trip.date}</h6>
@@ -94,17 +105,26 @@ const domUpdates = {
   },
 
   renderNoUpcomingTrips() {
+    // const upcomingTripWrapper = document.getElementById('upcomingTripWrapper')
     const upcomingTrips = document.getElementById('upcomingTrips')
-    upcomingTrips.innerHTML = `<p>You do not have any upcoming trips</p>`
+    upcomingTrips.classList.add('.no-trip-wrapper')
+
+    upcomingTrips.innerHTML = `
+      <div>  
+        <p>You do not have any upcoming trips</p>
+      </div>
+    `;
   },
 
   renderPendingTrips(trips, destinations) {
     const pendingTrips = document.getElementById('pendingTrips')
+    pendingTrips.classList.add('.yes-trip-wrapper')
+
     destinations.forEach(destination => {
       trips.forEach(trip => {
         if (destination.id === trip.destinationID) {
           pendingTrips.innerHTML += `
-            <div class="destination-containers">
+            <div class="destination-cards">
               <h5>${destination.destination}</h5>
               <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
               <h6>${trip.date}</h6>
@@ -116,8 +136,15 @@ const domUpdates = {
   },
 
   renderNoPendingTrips() {
+    // const pendingTripWrapper = document.getElementById('pendingTripWrapper')
     const pendingTrips = document.getElementById('pendingTrips')
-    pendingTrips.innerHTML = `<p>You do not have any pending trips</p>`
+    pendingTrips.classList.add('.no-trip-wrapper')
+
+    pendingTrips.innerHTML = `
+      <div>  
+        <p>You do not have any pending trips</p>
+      </div>
+    `;
   },
 
   renderDestinationsDataList(destinations) {

@@ -115,11 +115,12 @@ describe('Trips', () => {
 
   describe('Trip Costs', () => {
     it('should have a way to calculate the amount of a trip per person', () => {
-      expect(currentTrip.calculateTripCostPerPerson(sampleTrips, sampleDestinations)).to.equal(2850);
+      currentTrip.findCurrentTrips(sampleTrips)
+      expect(currentTrip.calculateTripCostPerPerson(sampleDestinations[1])).to.equal(2850);
     })
 
     it('should have a way to calculate the amount of a trip for a group', () => {
-      expect(currentTrip.calculateTripCostForGroup(sampleTrips, sampleDestinations)).to.equal(54150);
+      expect(currentTrip.calculateTripCostForGroup(currentTrip, sampleDestinations[1])).to.equal(54150);
     })
     
     it('should have a way to calculate the travel agent\'s 10% fee', () => {

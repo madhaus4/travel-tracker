@@ -3,17 +3,15 @@ import Traveler from '../src/Traveler.js';
 import Trip from '../src/Trip.js';
 import sampleTravelers from '../src/data/travelersData-sample.js';
 import sampleTrips from '../src/data/tripsData-sample.js';
-import sampleDestinations from '../src/data/destinationsData-sample.js';
-
 
 describe('Travelers', () => {
-  let traveler1, traveler2, traveler3, date;
+  let traveler1, traveler2, traveler3, date, currentTrip;
 
   beforeEach(() => {
     traveler1 = new Traveler(sampleTravelers[2]);
     traveler2 = new Traveler(sampleTravelers[1]);
     traveler3 = new Traveler(sampleTravelers[0]);
-    currentTrip = new Trip()
+    currentTrip = new Trip(sampleTrips[3])
     date = '2021/08/07';
   })
 
@@ -102,7 +100,8 @@ describe('Travelers', () => {
     })
 
     it('should have a way to find all of a traveler\'s past trips', () => {
-      expect(traveler1.findPastTrips(sampleTrips, 3, date)).to.deep.equal([  
+      traveler1.findCurrentUserTrips(sampleTrips, 3)
+      expect(traveler1.findPastTrips(date)).to.deep.equal([  
         {
           id: 100,
           userID: 3,
@@ -141,7 +140,8 @@ describe('Travelers', () => {
     })
 
     it('should have a way to find all of a traveler\'s upcoming trips', () => {
-      expect(traveler1.findUpcomingTrips(sampleTrips, date)).to.deep.equal([  
+      traveler1.findCurrentUserTrips(sampleTrips, 3)
+      expect(traveler1.findUpcomingTrips(date)).to.deep.equal([  
         {
           id: 21,
           userID: 3,

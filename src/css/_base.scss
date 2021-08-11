@@ -10,7 +10,8 @@
 }
 
 body {
-  overflow: auto;
+  // overflow: auto;
+  width: 100%;
   // margin: 5px;
 }
 
@@ -118,11 +119,20 @@ h4 {
   font-size: 1.15em;
   border-bottom: 1px solid #5292B4;
   width: 90vw;
+
+  @media (min-width: 605px) {
+    width: 97vw;
+  }
 }
 
 .travel-photos {
   height: 35vh;
   width: 100%;
+
+  @media (min-width: 605px) {
+    height: 45vh;
+    width: auto;
+  }
 }
 
 .no-trips {

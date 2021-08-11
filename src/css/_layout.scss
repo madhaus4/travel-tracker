@@ -9,6 +9,11 @@
   justify-content: space-around;
   align-items: center;
   
+  @media (min-width: 605px) {
+    height: 12vh;
+    font-size: larger;
+  }
+
   div {
     @include center-items(flex-end);
   }
@@ -40,6 +45,10 @@
   margin: 2vh 0 15vh;
   position: relative;
   @include center-items(center);
+
+  @media (min-width: 605px) {
+    height: 67vh;
+  }
 }
 
 .main-section {
@@ -59,6 +68,10 @@
     margin-bottom: -80px;
     @include center-items(center);
     justify-content: space-evenly;
+
+    @media (min-width: 605px) { 
+      height: 35vh;
+    }
   }
 }
 
@@ -68,6 +81,21 @@
 .trip-request-form {
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 605px) { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    height: 16vh;
+  }
+}
+
+.formLabel {
+  @media (min-width: 605px) {
+    padding: 0px 5px 0px 10px;
+  }
 }
 
 
@@ -92,13 +120,23 @@
   justify-content: space-evenly;
   align-items: flex-start;
 
-  div {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  @media (min-width: 605px) { 
+    width: auto;
+    // justify-content: none;
+    // align-items: none;
   }
+    
+    div {
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      @media (min-width: 605px) {
+        align-items: flex-start;
+        width: 100vw;
+      }
+    }
 }
 
 .trips {
@@ -124,6 +162,11 @@
 .destination-cards {
   border-radius: $radius;
   background-color: #5E779647;
+
+  @media (min-width: 605px) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .destination-cards {
@@ -135,6 +178,12 @@
   &:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+  }
+}
+
+h5, h6 {
+  @media (min-width: 605px) {
+    align-self: center;
   }
 }
 

@@ -17,6 +17,12 @@
   }
 }
 
+.btns {
+  @media (min-width: 768px) {
+    width: 25vw;
+  }
+}
+
 
 // TRIANGLE HEADER
 // ON LOGIN PAGE
@@ -49,6 +55,15 @@
     margin-top: 0px;
   }
 }
+
+@media (min-width: 768px) {
+  .custom-shape-divider-top-1628566746-login svg {
+    width: calc(100% + 1.3px);
+    height: 57vh;
+    margin-top: -4px;
+  }
+}
+
 
 // ON MAIN PAGE
 .custom-shape-divider-top-1628566746 {

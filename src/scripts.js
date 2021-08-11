@@ -22,6 +22,10 @@ const checkPriceBtn = document.querySelector('.check-price-btn')
 const continueBtn = document.getElementById('continueBtn')
 const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
+const checkInField = document.getElementById('startDate')
+const checkOutField = document.getElementById('endDate')
+const GoingToField = document.getElementById('destinationChoice')
+const GuestsField = document.getElementById('numOfTravelers')
 
 // EVENT LISTENERS
 window.addEventListener('load', getFetchedData)
@@ -118,7 +122,7 @@ function assignFetchedData(data) {
 
     currentTraveler = new Traveler(currentUserData)
     currentTrip = new Trip(tripsData)
-    console.log('currentTraveler', currentTraveler)
+    // console.log('currentTraveler', currentTraveler)
 
     let name = currentTraveler.name.split(' ')
     domUpdates.renderWelcomeMsg(name[0]) 
@@ -160,7 +164,7 @@ function displayPastTrips(currentUserID, date) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPastTrips(currentUserID, date);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
-  
+
   if (currentTraveler.pastTrips.length > 0) {
     domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
@@ -209,13 +213,26 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
-function displayTripPriceRequest(event) {
-  event.preventDefault(event)
+function displayTripPriceRequest() {
   currentTraveler = new Traveler(currentUserData)
   const tripTotalCost = getTripPriceRequest()
 
   domUpdates.renderTripPriceRequest(tripTotalCost)
   displayPendingTrips(currentTraveler)
+  checkPriceBtn.disabled = true;
+  if (checkPriceBtn.disabled) {
+    clearTripInputFields()
+  }
+}
+
+function clearTripInputFields() {
+  // if (continueBtn.disabled) {
+    checkInField.value = ''
+    checkOutField.value = ''
+    // goingToField.value = goingToField.reset()
+    GuestsField.value = ''
+    continueBtn.disabled = false;
+  // }
 }
 
 
@@ -311,3 +328,6 @@ function getTripPriceRequest() {
 
   return {currentTrip, destinationsList, tripTotalCost};
 }
+
+
+

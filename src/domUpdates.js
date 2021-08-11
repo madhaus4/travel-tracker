@@ -23,63 +23,78 @@ const domUpdates = {
     `;
   },
 
+  // renderNoTripsMsg(trip) {
+  //   `You do not have any past trips yet`
+  //   `You're currently not on a trip`
+  //   `You do not have any upcoming trips`
+  //   `You do not have any pending trips`
+  // },
+
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {
-      // trips.forEach(trip => {
-        pastTrips.innerHTML += `
-          <div class="destination-containers">
-            <h5>${destination.destination}</h5>
-            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-            <h6></h6>
-          </div>
-        `;
-      // })
+      trips.forEach(trip => {
+        if (destination.id === trip.destinationID) {
+          pastTrips.innerHTML += `
+            <div class="destination-containers">
+              <h5>${destination.destination}</h5>
+              <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+              <h6>${trip.date}</h6>
+            </div>
+          `;
+        }
+      })
     })
   },
 
   renderPresentTrips(trips, destinations) {
     const presentTrips = document.getElementById('currentTripDetails')
     destinations.forEach(destination => {
-      // trips.forEach(trip => {
-        presentTrips.innerHTML += `
-          <div class="destination-containers">
-            <h5>${destination.destination}</h5>
-            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-            <h6></h6>
-          </div
-        `;
-      // })
+      trips.forEach(trip => {
+        if (destination.id === trip.destinationID) {
+          presentTrips.innerHTML += `
+            <div class="destination-containers">
+              <h5>${destination.destination}</h5>
+              <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+              <h6>${trip.date}</h6>
+            </div
+          `;
+        }
+      })
     })
   },
 
   renderUpcomingTrips(trips, destinations) {
     const upcomingTrips = document.getElementById('upcomingTrips')
     destinations.forEach(destination => {
-      // trips.forEach(trip => {
-        upcomingTrips.innerHTML += `
-          <div class="destination-containers">
-            <h5>${destination.destination}</h5>
-            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-            <h6></h6>
-          </div>  
-        `;
-      // })
+      trips.forEach(trip => {
+        if (destination.id === trip.destinationID) {
+          upcomingTrips.innerHTML += `
+            <div class="destination-containers">
+              <h5>${destination.destination}</h5>
+              <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+              <h6>${trip.date}</h6>
+            </div>  
+          `;
+        }
+      })
     })
   },
 
   renderPendingTrips(trips, destinations) {
     const pendingTrips = document.getElementById('pendingTrips')
     destinations.forEach(destination => {
-      // trips.forEach(trip => {
-        pendingTrips.innerHTML += `
-          <div class="destination-containers">
-            <h5>${destination.destination}</h5>
-            <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
-            <h6></h6>
-          </div>  
-        `;
-      // })
+      trips.forEach(trip => {
+        if (destination.id === trip.destinationID) {
+          pendingTrips.innerHTML += `
+            <div class="destination-containers">
+              <h5>${destination.destination}</h5>
+              <img class="travel-photos" src=${destination.image} alt=${destination.alt}>
+              <h6>${trip.date}</h6>
+            </div>  
+          `;
+        }
+      })
     })
   },
 

@@ -3,10 +3,8 @@ import Traveler from '../src/Traveler.js';
 import Trip from '../src/Trip.js';
 import sampleTravelers from '../src/data/travelersData-sample.js';
 import sampleTrips from '../src/data/tripsData-sample.js';
-import sampleDestinations from '../src/data/destinationsData-sample.js';
 
-
-describe.only('Travelers', () => {
+describe('Travelers', () => {
   let traveler1, traveler2, traveler3, date, currentTrip;
 
   beforeEach(() => {

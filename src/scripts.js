@@ -18,15 +18,16 @@ let date ='2021/08/10';
 
 
 // QUERY SELECTORS
-const checkPriceBtn = document.querySelector('.check-price-btn')
+const checkPriceBtn = document.getElementById('checkPriceBtn')
 const continueBtn = document.getElementById('continueBtn')
+const requestTripBtn = document.getElementById('requestTripBtn')
 const userNameField = document.getElementById('userName')
 const passwordField = document.getElementById('password')
 const checkInField = document.getElementById('startDate')
 const checkOutField = document.getElementById('endDate')
-const GoingToField = document.getElementById('destinationChoice')
+// const GoingToField = document.getElementById('destinationChoice')
 const GuestsField = document.getElementById('numOfTravelers')
-const tripContainer = document.getElementById('tripContainer')
+// const tripContainer = document.getElementById('tripContainer')
 
 
 // EVENT LISTENERS
@@ -38,7 +39,7 @@ passwordField.addEventListener('keyup', function(event) {
   }
 })
 checkPriceBtn.addEventListener('click', displayTripPriceRequest)
-
+requestTripBtn.addEventListener('click', displayNewPendingTrips)
 
 
 // LOGIN FUNCTIONS
@@ -329,5 +330,8 @@ function getTripPriceRequest() {
   return {currentTrip, destinationsList, tripTotalCost};
 }
 
-
+function displayNewPendingTrips() {
+  console.log('currentTrip', currentTrip)
+  domUpdates.renderPendingTrips(currentTrip, destinationsData)
+}
 

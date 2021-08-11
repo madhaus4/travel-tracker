@@ -21,7 +21,8 @@ class Trip {
 
   calculateTripCostForGroup(trip, destination) {
     const costPerPerson = this.calculateTripCostPerPerson(destination)
-    return costPerPerson * trip.travelers
+    const tripTotal = costPerPerson * trip.travelers
+    return tripTotal
   }
 
   calculateAgentFeePerPerson(trip, destination) {

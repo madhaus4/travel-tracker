@@ -168,7 +168,7 @@ function displayPastTrips(currentUserID, date) {
   if (currentTraveler.pastTrips.length > 0) {
     domUpdates.renderPastTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any past trips yet`)
+    domUpdates.renderNoPastTrips()
   }
 }
 
@@ -180,7 +180,7 @@ function displayPresentTrips(currentUserID, date) {
   if (currentTraveler.presentTrips.length > 0) {
     domUpdates.renderPresentTrips(theseTrips, destinations2);
   } else {
-    console.log(`You're currently not on a trip`)
+    domUpdates.renderNoPresentTrips()
   }
 }
 
@@ -192,7 +192,7 @@ function displayUpcomingTrips(currentUserID, date) {
   if (currentTraveler.upcomingTrips.length > 0) {
     domUpdates.renderUpcomingTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any upcoming trips`)
+    domUpdates.renderNoUpcomingTrips()
   }
 }
 
@@ -204,7 +204,7 @@ function displayPendingTrips(currentUserID) {
   if (currentTraveler.pendingTrips.length > 0) {
     domUpdates.renderPendingTrips(theseTrips, destinations2);
   } else {
-    console.log(`You do not have any pending trips`)
+    domUpdates.renderNoPendingTrips()
   }
 }
 
@@ -226,13 +226,11 @@ function displayTripPriceRequest() {
 }
 
 function clearTripInputFields() {
-  // if (continueBtn.disabled) {
-    checkInField.value = ''
-    checkOutField.value = ''
-    // goingToField.value = goingToField.reset()
-    GuestsField.value = ''
-    continueBtn.disabled = false;
-  // }
+  checkInField.value = ''
+  checkOutField.value = ''
+  // goingToField.value = goingToField.reset()
+  GuestsField.value = ''
+  continueBtn.disabled = false;
 }
 
 

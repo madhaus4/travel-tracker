@@ -30,6 +30,8 @@ const domUpdates = {
   //   `You do not have any pending trips`
   // },
 
+
+
   renderPastTrips(trips, destinations) {
     const pastTrips = document.getElementById('pastTrips')
     destinations.forEach(destination => {
@@ -45,6 +47,11 @@ const domUpdates = {
         }
       })
     })
+  },
+
+  renderNoPastTrips() {
+    const pastTrips = document.getElementById('pastTrips')
+    pastTrips.innerHTML = `<p>You do not have any past trips yet</p>`
   },
 
   renderPresentTrips(trips, destinations) {
@@ -64,6 +71,11 @@ const domUpdates = {
     })
   },
 
+  renderNoPresentTrips() {
+    const currentTripDetails = document.getElementById('currentTripDetails')
+    currentTripDetails.innerHTML = `<p>You're currently not on a trip</p>`
+  },
+
   renderUpcomingTrips(trips, destinations) {
     const upcomingTrips = document.getElementById('upcomingTrips')
     destinations.forEach(destination => {
@@ -81,6 +93,11 @@ const domUpdates = {
     })
   },
 
+  renderNoUpcomingTrips() {
+    const upcomingTrips = document.getElementById('upcomingTrips')
+    upcomingTrips.innerHTML = `<p>You do not have any upcoming trips</p>`
+  },
+
   renderPendingTrips(trips, destinations) {
     const pendingTrips = document.getElementById('pendingTrips')
     destinations.forEach(destination => {
@@ -96,6 +113,11 @@ const domUpdates = {
         }
       })
     })
+  },
+
+  renderNoPendingTrips() {
+    const pendingTrips = document.getElementById('pendingTrips')
+    pendingTrips.innerHTML = `<p>You do not have any pending trips</p>`
   },
 
   renderDestinationsDataList(destinations) {

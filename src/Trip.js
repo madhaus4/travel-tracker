@@ -16,7 +16,8 @@ class Trip {
 
   // TRIP COSTS METHODS
   calculateTripCostPerPerson(destination) {
-    return (destination.estimatedLodgingCostPerDay * this.duration) + destination.estimatedFlightCostPerPerson
+    const tripCost = (destination.estimatedLodgingCostPerDay * this.duration) + destination.estimatedFlightCostPerPerson
+    return tripCost
   }
 
   calculateTripCostForGroup(trip, destination) {
@@ -25,8 +26,8 @@ class Trip {
     return tripTotal
   }
 
-  calculateAgentFeePerPerson(trip, destination) {
-    const initialTripCost = this.calculateTripCostPerPerson(trip, destination)
+  calculateAgentFeePerPerson(destination) {
+    const initialTripCost = this.calculateTripCostPerPerson(destination)
     return initialTripCost * .10
   }
 
@@ -35,12 +36,14 @@ class Trip {
     return initialTripCost * .10
   }
 
-  returnTripTotalPerPerson(trip, destination) {
-    return this.calculateTripCostPerPerson(trip, destination) + this.calculateAgentFeePerPerson(trip, destination)
+  returnTripTotalPerPerson(destination) {
+    let total = this.calculateTripCostPerPerson(destination) + this.calculateAgentFeePerPerson(destination)
+    return total
   }
 
   returnTripTotalForGroup(trip, destination) {
-    return this.calculateTripCostForGroup(trip, destination) + this.calculateAgentFeeForGroup(trip, destination)
+    let total = this.calculateTripCostForGroup(trip, destination) + this.calculateAgentFeeForGroup(trip, destination)
+    return total
   }
 }
 

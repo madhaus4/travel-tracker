@@ -4,7 +4,7 @@ import sampleTrips from '../src/data/tripsData-sample.js';
 import sampleDestinations from '../src/data/destinationsData-sample.js';
 
 
-describe('Trips', () => {
+describe.only('Trips', () => {
   let currentTrip, date;
 
   beforeEach(() => {
@@ -120,7 +120,8 @@ describe('Trips', () => {
     })
 
     it('should have a way to calculate the amount of a trip for a group', () => {
-      expect(currentTrip.calculateTripCostForGroup(currentTrip, sampleDestinations[1])).to.equal(54150);
+      // currentTrip.findCurrentTrips(sampleTrips)
+      expect(currentTrip.calculateTripCostForGroup(currentTrip, sampleDestinations[1])).to.equal(11400);
     })
     
     it('should have a way to calculate the travel agent\'s 10% fee', () => {

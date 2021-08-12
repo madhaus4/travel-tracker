@@ -326,12 +326,6 @@ function getTripPriceRequest() {
 function displayNewPendingTrips() {
   domUpdates.renderTripRequestMsg()
   clearTripInputFields()
-  // if (event.target.closest('request-trip-btn')) {   
-
-  // if (checkPriceBtn.disabled) {
-    // checkPriceBtn.disabled = false;
-  // }
-  // }
 }
 
 // const show = (element) => {

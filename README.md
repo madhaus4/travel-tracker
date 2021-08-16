@@ -48,8 +48,11 @@ JavaScript | SCSS/CSS | HTML5 | Mocha | Chai | Webpack | WebAPIs
 - I'd really like to add a way to view all the trip options on the login page for users who are not yet members.  Additionally, set up a registration form to get new users to the app.
 
 ### Preview
-![travel-tracker-mobile](https://user-images.githubusercontent.com/76507607/129066535-4a50fd09-c1ce-46d9-a135-9f18e2e95c75.png)
-![travel-tracker-desktop](https://user-images.githubusercontent.com/76507607/129066546-4504cd66-8b4b-4219-af84-e3bce0fef9cb.png)
+Desktop layout showing app features of selecting a trip and getting the estimated cost.
+![recording (6)](https://user-images.githubusercontent.com/76507607/129623367-67a85de9-ccda-4ace-b7fc-0584b09f6227.gif) 
+Mobile layout showing app login function including an incorrect login message. <br>
+![recording (7)](https://user-images.githubusercontent.com/76507607/129626619-7c5bfda4-5e99-428f-b618-fe0c0fa0eda4.gif)
+
 
 [Return to top](#rovewind-tours)
 

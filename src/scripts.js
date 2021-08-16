@@ -214,11 +214,10 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
-function displayTripPriceRequest(event) {
+function displayTripPriceRequest() {
   const tripTotalCost = getTripPriceRequest()
   domUpdates.renderTripPriceRequest(tripTotalCost)
   checkPriceBtn.disabled = true;
-  event.preventDefault(event)
 }
 
 function clearTripInputFields() {
@@ -290,7 +289,7 @@ function getYearlyTripsTotal() {
   return currentTraveler.calculateYearlyTripsTotal(2021, destinationsData)
 }
 
-function getTripPriceRequest(event) {
+function getTripPriceRequest() {
   let startDate = document.getElementById('startDate')
   let endDate = document.getElementById('endDate')
   let destinationsList = document.getElementById('destinationChoice')
@@ -321,7 +320,6 @@ function getTripPriceRequest(event) {
     .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
     
     let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-    // event.preventDefault(event)  
     return {currentTrip, destinationsList, tripTotalCost};
 }
 

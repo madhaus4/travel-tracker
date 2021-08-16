@@ -40,7 +40,9 @@ passwordField.addEventListener('keyup', function(event) {
     continueBtn.click();
   }
 })
-checkPriceBtn.addEventListener('click', displayTripPriceRequest)
+checkPriceBtn.addEventListener('click', function(event) {
+  displayTripPriceRequest(event)
+})
 tripPriceContainer.addEventListener('click', function(event) {
   displayNewPendingTrips(event)
 })
@@ -212,10 +214,11 @@ function displayYearlyTripsTotal() {
   domUpdates.renderYearlyTripsTotal(yearlyTotalTripsAmount)
 }
 
-function displayTripPriceRequest() {
+function displayTripPriceRequest(event) {
   const tripTotalCost = getTripPriceRequest()
   domUpdates.renderTripPriceRequest(tripTotalCost)
   checkPriceBtn.disabled = true;
+  event.preventDefault(event)
 }
 
 function clearTripInputFields() {
@@ -287,7 +290,7 @@ function getYearlyTripsTotal() {
   return currentTraveler.calculateYearlyTripsTotal(2021, destinationsData)
 }
 
-function getTripPriceRequest() {
+function getTripPriceRequest(event) {
   let startDate = document.getElementById('startDate')
   let endDate = document.getElementById('endDate')
   let destinationsList = document.getElementById('destinationChoice')
@@ -316,9 +319,10 @@ function getTripPriceRequest() {
   currentTrip = new Trip(newTrip)
   apiCalls.updateData(currentTrip)
     .then(domUpdates.renderAdditionalPendingTrips(currentTrip, destinationsData))
-
-  let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
-  return {currentTrip, destinationsList, tripTotalCost};
+    
+    let tripTotalCost = currentTrip.returnTripTotalForGroup(newTrip, findDestinationID)
+    // event.preventDefault(event)  
+    return {currentTrip, destinationsList, tripTotalCost};
 }
 
 function displayNewPendingTrips() {

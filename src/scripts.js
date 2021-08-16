@@ -199,8 +199,6 @@ function displayPendingTrips(currentUserID) {
   const destinations = getDestinationData(currentUserID.id);
   const theseTrips = getPendingTrips(currentUserID.id);
   const destinations2 = getDestinationDataByTrip(theseTrips, destinations)
-  console.log('theseTrips', theseTrips)
-  console.log('destinations2', destinations2)
 
   if (currentTraveler.pendingTrips.length > 0) {
     domUpdates.renderPendingTrips(theseTrips, destinations2);

@@ -49,7 +49,7 @@ JavaScript | SCSS/CSS | HTML5 | Mocha | Chai | Webpack | WebAPIs
 
 ### Preview
 ![travel-tracker-mobile](https://user-images.githubusercontent.com/76507607/129066535-4a50fd09-c1ce-46d9-a135-9f18e2e95c75.png)
-![travel-tracker-desktop](https://user-images.githubusercontent.com/76507607/129066546-4504cd66-8b4b-4219-af84-e3bce0fef9cb.png)
+![recording (6)](https://user-images.githubusercontent.com/76507607/129623367-67a85de9-ccda-4ace-b7fc-0584b09f6227.gif)
 
 [Return to top](#rovewind-tours)
 
